@@ -46,7 +46,10 @@
     object-fit:cover;
     object-position:center;
 }
-
+.index_banner .imgbox .text{
+    position: absolute;
+    
+}
 
 
 
