@@ -117,7 +117,6 @@
 }
 .s_content.s_bg02{
     background: url(../image/sbg_02.jpg) no-repeat right 30%;
-    background-size: 500px auto;
 }
 .s_content.s_bg03{
     background: url(../image/sbg_03.jpg) no-repeat left 30%;
@@ -204,7 +203,48 @@
     transform: translateY(-50%);
 }
 
+.animebox .analyse .skew{
+    position: absolute;
+    left: 0;
+    top: 57%;
+    opacity: .9;
+    cursor: pointer;
+    -webkit-transform:translateY(-50%) skewX(3deg) skewY(14deg) rotateY(27deg);
+    -ms-transform:translateY(-50%) skewX(3deg) skewY(14deg) rotateY(27deg);
+    -moz-transform:translateY(-50%) skewX(3deg) skewY(14deg) rotateY(27deg);
+    transform:translateY(-50%) skewX(3deg) skewY(14deg) rotateY(27deg);
+    -webkit-transition: transform .5s ease-out;
+    -moz-transition: transform .5s ease-out;
+    transition: transform .5s ease-out;
+}
+.animebox .analyse .skew.active{
+    -webkit-transform:translateY(-170%) scale(1.15);
+    -ms-transform:translateY(-170%) scale(1.15);
+    -moz-transform:translateY(-170%) scale(1.15);
+    transform:translateY(-170%) scale(1.15);
+    z-index: 20;
+}
+.animebox .analyse .skew.active.skew_1,
+.animebox .analyse .skew.active.skew_2{
+    margin-top:0;
+}
 
+.animebox .analyse .skew.onhover{
+    -webkit-transform:translateY(-55%) skewX(3deg) skewY(14deg) rotateY(27deg);
+}
+.animebox .analyse .skew_0{
+    z-index: 10;
+}
+.animebox .analyse .skew_1{
+    z-index: 9;
+    margin-left: 80px;
+    margin-top: -30px;
+}
+.animebox .analyse .skew_2{
+    z-index: 8;
+    margin-left: 160px;
+    margin-top: -60px;
+}
 
 .animebox .nao .tips{
     position: absolute;
