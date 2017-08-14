@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/commom.css">
     <link rel="stylesheet" href="css/swiper.min.css">
     <link rel="stylesheet" href="css/index.css">
-    <script type="text/javascript" src="script/zepto.min.js"></script>
+    <script type="text/javascript" src="script/jquery-1.11.2.min.js"></script>
     <script type="text/javascript" src="script/swiper.js"></script>
 </head>
 <body>
@@ -45,7 +45,6 @@
                         </div>
                         <div class="swiper-slide">33333 3</div>
                     </div>
-                    <div class="arrow_b"></div>
                     <div class="swiper-pagination"></div>
                     <div class="swiper-button-next swiper-button-black"></div>
                     <div class="swiper-button-prev swiper-button-black"></div>
@@ -53,20 +52,17 @@
 
             </div>
             <div class="swiper-slide">
-                <div class="s_content s_bg01">
-                    <div class="textbox">
-                        <div class="title">基于常规影像快速高效筛查</div>
-                        <div class="desc">通过神经网络计算机系统，训练海量影像、学习数据规律、发现关联关系，从而生成经验模型，实现对疾病的高效筛查，包括发现病灶、定量分析、治疗方案建议等。</div>
-                    </div>
+                <div class="s_content">
+
                 </div>
             </div>
             <div class="swiper-slide">
-                <div class="s_content s_bg02">
+                <div class="s_content">
                     222
                 </div>
             </div>
             <div class="swiper-slide">
-                <div class="s_content s_bg03">
+                <div class="s_content">
                     a1231231
                 </div>
                 <footer class="footer" style="width: 100%;position: absolute;bottom: 0;z-index: 10">
@@ -88,18 +84,186 @@
                 </footer>
             </div>
         </div>
+        <div class="index_arrow_b" id="index_arrow_b"></div>
     </div>
 
 </body>
 <script>
-    function anime(swiper){
-        var activeIndex = swiper.activeIndex;
-        var container = swiper.container;
-        if(activeIndex==1){
-            //container.html("ppp")
+    window.requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.msRequestAnimationFrame ||
+            function (callback) {
+                setTimeout(callback, 1000 / 60);
+            };
+    window.cancelAnimationFrame = window.cancelAnimationFrame || window.webkitCancelAnimationFrame || window.mozCancelAnimationFrame || window.msCancelAnimationFrame ||
+            function (id) {
+                clearTimeout(id);
+            };
+
+    var imgHost='';
+
+    function loadimgs(data,call,progress){
+        var newa = new Array;
+        for(var i= 0,len=data.length;i<len;i++){
+            (function(url){
+                var img1=new Image();
+                img1.src=url;
+                img1.onload=function(){
+                    newa.push(url);
+                    if(newa.length==data.length){
+                        call&&call();
+                    }
+                    progress&&progress((newa.length/data.length)*100);
+                }
+            })(data[i]);
         }
     }
-    function init(){
+    function anime_nao(obj,call){
+        var obj = obj;
+        var maxlength = 96;
+        var active=0;
+        var imgdata=[];
+        var updateID;
+        var tipsz=[
+            imgHost+'image/tips01_l.png',
+            imgHost+'image/tips01_t.png'
+        ];
+        var tipstimeout;
+        var image = document.createElement( "img" );
+        for(var i=0;i<maxlength+1;i++){
+            imgdata.push(imgHost+'image/nao/'+i+'.jpg');
+        }
+
+        function _createtips(){
+            var tipobj1=$('<div class="tips"><img class="line" src="'+tipsz[0]+'"><img class="text" src="'+tipsz[1]+'"><span class="point"></span></div>');
+            var tipobj2=$('<div class="tips position2"><img class="line" src="'+tipsz[0]+'"><img class="text" src="'+tipsz[1]+'"><span class="point"></span></div>');
+            obj.find('.nao').append(tipobj1);
+            obj.find('.nao').append(tipobj2);
+            tipobj1.show();
+            tipobj2.show();
+            _tipsanime(tipobj1,tipobj2);
+        }
+        function _tipsanime(obj1,obj2){
+            var aindex=true;
+            function __setobj(){
+                if(aindex){
+                    return obj1
+                }else{
+                    return obj2
+                }
+            }
+            function __a(){
+                obj1.removeClass('show');
+                obj2.removeClass('show');
+                var curobj = __setobj()
+                curobj.addClass('show');
+                aindex=!aindex;
+                tipstimeout=setTimeout(function(){
+                    __a();
+                },4000)
+            }
+            __a();
+        }
+        function _end(){
+            obj.find('.nao').addClass('toright');
+            setTimeout(function(){
+                obj.parent().find('.textbox').addClass('show');
+                _createtips();
+                call&&call();
+            },2000)
+        }
+        function _animation(){
+            image.src = imgdata[active]
+            active++;
+        }
+        function _start(){
+            if(active>maxlength){
+                cancelAnimationFrame(updateID);
+                _end();
+                return;
+            }
+            _animation();
+            updateID = requestAnimationFrame(_start);
+        }
+        loadimgs(imgdata,function(){
+            obj.html('<div class="nao"></div>');
+            obj.find('.nao')[0].appendChild( image );
+            _start();
+        })
+        loadimgs(tipsz);
+    }
+    function anime_lines(obj,call){
+        var obj = obj;
+        var maxlength = 82;
+        var active=0;
+        var imgdata=[];
+        var updateID;
+        var image = document.createElement( "img" );
+        for(var i=0;i<maxlength+1;i++){
+            imgdata.push(imgHost+'image/lines/'+i+'.jpg');
+        }
+        function _end(){
+            obj.parent().find('.textbox').addClass('show');
+            call&&call();
+        }
+        function _animation(){
+            image.src = imgdata[active]
+            active++;
+        }
+        function _start(){
+            if(active>maxlength){
+                cancelAnimationFrame(updateID);
+                _end();
+                return;
+            }
+            _animation();
+            updateID = requestAnimationFrame(_start);
+        }
+        loadimgs(imgdata,function(){
+            obj.html('<div class="lines"></div>');
+            obj.find('.lines')[0].appendChild( image );
+            _start();
+        })
+    }
+    function indexinit(){
+        var activeIndex=0;
+
+        function anime(swiper){
+            activeIndex = swiper.activeIndex;
+            var slideEle = swiper.slides[activeIndex];
+            var s_content = $(slideEle).find('.s_content');
+            var allcontent = swiper.container.find('.s_content');
+            allcontent.html('').removeClass('s_bg01 s_bg02 s_bg03');
+
+            if(activeIndex==1){
+                var $tet=$('<div class="textbox"><div class="title">基于常规影像快速高效筛查</div><div class="desc">通过神经网络计算机系统，训练海量影像、学习数据规律、发现关联关系，从而生成经验模型，实现对疾病的高效筛查，包括发现病灶、定量分析、治疗方案建议等。</div></div>');
+                var $anime=$('<div class="animebox"></div>');
+                s_content.append($tet);
+                s_content.append($anime);
+                anime_nao($anime,function(){
+                    s_content.addClass('s_bg01');
+                });
+            }else if(activeIndex==2){
+                var $tet=$('<div class="textbox positionright show"><div class="title">基于多模态数据的精准分析</div><div class="desc">通过为系统增加多模态数据，包括多设备的医疗影像、病理及生化检验数据、基因信息等，从而形成多维度的神经网络系统，提供给医生更加精准的诊断建议和疗效评价等信息。</div></div>');
+                var $anime=$('<div class="animebox"></div>');
+                s_content.append($tet);
+                s_content.append($anime);
+                s_content.addClass('s_bg02');
+            }else if(activeIndex==3){
+                var $tet=$('<div class="textbox w508"><div class="title">基于多模态数据的病情发展预测</div><div class="desc">通过分析多模态数据（影像、病历等）以及长期随访数据，预测病情发展轨迹。对疾病进行早期干预治疗（如老年病、慢性病），大幅降低患病可能性以及有效控制病情发展。</div></div>');
+                var $anime=$('<div class="animebox"></div>');
+                s_content.append($tet);
+                s_content.append($anime);
+                anime_lines($anime,function(){
+                    s_content.addClass('s_bg03');
+                });
+            }
+
+            var index_arrow_b = $('#index_arrow_b');
+            if(activeIndex==3){
+                index_arrow_b.hide();
+            }else{
+                index_arrow_b.show();
+            }
+        }
         var bannerSwiper = new Swiper('#bannerContainer', {
             pagination: '.swiper-pagination',
             paginationClickable: true,
@@ -126,7 +290,7 @@
 
     }
     $(function(){
-        init();
+        indexinit();
     });
 </script>
 </html>
