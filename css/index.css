@@ -48,10 +48,87 @@
 }
 .index_banner .imgbox .text{
     position: absolute;
-    
+    bottom: 20%;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+.index_banner .arrow_b{
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    margin-left: -15px;
+    width: 30px;
+    height: 30px;
+    background:url(../image/arrow_b.png) no-repeat center #ececec;
+    border-radius: 50%;
+    z-index: 100;
+}
+.index_banner video {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    background-color: #999;
+}
+.index_banner .playbtn{position: absolute;top:50%;left:50%;background-color: blanchedalmond;z-index:101;
+    background: url(../image/icon_play.png) no-repeat center;background-size: 80px;
+    width: 80px;height:80px;margin:-40px 0 0 -40px;
+    cursor: pointer;
 }
 
 
+.swiper-button-next, .swiper-container-rtl .swiper-button-prev{
+    right: 25px;
+    opacity: .7;
+}
+.swiper-button-prev, .swiper-container-rtl .swiper-button-next{
+    left: 25px;
+    opacity: .7;
+}
+.swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction{
+    bottom: 70px;
+}
+.swiper-pagination-bullet{
+    opacity: .4;
+}
+.swiper-pagination-bullet-active{
+    background: #d3d3d3;
+}
 
+
+.s_content{
+    width: 960px;
+    height: 100%;
+    left: 50%;
+    top: 50%;
+    margin-left: -480px;
+    position: absolute;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.s_content .textbox{
+    width: 472px;
+    position: absolute;
+    left: 0;
+    top:50%;
+    text-align: left;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.s_content .textbox .title{
+    font-size: 36px;
+}
+.s_content .textbox .desc{
+    font-size: 22px;
+    color: #666666;
+    line-height: 1.5;
+    margin-top: 45px;
+}
 
 

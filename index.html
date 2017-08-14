@@ -37,23 +37,68 @@
                                 <img class="text" src="image/banner001_text.png">
                             </div>
                         </div>
-                        <div class="swiper-slide">222 2</div>
+                        <div class="swiper-slide">
+                            <div class="imgbox">
+                                <video webkit-playsinline="yes" autoplay loop
+                                       x-webkit-airplay="allow" playsinline="true" src="http://www.w3school.com.cn/i/movie.mp4"></video>
+                            </div>
+                        </div>
                         <div class="swiper-slide">33333 3</div>
                     </div>
+                    <div class="arrow_b"></div>
                     <div class="swiper-pagination"></div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next swiper-button-black"></div>
+                    <div class="swiper-button-prev swiper-button-black"></div>
                 </div>
 
             </div>
-            <div class="swiper-slide">Slide 2</div>
-            <div class="swiper-slide">Slide 3</div>
-            <div class="swiper-slide">Slide 4</div>
+            <div class="swiper-slide">
+                <div class="s_content s_bg01">
+                    <div class="textbox">
+                        <div class="title">基于常规影像快速高效筛查</div>
+                        <div class="desc">通过神经网络计算机系统，训练海量影像、学习数据规律、发现关联关系，从而生成经验模型，实现对疾病的高效筛查，包括发现病灶、定量分析、治疗方案建议等。</div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="s_content s_bg02">
+                    222
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="s_content s_bg03">
+                    a1231231
+                </div>
+                <footer class="footer" style="width: 100%;position: absolute;bottom: 0;z-index: 10">
+                    <ul class="nav clearfix">
+                        <li class="col qr">
+                            <img class="rqicon" src="image/qrcode.jpg">
+                            <p>关注我们</p>
+                        </li>
+                        <li class="col">
+                            <p>北京雅森科技发展有限公司</p>
+                            <p>电话：+86 10 84245607</p>
+                            <p>京ICP备 1100 xxxx号</p>
+                        </li>
+                        <li class="col">
+                            <p>地址：北京市朝阳区望京 SOHO 塔 1B座 1507</p>
+                            <p>邮箱：contsct@qed-tec.com</p>
+                        </li>
+                    </ul>
+                </footer>
+            </div>
         </div>
     </div>
 
 </body>
 <script>
+    function anime(swiper){
+        var activeIndex = swiper.activeIndex;
+        var container = swiper.container;
+        if(activeIndex==1){
+            //container.html("ppp")
+        }
+    }
     function init(){
         var bannerSwiper = new Swiper('#bannerContainer', {
             pagination: '.swiper-pagination',
@@ -74,12 +119,14 @@
             effect: 'fade'
         });
 
-        indexSwiper.on('slideChangeStart', function (swiper) {
-            console.log(swiper);
+        indexSwiper.on('slideChangeEnd', function (swiper) {
+            //console.log(swiper);
+            anime(swiper);
         });
+
     }
     $(function(){
-        init()
+        init();
     });
 </script>
 </html>
