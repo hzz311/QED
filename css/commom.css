@@ -29,8 +29,8 @@ svg:not(:root) {
 a{text-decoration: none;color: inherit;}
 .clearfix:after {content: "";visibility: hidden;display: block;height: 0;clear: both;}
 
-.pagecontent{width:960px;margin: auto;min-height:calc(100% - 191px);position: relative;}
-.header{width:960px;margin:0 auto;height: 65px;line-height: 65px;font-size: 18px;}
+.pagecontent{width:1000px;margin: auto;min-height:calc(100% - 191px);position: relative;}
+.header{width:1000px;margin:0 auto;height: 65px;line-height: 65px;font-size: 18px;}
 .header .logo{float: left;width:125px;height: 100%; background: url("../image/logo.png") no-repeat center;background-size: contain;}
 .header .nav{margin-left: 200px;text-align: center;}
 .header .nav a{display: inline-block;width: 20%;float: left;}

@@ -99,7 +99,7 @@
 
 
 .s_content{
-    width: 960px;
+    width: 1000px;
     height: 100%;
     left: 50%;
     top: 50%;
@@ -109,6 +109,9 @@
     -ms-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
     transform: translateY(-50%);
+}
+.s_content.s_bg01{
+    background: url(../image/sbg_01.jpg) no-repeat left 10%;
 }
 .s_content .textbox{
     width: 472px;
