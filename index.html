@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no,minimal-ui">
+    <title>雅森科技</title>
+    <link rel="stylesheet" href="css/commom.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script type="text/javascript" src="script/zepto.min.js"></script>
+    <script type="text/javascript" src="script/swiper.js"></script>
+</head>
+<body>
+    <div class="headindex">
+        <header class="header">
+            <div class="logo"></div>
+            <nav class="nav clearfix">
+                <a class="active" href="#">解决方案</a>
+                <a href="#">人工智能</a>
+                <a href="#">合作机构</a>
+                <a href="#">关于我们</a>
+                <a href="#">咨询联系</a>
+            </nav>
+        </header>
+    </div>
+
+
+    <div class="swiper-container" id="indexContainer">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+
+                <div class="swiper-container index_banner" id="bannerContainer">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="imgbox">
+                                <img class="bgimg" src="image/banner001.jpg">
+                                <img class="text" src="image/banner001_text.png">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">222 2</div>
+                        <div class="swiper-slide">33333 3</div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+
+            </div>
+            <div class="swiper-slide">Slide 2</div>
+            <div class="swiper-slide">Slide 3</div>
+            <div class="swiper-slide">Slide 4</div>
+        </div>
+    </div>
+
+</body>
+<script>
+    function init(){
+        var bannerSwiper = new Swiper('#bannerContainer', {
+            pagination: '.swiper-pagination',
+            paginationClickable: true,
+            nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev',
+            spaceBetween: 0
+        });
+
+
+        var indexSwiper = new Swiper('#indexContainer', {
+            direction: 'vertical',
+            slidesPerView: 1,
+            paginationClickable: true,
+            spaceBetween: 0,
+            mousewheelControl: true,
+            effect: 'fade'
+        });
+
+        indexSwiper.on('slideChangeStart', function (swiper) {
+            console.log(swiper);
+        });
+    }
+    $(function(){
+        init()
+    });
+</script>
+</html>
