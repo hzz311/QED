@@ -11,7 +11,7 @@
     <script type="text/javascript" src="script/swiper.js"></script>
 </head>
 <body>
-    <div class="headindex">
+    <div class="headindex" id="headindex">
         <header class="header">
             <div class="logo"></div>
             <nav class="nav clearfix">
@@ -39,8 +39,9 @@
                         </div>
                         <div class="swiper-slide">
                             <div class="imgbox">
-                                <video webkit-playsinline="yes" autoplay loop
+                                <video webkit-playsinline="yes" loop
                                        x-webkit-airplay="allow" playsinline="true" src="http://www.w3school.com.cn/i/movie.mp4"></video>
+                                <div id="indexvideomask" style="position: absolute;width: 100%;height:100%;top:0;left:0;z-index: 10"></div>
                             </div>
                         </div>
                         <div class="swiper-slide">33333 3</div>
@@ -65,7 +66,7 @@
                 <div class="s_content">
                     a1231231
                 </div>
-                <footer class="footer" style="width: 100%;position: absolute;bottom: 0;z-index: 10">
+                <footer class="footer indexfooter">
                     <ul class="nav clearfix">
                         <li class="col qr">
                             <img class="rqicon" src="image/qrcode.jpg">
@@ -117,6 +118,7 @@
         }
     }
     function anime_nao(obj,call){
+        var self=this;
         var obj = obj;
         var maxlength = 96;
         var active=0;
@@ -130,6 +132,11 @@
         var image = document.createElement( "img" );
         for(var i=0;i<maxlength+1;i++){
             imgdata.push(imgHost+'image/nao/'+i+'.jpg');
+        }
+
+        self.surTipobj=null;
+        self.clear=function(){
+            clearTimeout(tipstimeout)
         }
 
         function _createtips(){
@@ -155,6 +162,7 @@
                 obj2.removeClass('show');
                 var curobj = __setobj()
                 curobj.addClass('show');
+                self.surTipobj = curobj;
                 aindex=!aindex;
                 tipstimeout=setTimeout(function(){
                     __a();
@@ -200,6 +208,10 @@
         for(var i=0;i<maxlength+1;i++){
             imgdata.push(imgHost+'image/lines/'+i+'.jpg');
         }
+        var imgcoo = [];
+        for(var j=0;j<5;j++){
+            imgcoo.push(imgHost+'image/coordinate/'+j+'.jpg');
+        }
         function _end(){
             obj.parent().find('.textbox').addClass('show');
             call&&call();
@@ -217,13 +229,27 @@
             _animation();
             updateID = requestAnimationFrame(_start);
         }
-        loadimgs(imgdata,function(){
-            obj.html('<div class="lines"></div>');
-            obj.find('.lines')[0].appendChild( image );
-            _start();
+        loadimgs(imgcoo,function(){
+            loadimgs(imgdata,function(){
+                obj.html('<div class="lines"></div>');
+                obj.find('.lines')[0].appendChild( image );
+
+                for(var k=0;k<imgcoo.length;k++){
+                    var url = imgcoo[k];
+                    (function(_src){
+                        setTimeout(function(){
+                            image.src = _src
+                        },k*240);
+                    })(url)
+                }
+
+                setTimeout(function(){
+                    _start();
+                },1200)
+            })
         })
     }
-    function anime_analyse(obj,call){
+    function anime_analyse(obj,call,ANIMENAO){
         var obj = obj;
         var maxlength = 2;
         var active=0;
@@ -235,15 +261,22 @@
             obj.parent().find('.textbox').addClass('show');
             call&&call();
         }
-        function _animation(){
-            image.src = imgdata[active]
-            active++;
-        }
         function _start(){
+            var $imgs=[];
+            var _index=0;
             for(var i=0;i<imgdata.length;i++){
-                var img =  $('<img class="skew skew_'+i+'" src="'+imgdata[i]+'">');
+                var img =  $('<img class="skew skew_'+i+'" style="opacity: 0;" src="'+imgdata[i]+'">');
                 obj.find('.analyse').append(img);
-                img.on('click',function(){
+                img.show();
+
+                $imgs.push(img);
+                (function(num,obj){
+                    setTimeout(function(){
+                        obj.css('opacity',1);
+                    },num*200);
+                })(i,img)
+
+                /*img.on('click',function(){
                     var _this=$(this);
                     var classname = _this.attr('class');
                     obj.find('.analyse').find('.skew').removeClass('onhover').removeClass('active');
@@ -252,8 +285,8 @@
                     }else{
                         _this.addClass('active');
                     }
-                })
-                img.mouseover(function(){
+                })*/
+                /*img.mouseover(function(){
                     var _this=$(this);
                     var classname = _this.attr('class');
                     if(classname.indexOf('active')==-1){
@@ -263,18 +296,54 @@
                 img.mouseout(function(){
                     var _this=$(this);
                     _this.removeClass('onhover');
-                })
+                })*/
             }
-            _end();
+            function __run(){
+                var _obj = $imgs[_index];
+                _index++;
+                if(_index>=$imgs.length){
+                    _index=0;
+                }
+                setTimeout(function(){
+                    obj.find('.analyse').find('.skew').removeClass('active');
+                    setTimeout(function(){
+                        _obj.addClass('active');
+                        __run();
+                    },200)
+                },2000)
+            }
+            setTimeout(function(){
+                __run();
+                _end();
+            },500);
         }
+
+        var tips=$('<div class="tips show"><img class="line" src="image/tips01_l.png"><img class="text" src="image/tips01_t.png"><span class="point"></span></div>');
+        if(ANIMENAO && ANIMENAO['surTipobj']){
+            tips=ANIMENAO['surTipobj'];
+            ANIMENAO.clear();
+        }
+        obj.append('<div class="nao toright"></div>');
+        obj.children('.toright').append(tips);
+        tips.children('.line').remove();
+        tips.children('.point').remove();
+        tips.show();
         loadimgs(imgdata,function(){
-            obj.html('<div class="analyse"></div>');
-            _start();
+            setTimeout(function(){
+                tips.css({'top':'190px','left':'-350px'})
+                setTimeout(function(){
+                    tips.hide(300);
+                },1500)
+                setTimeout(function(){
+                    obj.append('<div class="analyse"></div>');
+                    _start();
+                },1900)
+            },300)
         })
     }
     function indexinit(){
         var activeIndex=0;
-
+        var animeNAO = null;
         function anime(swiper){
             activeIndex = swiper.activeIndex;
             var slideEle = swiper.slides[activeIndex];
@@ -287,7 +356,7 @@
                 var $anime=$('<div class="animebox"></div>');
                 s_content.append($tet);
                 s_content.append($anime);
-                anime_nao($anime,function(){
+                animeNAO = new anime_nao($anime,function(){
                     s_content.addClass('s_bg01');
                 });
             }else if(activeIndex==2){
@@ -297,7 +366,8 @@
                 s_content.append($anime);
                 anime_analyse($anime,function(){
                     s_content.addClass('s_bg02');
-                });
+                },animeNAO);
+                animeNAO = null;
             }else if(activeIndex==3){
                 var $tet=$('<div class="textbox w508"><div class="title">基于多模态数据的病情发展预测</div><div class="desc">通过分析多模态数据（影像、病历等）以及长期随访数据，预测病情发展轨迹。对疾病进行早期干预治疗（如老年病、慢性病），大幅降低患病可能性以及有效控制病情发展。</div></div>');
                 var $anime=$('<div class="animebox"></div>');
@@ -306,6 +376,7 @@
                 anime_lines($anime,function(){
                     s_content.addClass('s_bg03');
                 });
+                animeNAO = null;
             }
 
             var index_arrow_b = $('#index_arrow_b');
@@ -330,6 +401,7 @@
             simulateTouch:false,
             paginationClickable: true,
             spaceBetween: 0,
+            speed:0,
             mousewheelControl: true,
             effect: 'fade'
         });
@@ -339,9 +411,23 @@
             anime(swiper);
         });
 
+        bannerSwiper.on('slideChangeEnd', function (swiper) {
+            var headindex=$('#headindex');
+            headindex.removeClass('bgFFF');
+            if(swiper.activeIndex==1){
+                headindex.addClass('bgFFF');
+            }
+        });
+
     }
     $(function(){
         indexinit();
+
+        //todo
+        $('#indexvideomask').click(function(){
+            var _this=$(this);
+            _this.parent().children('video')[0].play();
+        })
     });
 </script>
 </html>
