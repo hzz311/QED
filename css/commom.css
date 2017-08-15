@@ -47,7 +47,7 @@ a{text-decoration: none;color: inherit;}
 /**左侧菜单**/
 .maincontent{margin-left: 200px;overflow: hidden;}
 .menulist{float: left;width: 200px;padding: 30px 0;}
-.menulist .item{font-size: 12px;display:-webkit-flex; display: flex;  -webkit-flex-direction: row;  flex-direction: row;  -webkit-align-items: center;  align-items:center;  justify-content: flex-start;  }
+.menulist .item{font-size: 12px;display:-webkit-flex; display: flex;  -webkit-flex-direction: row;  flex-direction: row;  -webkit-align-items: center;  align-items:center;  justify-content: center;  }
 .menulist .item .iconwrap{width: 70px;height: 70px;margin:10px;border-radius: 50%;color:#999;display:-webkit-flex; display: flex; -webkit-flex-direction: column;flex-direction: column;-webkit-align-items: center;align-items:center;justify-content: center;}
 .menulist .item .iconwrap .icon{width: 34px;height: 34px;}
 .menulist .item .iconwrap .name{margin-top: 10px;}
@@ -55,7 +55,7 @@ a{text-decoration: none;color: inherit;}
 .menulist .item.active .iconwrap{background-color: #999;color: #FFFFFF;}
 .menulist .item:hover .iconwrap{width: 80px;height: 80px;margin: 5px;box-shadow: 3px 6px 15px 0 rgba(0,0,0,.3);}
 
-.menulist.bigger{padding-left: 25px;}
+.menulist.bigger{}
 .menulist.bigger .item .iconwrap{width:80px;height: 80px;}
 .menulist.bigger .item .iconwrap .icon{margin-top: -8px;}
 .menulist.bigger .item.active .iconwrap{background-color:#94C8E5;}
