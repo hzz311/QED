@@ -56,7 +56,7 @@ a{text-decoration: none;color: inherit;}
 .menulist .item:hover .iconwrap{width: 80px;height: 80px;margin: 5px;box-shadow: 3px 6px 15px 0 rgba(0,0,0,.3);}
 
 .menulist.bigger{}
-.menulist.bigger .item .iconwrap{width:80px;height: 80px;}
+.menulist.bigger .item .iconwrap{width:80px;height: 80px;margin: 7px;}
 .menulist.bigger .item .iconwrap .icon{margin-top: -8px;}
 .menulist.bigger .item.active .iconwrap{background-color:#94C8E5;}
-.menulist.bigger .item:hover .iconwrap{width: 90px;height: 90px;}
+.menulist.bigger .item:hover .iconwrap{width: 90px;height: 90px;margin: 2px;box-shadow: 0 6px 15px 0 rgba(0,0,0,.3);}
