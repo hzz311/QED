@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no,minimal-ui">
+    <title>雅森科技</title>
+    <link rel="stylesheet" href="css/commom.css">
+    <style>
+        .title{font-size: 22px;line-height: 30px;color: #555555;text-align: center;padding-top: 40px;}
+        .logowrap{width: 720px;margin: auto;color: #555555;text-align: center;}
+        .logowrap .item{width: 25%;float: left;padding:20px 0;}
+        .logowrap .item .icon{height: 46px;display: inline-block;}
+        .logowrap .item .name{margin-top: 8px;font-size: 13px;}
+    </style>
+    <script type="text/javascript" src="script/jquery-1.11.2.min.js"></script>
+    <script>
+        var logoArr=[
+            {name:'协和医院',icon:'image/partnerlogo/partner_01.png'}
+            ,{name:'北大人民医院',icon:'image/partnerlogo/partner_02.png'}
+            ,{name:'中日友好医院 ',icon:'image/partnerlogo/partner_03.png'}
+            ,{name:'宣武医院',icon:'image/partnerlogo/partner_04.png'}
+            ,{name:'安贞医院',icon:'image/partnerlogo/partner_05.png'}
+            ,{name:'朝阳医院',icon:'image/partnerlogo/partner_06.png'}
+            ,{name:'301医院',icon:'image/partnerlogo/partner_07.png'}
+            ,{name:'天坛医院',icon:'image/partnerlogo/partner_08.png'}
+            ,{name:'宁波二院',icon:'image/partnerlogo/partner_09.png'}
+            ,{name:'厦门中山医院',icon:'image/partnerlogo/partner_10.png'}
+            ,{name:'厦门二院',icon:'image/partnerlogo/partner_11.png'}
+            ,{name:'郑大一附院',icon:'image/partnerlogo/partner_12.png'}
+            ,{name:'华西医院',icon:'image/partnerlogo/partner_13.png'}
+            ,{name:'金华市中心医院',icon:'image/partnerlogo/partner_14.png'}
+            ,{name:'浙江省人民医院',icon:'image/partnerlogo/partner_15.png'}
+            ,{name:'枣庄医院',icon:'image/partnerlogo/partner_16.png'}
+        ];
+        $(function(){
+            var html='';
+            logoArr.forEach(function(item){
+                html+=' <li class="item"><img class="icon" src="'+item.icon+'"> <p class="name">'+item.name+'</p> </li>';
+            });
+            $("#logowrap").html(html);
+        });
+    </script>
+</head>
+<body>
+    <header class="header">
+        <div class="logo"></div>
+        <nav class="nav clearfix">
+            <a href="solution.html">解决方案</a>
+            <a href="ai.html">人工智能</a>
+            <a href="#" class="active">合作机构</a>
+            <a href="about.html">关于我们</a>
+            <a href="consult.html">咨询联系</a>
+        </nav>
+    </header>
+    <div class="pagecontent">
+        <p class="title">合作机构</p>
+        <ul class="logowrap clearfix" id="logowrap"></ul>
+    </div>
+    <footer class="footer">
+        <ul class="nav clearfix">
+            <li class="col qr">
+                <img class="rqicon" src="image/qrcode.jpg">
+                <p>关注我们</p>
+            </li>
+            <li class="col">
+                <p>北京雅森科技发展有限公司</p>
+                <p>电话：+86 10 84245607</p>
+                <p>京ICP备 1100 xxxx号</p>
+            </li>
+            <li class="col">
+                <p>地址：北京市朝阳区望京 SOHO 塔 1B座 1507</p>
+                <p>邮箱：contsct@qed-tec.com</p>
+            </li>
+        </ul>
+    </footer>
+</body>
+</html>
