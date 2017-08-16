@@ -72,6 +72,9 @@
             menulistEl.on('click','.item',function(e){
                 e.preventDefault();
                 var self=$(this);
+                if(self.hasClass('active')){
+                    return false;
+                }
                 var selfname=self.attr('data-href');
                 var preItem=menulistEl.children('.active');
                 var preName=preItem.attr('data-href');
