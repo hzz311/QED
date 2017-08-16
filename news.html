@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no,minimal-ui">
+    <title>雅森科技</title>
+    <link rel="stylesheet" href="css/commom.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="script/jquery-1.11.2.min.js"></script>
+    <script>
+        $(function(){
+            $('.headtabs').on('click','li',function(){
+                var _this = $(this);
+                var type = _this.attr('data-type');
+                _this.parent().children('li').removeClass('active');
+                _this.addClass('active');
+                $('.tabsdiv').hide();
+                $('#'+type).show();
+            })
+
+        });
+
+    </script>
+</head>
+<body>
+    <header class="header">
+        <div class="logo"></div>
+        <nav class="nav clearfix">
+            <a class="" href="#">解决方案</a>
+            <a href="ai.html">人工智能</a>
+            <a href="partner.html">合作机构</a>
+            <a href="about.html">关于我们</a>
+            <a href="consult.html">咨询联系</a>
+        </nav>
+    </header>
+    <div class="pagecontent clearfix">
+
+        <div class="newslist">
+            <div class="headtabs">
+                <ul>
+                    <li class="active" data-type="tab0">雅森新闻</li>
+                    <li data-type="tab1">行业动态</li>
+                </ul>
+            </div>
+
+
+            <div class="tabsdiv" id="tab0">
+                <div class="list">
+                    <div class="item">
+                        <a href="show.html">
+                            <div class="img"><img src="image/csnews.jpg"></div>
+                            <div class="title">这道医学影像的“应用题”，雅森用数据分析给出了答案雷锋网</div>
+                            <div class="date">2017-08-12</div>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="show.html">
+                            <div class="img"><img src="image/csnews.jpg"></div>
+                            <div class="title">这道医学影像的“应用题”</div>
+                            <div class="date">2017-08-12</div>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="show.html">
+                            <div class="img"><img src="image/csnews.jpg"></div>
+                            <div class="title">这道医学影像的“应用题”，雅森用数据分析给出了答案雷锋网</div>
+                            <div class="date">2017-08-12</div>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="show.html">
+                            <div class="img"><img src="image/csnews.jpg"></div>
+                            <div class="title">用数据分析给出了答案雷锋网</div>
+                            <div class="date">2017-08-12</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="pageZone">
+                    <span title="首页"><a href="##">首页</a></span>
+                    <a class="current">1</a> <a href=" news_142_2.html">2</a> <a href=" news_142_3.html">3</a> <a href=" news_142_4.html">4</a> <a href=" news_142_5.html">5</a> <a href=" news_142_6.html">6</a> <a href=" news_142_7.html">7</a> <a href=" news_142_8.html">8</a>
+                    <span title="末页"><a href=" news_142_8.html">末页</a></span>
+                </div>
+            </div>
+
+
+            <div class="tabsdiv" id="tab1"  style="display: none">
+                <div class="list">
+                    <div class="item">
+                        <a href="show.html">
+                            <div class="img"><img src="image/csnews.jpg"></div>
+                            <div class="title">这道医学影像的“应用题”，雅森用数据分析给出了答案雷锋网</div>
+                            <div class="date">2017-08-12</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="pageZone">
+                    <span title="首页"><a href="##">首页</a></span>
+                    <a class="current">1</a> <a href=" news_142_2.html">2</a> <a href=" news_142_3.html">3</a> <a href=" news_142_4.html">4</a> <a href=" news_142_5.html">5</a> <a href=" news_142_6.html">6</a> <a href=" news_142_7.html">7</a> <a href=" news_142_8.html">8</a>
+                    <span title="末页"><a href=" news_142_8.html">末页</a></span>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+    <footer class="footer">
+        <ul class="nav clearfix">
+            <li class="col qr">
+                <img class="rqicon" src="image/qrcode.jpg">
+                <p>关注我们</p>
+            </li>
+            <li class="col">
+                <p>北京雅森科技发展有限公司</p>
+                <p>电话：+86 10 84245607</p>
+                <p>京ICP备 1100 xxxx号</p>
+            </li>
+            <li class="col">
+                <p>地址：北京市朝阳区望京 SOHO 塔 1B 座 1507</p>
+                <p>邮箱：contsct@qed-tec.com</p>
+            </li>
+        </ul>
+    </footer>
+</body>
+</html>
