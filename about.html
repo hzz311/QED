@@ -58,6 +58,116 @@
         .join .joinform .formwrap .protocol{font-size: 12px;color: #666;margin-top: 15px;}
         .join .joinform .formwrap .protocol .selectbtn{position: relative;vertical-align:middle;display: inline-block;width: 16px;height: 16px;border: 1px solid #666;}
         .join .joinform .formwrap .protocol .selectbtn.active:before{position: absolute;content: '';background-color:#666;width: 8px;height: 8px;left: 3px;top: 3px;}
+
+
+
+
+
+        .eventsbox{
+            height: 400px;
+            position: relative;
+            overflow: auto;
+            margin-top: 30px;
+        }
+        .eventsbox:before{
+            position: absolute;
+            top:50%;
+            width: 100%;
+            border-bottom: 1px dashed #cecece;
+            content: ' ';
+            left: 0;
+            z-index: 0;
+        }
+        .eventsbox .item{
+            width: 140px;
+            height: 200px;
+            float: left;
+            position: relative;
+            margin-top: 22px;
+        }
+        .eventsbox .item.bottom{
+            margin-top: 178px;
+        }
+        .eventsbox .item .num{
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            border-radius: 45px;
+            border: 1px dashed #94c8e5;
+            width: 45px;
+            height: 45px;
+            line-height: 45px;
+            text-align: center;
+            background-color: #ffffff;
+            color: #94c8e5;
+            font-size: 17px;
+            z-index: 10;
+        }
+        .eventsbox .item.bottom .num{
+            bottom:auto;
+            top:0;
+            border: 1px dashed #333;
+            color: #333;
+        }
+        .eventsbox .item .date{
+            position: absolute;
+            line-height: 1;
+            top: 80px;
+            left: -6px;
+            text-align: center;
+            color: #666;
+            -webkit-transform: rotate(-90deg);
+            -moz-transform: rotate(-90deg);
+            -ms-transform: rotate(-90deg);
+            transform: rotate(-90deg);
+        }
+        .eventsbox .item.bottom .date{
+            top: 100px;
+        }
+        .eventsbox .item .con{
+            height: 178px;
+            margin-left: 22px;
+            border-left: 1px dashed #94c8e5;
+            position: relative;
+            padding-left: 15px;
+            padding-bottom: 22px;
+        }
+        .eventsbox .item .con:before{
+            width: 12px;
+            height: 12px;
+            position: absolute;
+            top:0;
+            left: -6px;
+            content: ' ';
+            border-radius: 50%;
+            background-color: #91c1dd;
+            border: 1px solid #daeaf4;
+        }
+        .eventsbox .item.bottom .con{
+            border-left: 1px dashed #cecece;
+            padding-top: 44px;
+            padding-bottom: 0px;
+            height: 200px;
+        }
+        .eventsbox .item.bottom .con:before{
+            background-color: #666666;
+            border: 1px solid #d1d1d1;
+            top: auto;
+            bottom: 0;
+        }
+        .eventsbox .item .con .title{
+            font-size: 16px;
+            color: #94c8e5;
+        }
+        .eventsbox .item .con .desc{
+            font-size: 12px;
+            margin-top: 6px;
+            color: #666;
+            line-height: 1.4;
+        }
+
+
+
     </style>
     <script src="script/jquery-1.11.2.min.js"></script>
     <script type="text/javascript" src="script/swiper.js"></script>
@@ -98,7 +208,7 @@
 
                     break;
                 case 'events'://大事记
-
+                    builddsj();
                     break;
                 case 'team'://雅森团队
 
@@ -112,6 +222,71 @@
             }
 
         }
+
+
+
+
+
+        var dashijidata=[
+            {
+                'year':'2006',
+                'title':'创立',
+                'desc':'创始团队组成,开始为医院提供计算机软件开发服务'
+            },
+            {
+                'year':'2008',
+                'title':'沉淀',
+                'desc':'创始团队组成,开始为医院提供计算机软件开发服务'
+            },
+            {
+                'year':'2011',
+                'title':'合力',
+                'desc':'开始为医院提供计算机软件开发服务'
+            },
+            {
+                'year':'2014',
+                'title':'精进',
+                'desc':'开始为医院提供计算机软件开发服务'
+            },
+            {
+                'year':'2016',
+                'title':'跨越',
+                'desc':'开始为医院提供计算机软件开发服务'
+            }
+        ]
+        function builddsj(){
+            var eventsbox = $('#eventsbox');
+            var jsondata = dashijidata;
+            var num=0;
+            eventsbox.empty()
+
+            function _tohtml(index,_data){
+                index++;
+                var classname = '';
+                if(index%2 ==0){
+                    classname = 'bottom';
+                }
+                var year = _data.year;
+                var title = _data.title;
+                var desc = _data.desc;
+                if(index<10){
+                    index = '0'+index;
+                }
+                var html='<div class="item '+classname+'">' +
+                        '<div class="num">'+index+'</div>' +
+                        '<div class="date">'+year+'</div>' +
+                        '<div class="con"><div class="title">'+title+'</div><div class="desc">'+desc+'</div>' +
+                        '</div>' +
+                        '</div>';
+                return html;
+            }
+
+            for(var i=0;i<jsondata.length;i++){
+                var html = _tohtml(i,jsondata[i]);
+                eventsbox.append(html);
+            }
+        }
+
 
         var JoinContentObj=(function(){
             var hasInit=false;
@@ -276,7 +451,7 @@
                 <div class="about-content">同时也面向医疗机构提供业界领先的统一AI集成平台，为医疗机构实现“AI赋能”。</div>
             </div>
             <div class="content" data-id="events">
-                大事记
+                <div class="eventsbox" id="eventsbox"></div>
             </div>
             <div class="content" data-id="team">
                 雅森团队
