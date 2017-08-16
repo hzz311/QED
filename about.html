@@ -23,6 +23,18 @@
         .work .gallery-thumbs {height: 150px;padding: 10px 0;  }
         .work .gallery-thumbs .swiper-slide{width: 33%;height: 130px;opacity: 0.5;}
         .work .gallery-thumbs .swiper-slide-active { opacity: 1;}
+
+        .join{padding: 30px 15px;}
+        .join .joinwrap{position: relative;min-height: 450px;padding-right: 40px; background-color:#F8F8F8;font-size: 13px; border: 1px solid #dedede}
+        .join .joinwrap .typewrap{position: absolute;right: 10px;}
+        .join .joinwrap .typewrap .item{max-width:30px;letter-spacing: 2px; padding: 23px 8px;background-color:#94C8E5;color:#FFFFFF;border-top-right-radius:6px;border-bottom-right-radius:6px;margin-bottom:3px;}
+        .join .joinwrap .typewrap .item:last-child{margin-bottom: 0;}
+        .join .joinwrap .typewrap .item.active{color: inherit;background-color: transparent;}
+        .join .joinwrap .typecontent{position: relative;height: 100%; padding: 30px 0 30px 170px;}
+        .join .joinwrap .namewrap{position: absolute;left:0;top:0;width:170px;padding: 30px 0;height: 100%;}
+        .join .joinwrap .namewrap .items{height: 100%;line-height: 24px;padding:0 25px;border-right: 1px solid #999;text-align: center;}
+        .join .joinwrap .namewrap .items .item{line-height: 24px;padding: 20px 0;color: #999;}
+        .join .joinwrap .namewrap .items .item.active{color: #333;}
     </style>
     <script src="script/jquery-1.11.2.min.js"></script>
     <script type="text/javascript" src="script/swiper.js"></script>
@@ -47,8 +59,8 @@
                 selfContent.addClass('active');
                 showContent(selfname,selfContent);
             });
-            menulistEl.children(':first').click();
-//            menulistEl.children('[data-href="work"]').click();
+//            menulistEl.children(':first').click();
+            menulistEl.children('[data-href="join"]').click();
         }
 
         function showContent(type,wrap){
@@ -81,7 +93,6 @@
                 ,'image/about_us.jpg'
                 ,'image/about_us.jpg'
             ];
-
 
             function buildDom(){
                 var slidehtml='';
@@ -204,8 +215,27 @@
                 雅森团队
             </div>
             <div class="content work" data-id="work"></div>
-            <div class="content" data-id="join">
-                加入雅森
+            <div class="content join" data-id="join">
+                <div class="joinwrap">
+                    <div class="typewrap">
+                        <p class="item active">研发</p>
+                        <p class="item">技术</p>
+                        <p class="item">产品</p>
+                        <p class="item">财务</p>
+                        <p class="item">销售</p>
+                    </div>
+                    <div class="namewrap">
+                        <div class="items">
+                            <p class="item active">高级算法工程师</p>
+                            <p class="item">自然语言语义识别算法工程师</p>
+                            <p class="item">助理算法工程师</p>
+                            <p class="item">研发部助理（秘书）</p>
+                        </div>
+                    </div>
+                    <div class="typecontent">
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
