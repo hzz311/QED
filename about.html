@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no,minimal-ui">
     <title>雅森科技</title>
     <link rel="stylesheet" href="css/commom.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
+
     <style>
         .content{padding:30px;display: none;visibility: hidden;}
         .content.active{display: block;visibility: visible;}
@@ -12,16 +14,26 @@
         .about-content{color: #555;line-height: 24px;letter-spacing:1px;font-size: 13px;}
         .about-image{padding: 15px 0 3px; display:-webkit-flex; display: flex;  -webkit-flex-direction: row;  flex-direction: row;  -webkit-align-items: center;  align-items:center;  justify-content: space-between;}
         .about-image img{width: 210px;}
+
+
+        .work{padding: 30px 20px 0;}
+        .work .swiper-container{width: 100%;margin-left: auto;margin-right: auto;}
+        .work .swiper-slide{background-size: cover;background-position: center;}
+        .work .gallery-top{height: 360px;}
+        .work .gallery-thumbs {height: 150px;padding: 10px 0;  }
+        .work .gallery-thumbs .swiper-slide{width: 33%;height: 130px;opacity: 0.5;}
+        .work .gallery-thumbs .swiper-slide-active { opacity: 1;}
     </style>
     <script src="script/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="script/swiper.js"></script>
+
     <script>
         $(function(){
 
             bindEvent();
         });
         function bindEvent(){
-            var menulistEl=$("#menulist");
-            var contentlistEl=$("#contentlist");
+           var menulistEl=$("#menulist"),contentlistEl=$("#contentlist");
             menulistEl.on('click','.item',function(e){
                 e.preventDefault();
                 var self=$(this);
@@ -30,11 +42,101 @@
                 var preName=preItem.attr('data-href');
                 preItem.removeClass('active');
                 self.addClass('active');
-               contentlistEl.children('[data-id="'+preName+'"]').removeClass('active');
-               contentlistEl.children('[data-id="'+selfname+'"]').addClass('active');
+                contentlistEl.children('[data-id="'+preName+'"]').removeClass('active');
+                var selfContent=contentlistEl.children('[data-id="'+selfname+'"]');
+                selfContent.addClass('active');
+                showContent(selfname,selfContent);
             });
             menulistEl.children(':first').click();
+//            menulistEl.children('[data-href="work"]').click();
         }
+
+        function showContent(type,wrap){
+            switch (type){
+                case 'about'://关于雅森
+
+                    break;
+                case 'events'://大事记
+
+                    break;
+                case 'team'://雅森团队
+
+                    break;
+                case 'work'://工作在雅森
+                    WorkContentObj.init(wrap);
+                    break;
+                case 'join'://加入雅森
+
+                    break;
+            }
+
+        }
+
+        //工作在雅森
+        var WorkContentObj=(function(){
+            var hasInit=false;
+            var wrapEl=null;
+            var imageArr=[
+                'image/about_us.jpg'
+                ,'image/about_us.jpg'
+                ,'image/about_us.jpg'
+            ];
+
+
+            function buildDom(){
+                var slidehtml='';
+                imageArr.forEach(function(url){
+                    slidehtml+='<div class="swiper-slide" style="background-image:url('+url+')"></div>';
+                });
+                var html='';
+                html+='<div class="swiper-container gallery-top" id="work-gallery-top">';
+                html+='  <div class="swiper-wrapper">';
+                html+=      slidehtml;
+                html+='  </div>';
+                html+='</div>';
+                html+='<div class="swiper-container gallery-thumbs" id="work-gallery-thumbs">';
+                html+='  <div class="swiper-wrapper">';
+                html+=      slidehtml;
+                html+='  </div>';
+                html+='  <div class="swiper-button-next swiper-button-white"></div>';
+                html+='  <div class="swiper-button-prev swiper-button-white"></div>';
+                html+='</div>';
+                wrapEl.html(html);
+            }
+
+            function initSwper(){
+                var galleryTop = new Swiper('#work-gallery-top', {
+                    nextButton: '.swiper-button-next',
+                    prevButton: '.swiper-button-prev',
+                    spaceBetween: 10
+                });
+                var galleryThumbs = new Swiper('#work-gallery-thumbs', {
+                    spaceBetween: 10,
+                    centeredSlides: true,
+                    slidesPerView: 'auto',
+                    touchRatio: 0.2,
+                    slideToClickedSlide: true
+                });
+                galleryTop.params.control = galleryThumbs;
+                galleryThumbs.params.control = galleryTop;
+            }
+
+            function init(wrap){
+                if(!hasInit){
+                    hasInit=true;
+                    wrapEl=wrap;
+
+                    buildDom();
+                    initSwper();
+                }
+            }
+
+            return {
+                init:init
+            }
+        })();
+
+
     </script>
 </head>
 <body>
@@ -101,9 +203,7 @@
             <div class="content" data-id="team">
                 雅森团队
             </div>
-            <div class="content" data-id="work">
-                工作在雅森
-            </div>
+            <div class="content work" data-id="work"></div>
             <div class="content" data-id="join">
                 加入雅森
             </div>
