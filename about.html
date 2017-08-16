@@ -25,16 +25,21 @@
         .work .gallery-thumbs .swiper-slide-active { opacity: 1;}
 
         .join{padding: 30px 15px;}
-        .join .joinwrap{position: relative;min-height: 450px;padding-right: 40px; background-color:#F8F8F8;font-size: 13px; border: 1px solid #dedede}
+        .join .joinwrap{position: relative;min-height: 450px;padding-right: 40px;padding-left: 170px;background-color:#F8F8F8;font-size: 13px; border: 1px solid #dedede}
         .join .joinwrap .typewrap{position: absolute;right: 10px;}
-        .join .joinwrap .typewrap .item{max-width:30px;letter-spacing: 2px; padding: 23px 8px;background-color:#94C8E5;color:#FFFFFF;border-top-right-radius:6px;border-bottom-right-radius:6px;margin-bottom:3px;}
+        .join .joinwrap .typewrap .item{max-width:30px;cursor: pointer;padding: 23px 8px;background-color:#94C8E5;color:#FFFFFF;border-top-right-radius:6px;border-bottom-right-radius:6px;margin-bottom:3px;}
         .join .joinwrap .typewrap .item:last-child{margin-bottom: 0;}
         .join .joinwrap .typewrap .item.active{color: inherit;background-color: transparent;}
-        .join .joinwrap .typecontent{position: relative;height: 100%; padding: 30px 0 30px 170px;}
         .join .joinwrap .namewrap{position: absolute;left:0;top:0;width:170px;padding: 30px 0;height: 100%;}
         .join .joinwrap .namewrap .items{height: 100%;line-height: 24px;padding:0 25px;border-right: 1px solid #999;text-align: center;}
-        .join .joinwrap .namewrap .items .item{line-height: 24px;padding: 20px 0;color: #999;}
+        .join .joinwrap .namewrap .items .item{line-height: 24px;padding: 20px 0;color: #999;cursor: pointer;}
         .join .joinwrap .namewrap .items .item.active{color: #333;}
+        .join .joinwrap .requirewrap{position: relative;height: 100%; padding: 30px;}
+        .join .joinwrap .requirewrap .title{padding: 35px 0 15px 0;}
+        .join .joinwrap .requirewrap .title:nth-child(1){padding-top: 0;}
+        .join .joinwrap .requirewrap .desc{line-height: 24px;white-space:pre-wrap;}
+        .join .joinwrap .requirewrap .resumebtn{height: 35px;line-height: 35px;width: 100px;margin: 15px auto; display: block; border: none;background-color:#94C8E5;color: #FFFFFF;font-size: 15px;cursor: pointer;}
+
     </style>
     <script src="script/jquery-1.11.2.min.js"></script>
     <script type="text/javascript" src="script/swiper.js"></script>
@@ -232,8 +237,12 @@
                             <p class="item">研发部助理（秘书）</p>
                         </div>
                     </div>
-                    <div class="typecontent">
-
+                    <div class="requirewrap">
+                        <p class="title">任职要求：</p>
+                        <pre class="desc">1、医学影像的算法分析研究：包括基于结构和功能影像的变形、影像分割、伪影去除等；&#10;2、基于机器学习的医学影像开发；&#10;3、配合程序进行相应接口的调整。</pre>
+                        <p class="title">任职要求：</p>
+                        <pre class="desc">1、国内重点大学毕业，硕士或博士学位，专业为生物工程、医学影像、数学、物理等相关专业，可接收应届生；&#10;2、熟练使用Matlab， 熟悉M语言、Python语言、C语言；&#10;3、熟练使用Tensorflow或类似平台的机器学习系统（例如Matlab NNET toolbox）；&#10;4、有多篇国际主流杂志（Nature、SCI等）论文发表者优先。&#10;</pre>
+                        <button class="resumebtn">投递简历</button>
                     </div>
                 </div>
             </div>
