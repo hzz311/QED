@@ -267,8 +267,9 @@
     <script type="text/javascript" src="script/swiper.min.js"></script>
 
     <script>
+        var videoEl=null;
         $(function(){
-
+            videoEl=document.getElementById('work-video');
             bindEvent();
         });
         function bindEvent(){
@@ -289,14 +290,17 @@
                 selfContent.addClass('active');
                 showContent(selfname,selfContent);
             });
-//            menulistEl.children(':first').click();
-            menulistEl.children('[data-href="work"]').click();
+            menulistEl.children(':first').click();
+//            menulistEl.children('[data-href="work"]').click();
 
 
             //投递简历
         }
 
         function showContent(type,wrap){
+            if(videoEl&&type!="work"){
+                videoEl.pause();
+            }
             switch (type){
                 case 'about'://关于雅森
 
@@ -485,6 +489,9 @@
                 return this;
             }
             function init(wrap){
+                if(videoEl){
+                    videoEl.play();
+                }
                 if(!hasInit){
                     hasInit=true;
                     wrapEl=wrap;
@@ -608,7 +615,7 @@
             </div>
             <div class="content work" data-id="work">
                 <div class="videowrap">
-                    <video loop="loop" src="test.mp4"></video>
+                    <video id="work-video" loop="loop" src="test.mp4"></video>
                     <div class="descwrap"><div class="desc"><p>DO</p><p>AMAZING</p><p>工作在雅森</p></div></div>
                     <div class="imgpreview"></div>
                 </div>
