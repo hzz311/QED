@@ -5,26 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no,minimal-ui">
     <title>雅森科技</title>
     <link rel="stylesheet" href="css/commom.css">
-    <link rel="stylesheet" href="css/swiper.min.css">
     <style>
-        .swiper-container{height: 500px;}
-        .swiper-slide {
-            background: #fff;
-            /* Center slide text vertically */
-            display: -webkit-box;
-            display: -ms-flexbox;
-            display: -webkit-flex;
-            display: flex;
-            -webkit-box-pack: center;
-            -ms-flex-pack: center;
-            -webkit-justify-content: center;
-            justify-content: center;
-            -webkit-box-align: center;
-            -ms-flex-align: center;
-            -webkit-align-items: center;
-            align-items: center;
-        }
-        .flowchart{padding:0 60px;}
+        .flowchart{padding:30px 60px;}
         .flowchart .title{font-size: 22px;line-height: 50px; color: #555555;}
         .flowchart .image{width:100%;display: inline-block;}
 
@@ -33,22 +15,7 @@
         .videowrap .smallvideo{width: 630px;height: 360px;}
     </style>
     <script type="text/javascript" src="script/jquery-1.11.2.min.js"></script>
-    <script type="text/javascript" src="script/swiper.js"></script>
 
-    <script>
-        $(function(){
-            var indexSwiper = new Swiper('#indexContainer', {
-                direction: 'vertical',
-                slidesPerView: 1,
-                simulateTouch:false,
-                paginationClickable: true,
-                spaceBetween: 0,
-                speed:0,
-                mousewheelControl: true,
-                effect: 'fade'
-            });
-        });
-    </script>
 </head>
 <body>
     <header class="header">
@@ -63,21 +30,9 @@
         </nav>
     </header>
     <div class="pagecontent clearfix">
-        <div class="swiper-container" id="indexContainer">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div class="flowchart">
-                        <p class="title">雅森天玑平台</p>
-                        <img class="image" src="image/ai_01.png">
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="videowrap">
-                        <div class="desc">一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字</div>
-                        <video class="smallvideo" controls="controls" src="test.mp4"></video>
-                    </div>
-                </div>
-            </div>cooperation
+        <div class="flowchart">
+            <p class="title">雅森天玑平台</p>
+            <img class="image" src="image/ai_01.png">
         </div>
     </div>
     <footer class="footer">

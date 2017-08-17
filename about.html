@@ -138,7 +138,7 @@
         .eventsbox .item.bottom .con{
             border-left: 1px dashed #cecece;
             padding-top: 44px;
-            padding-bottom: 0px;
+            padding-bottom: 0;
             height: 200px;
         }
         .eventsbox .item.bottom .con:before{
@@ -163,17 +163,18 @@
         .teammapdesc{line-height: 24px;}
         .teammapwrap .point{position: absolute;width: 44px;height: 36px;background: url("image/mappoint.png") center no-repeat; background-size: contain;}
         .teammapwrap .point .bubble{opacity: 0;-webkit-transform: scale(0.5);transform: scale(0.5);-webkit-transition: transform .4s;transition: transform .4s;}
-        .teammapwrap .point:hover .bubble{opacity:1;transform: scale(1);}
+        .teammapwrap .point:hover .bubble{opacity:1;-webkit-transform: scale(1);transform: scale(1);}
 
         .work{padding: 30px 20px 0;}
-        .work .videowrap{width: 100%;height: 360px;background-color: #000;}
+        .work .videowrap{width: 100%;height: 360px;background-color: #000;position: relative;text-align: center;}
         .work .videowrap video{width: 100%;height: 100%;}
-
+        .work .videowrap .descwrap{width: 100%;height: 100%;position: absolute;z-index: 1;left: 0;top: 0;background-color: rgba(255,255,255,.1);}
+        .work .videowrap .descwrap .desc{position: absolute;bottom: 50px;left: 0;width: 100%;line-height: 30px;color: #FFFFFF;font-size: 20px;letter-spacing: 1px;}
+        .work .videowrap .imgpreview{display: none;width: 100%;height: 100%;position: absolute;z-index: 10;left: 0;top: 0;background-position: center;background-size: cover;background-repeat: no-repeat;}
         .work .previewwrap{width: 100%;position: relative;padding: 10px 25px;}
         .work .previewwrap .swiper-container{width: 100%;height: 130px;}
-        .work .previewwrap .swiper-slide{ height:100%; background-size: cover;background-position: center;}
+        .work .previewwrap .swiper-slide{ height:100%; background-size: cover;background-position: center;cursor: pointer;}
         .work .previewwrap .swiper-container .swiper-slide-active{}
-
         .work .previewwrap .arrow-left {
             background: url(image/arrow_l.png) no-repeat left center;background-size: contain;
             position: absolute;width: 25px;height: 22px;left: 0; top: 50%; margin-top: -11px;
@@ -332,26 +333,67 @@
         var WorkContentObj=(function(){
             var hasInit=false;
             var wrapEl=null;
-            var previewSwiper=null;
+            var imgpreviewEl=null;
+
             function initSwper(){
+                var imgArr=[
+                        'image/about_us.jpg'
+                        ,'image/csnews.jpg'
+                        ,'image/about_us.jpg'
+                        ,'image/csnews.jpg'
+                        ,'image/about_us.jpg'
+                        ,'image/csnews.jpg'
+                ];
+                var html='';
+                imgArr.forEach(function(url){
+                    html+='<div class="swiper-slide" style="background-image: url('+url+')"></div>';
+                });
+                $("#work-swiper-container").children('.swiper-wrapper').html(html);
+
                 var swiper = new Swiper('#work-swiper-container', {
                     nextButton: '#work-arrow-left',
                     prevButton: '#work-arrow-right',
                     slidesPerView: 3,
                     spaceBetween: 10,
-                    onClick: function(e) {
-                        showPrevImg();
+                    onClick: function(swiper,e) {
+                        var clickIndex=swiper.clickedIndex;
+                        var clickEl=$(swiper.clickedSlide);
+                        var imgurl=imgArr[clickIndex];
+                        showPrevImg(imgurl);
                     }
                 });
             }
-            function showPrevImg(clickedSlideIndex) {
-
-
+            function showPrevImg(imgurl) {
+                imgpreviewEl.css('background-image','url('+imgurl+')');
+                imgpreviewEl.show();
+            }
+            function transitionEnd(dom,callback) {
+                var events = ['webkitTransitionEnd', 'transitionend', 'oTransitionEnd', 'MSTransitionEnd', 'msTransitionEnd'],
+                        i, j, dom = dom;
+                function fireCallBack(e) {
+                    /*jshint validthis:true */
+                    if (e.target !== this) return;
+                    callback.call(this, e);
+                    for (i = 0; i < events.length; i++) {
+                        dom.off(events[i], fireCallBack);
+                    }
+                }
+                if (callback) {
+                    for (i = 0; i < events.length; i++) {
+                        dom.on(events[i], fireCallBack);
+                    }
+                }
+                return this;
             }
             function init(wrap){
                 if(!hasInit){
                     hasInit=true;
                     wrapEl=wrap;
+                    imgpreviewEl=wrapEl.find(".imgpreview");
+                    imgpreviewEl.on('click',function(e){
+                           $("this").hide();
+                    });
+
                     initSwper();
                 }
             }
@@ -467,24 +509,13 @@
             </div>
             <div class="content work" data-id="work">
                 <div class="videowrap">
-                    <video loop="loop" src="test.mp4" controls="controls"></video>
+                    <video loop="loop" src="test.mp4"></video>
+                    <div class="descwrap"><div class="desc"><p>DO</p><p>AMAZING</p><p>工作在雅森</p></div></div>
+                    <div class="imgpreview"></div>
                 </div>
                 <div class="previewwrap">
                     <div class="swiper-container" id="work-swiper-container">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide" style="background-image: url(image/about_us.jpg)"></div>
-                            <div class="swiper-slide" style="background-image: url(image/about_us.jpg)"></div>
-                            <div class="swiper-slide" style="background-image: url(image/about_us.jpg)"></div>
-                            <div class="swiper-slide" style="background-image: url(image/about_us.jpg)"></div>
-                            <div class="swiper-slide" style="background-image: url(image/about_us.jpg)"></div>
-                            <div class="swiper-slide" style="background-image: url(image/about_us.jpg)"></div>
-                            <div class="swiper-slide" style="background-image: url(image/about_us.jpg)"></div>
-                            <div class="swiper-slide" style="background-image: url(image/about_us.jpg)"></div>
-                            <div class="swiper-slide" style="background-image: url(image/about_us.jpg)"></div>
-                            <div class="swiper-slide" style="background-image: url(image/about_us.jpg)"></div>
-                            <div class="swiper-slide" style="background-image: url(image/about_us.jpg)"></div>
-                            <div class="swiper-slide" style="background-image: url(image/about_us.jpg)"></div>
-                        </div>
+                        <div class="swiper-wrapper"></div>
                     </div>
                     <div class="arrow-left" id="work-arrow-right"></div>
                     <div class="arrow-right" id="work-arrow-left"></div>
