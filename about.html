@@ -166,8 +166,12 @@
             line-height: 1.4;
         }
 
-
-
+        .teammapwrap{width: 100%;position: relative;}
+        .teammapwrap img{width: 100%;position: relative;}
+        .teammapdesc{line-height: 24px;}
+        .teammapwrap .point{position: absolute;width: 44px;height: 36px;background: url("image/mappoint.png") center no-repeat; background-size: contain;}
+        .teammapwrap .point .bubble{opacity: 0;-webkit-transform: scale(0.5);transform: scale(0.5);-webkit-transition: transform .4s;transition: transform .4s;}
+        .teammapwrap .point:hover .bubble{opacity:1;transform: scale(1);}
     </style>
     <script src="script/jquery-1.11.2.min.js"></script>
     <script type="text/javascript" src="script/swiper.js"></script>
@@ -196,7 +200,7 @@
                 showContent(selfname,selfContent);
             });
 //            menulistEl.children(':first').click();
-            menulistEl.children('[data-href="join"]').click();
+            menulistEl.children('[data-href="team"]').click();
 
 
             //投递简历
@@ -454,7 +458,31 @@
                 <div class="eventsbox" id="eventsbox"></div>
             </div>
             <div class="content" data-id="team">
-                雅森团队
+                <div class="teammapwrap">
+                    <img src="image/teammap.png">
+                    <div class="point" style="top: 105px;left: 195px;">
+                        <div class="bubble" style="position: absolute;top: 43px;left: -141px;width: 200px;height: 68px;"><img src="image/bubble/team_01.png"></div>
+                    </div>
+                    <div class="point" style="top: 92px;left: 324px;">
+                        <div class="bubble" style="position: absolute;top: -70px;left: -112px;width: 171px;height: 67px;"><img src="image/bubble/team_02.png"></div>
+                    </div>
+                    <div class="point" style="top: 105px;left: 345px;">
+                        <div class="bubble" style="position: absolute;top: -71px;left: -111px;width: 169px;height: 64px;"><img src="image/bubble/team_03.png"></div>
+                    </div>
+                    <div class="point" style="top: 121px;left: 550px;">
+                        <div class="bubble" style="position: absolute;top: -71px;left: -161px;width: 220px;height: 68px;"><img src="image/bubble/team_04.png"></div>
+                    </div>
+                    <div class="point" style="top: 134px;left: 560px;">
+                        <div class="bubble" style="position: absolute;top: -70px;left: -143px;width: 199px;height: 64px;"><img src="image/bubble/team_05.png"></div>
+                    </div>
+                    <div class="point" style="top: 178px;left: 590px;">
+                        <div class="bubble" style="position: absolute;top: 42px;left: -70px;width: 170px;height: 61px;"><img src="image/bubble/team_06.png"></div>
+                    </div>
+                    <div class="point" style="top: 115px;left: 623px;">
+                        <div class="bubble" style="position: absolute;top: -66px;left: -73px;width: 174px;height: 62px;"><img src="image/bubble/team_07.png"></div>
+                    </div>
+                </div>
+                <div class="teammapdesc">雅森的研发团队来自于南开大学、清华大学、中国科学院、台湾长庚大学、英国UCL大学、美国伦斯勒理工学院、英国爱丁堡大学等顶尖院校</div>
             </div>
             <div class="content work" data-id="work"></div>
             <div class="content join" data-id="join">
