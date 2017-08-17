@@ -34,7 +34,7 @@ a{text-decoration: none;color: inherit;}
 .header{width:1000px;margin:0 auto;height: 65px;line-height: 65px;font-size: 18px;}
 .header .logo{float: left;width:165px;height: 100%; background: url("../image/logo.png") no-repeat center;background-size: contain;}
 .header .nav{margin-left: 200px;text-align: center;}
-.header .nav a{display: inline-block;width: 20%;float: left;}
+.header .nav a{display: inline-block;width: 16.666666%;float: left;}
 .header .nav a.active{color: #999;}
 /**底部版权说明**/
 .footer{text-align: center;background-color: darkgrey;padding: 18px 0;font-size: 12px;color: #FFFFFF;}
