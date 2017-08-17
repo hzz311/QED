@@ -201,17 +201,14 @@
     }
     function anime_lines(obj,call){
         var obj = obj;
-        var maxlength = 82;
+        var maxlength = 149;
         var active=0;
         var imgdata=[];
         var updateID;
         var image = document.createElement( "img" );
+        var timedelay = 0;
         for(var i=0;i<maxlength+1;i++){
             imgdata.push(imgHost+'image/lines/'+i+'.jpg');
-        }
-        var imgcoo = [];
-        for(var j=0;j<5;j++){
-            imgcoo.push(imgHost+'image/coordinate/'+j+'.jpg');
         }
         function _end(){
             obj.parent().find('.textbox').addClass('show');
@@ -227,27 +224,19 @@
                 _end();
                 return;
             }
-            _animation();
+            if(timedelay==0){
+                _animation();
+            }
+            timedelay++;
+            if(timedelay>1){
+                timedelay = 0;
+            }
             updateID = requestAnimationFrame(_start);
         }
-        loadimgs(imgcoo,function(){
-            loadimgs(imgdata,function(){
-                obj.html('<div class="lines"></div>');
-                obj.find('.lines')[0].appendChild( image );
-
-                for(var k=0;k<imgcoo.length;k++){
-                    var url = imgcoo[k];
-                    (function(_src){
-                        setTimeout(function(){
-                            image.src = _src
-                        },k*240);
-                    })(url)
-                }
-
-                setTimeout(function(){
-                    _start();
-                },1200)
-            })
+        loadimgs(imgdata,function(){
+            obj.html('<div class="lines"></div>');
+            obj.find('.lines')[0].appendChild( image );
+            _start();
         })
     }
     function anime_analyse(obj,call,ANIMENAO){
