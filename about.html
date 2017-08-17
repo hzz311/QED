@@ -381,34 +381,38 @@
                         '</div>';
                 return html;
             }
-            function _build(){
-                if(curnum>=jsondata_lenght){
+            function _build(curnum){
+                /*if(curnum>=jsondata_lenght){
                     return
-                }
+                }*/
                 var html = _tohtml(curnum,jsondata[curnum]);
                 var $html = $(html);
                 eventsbox.append($html);
                 $html.show();
                 $html.children('.num').addClass('show');
-                curnum++;
+                //curnum++;
                 dashijiTimeout=setTimeout(function(){
                     $html.children('.con').addClass('show');
                     dashijiTimeout=setTimeout(function(){
                         $html.children('.date').addClass('show');
-                        dashijiTimeout=setTimeout(function(){
+                        /*dashijiTimeout=setTimeout(function(){
                             _build();
-                        },1000)
+                        },1000)*/
                     },200)
                 },200)
             }
 
 
             for(var i=0;i<jsondata_lenght;i++){
-                
+                (function(_i){
+                    setTimeout(function(){
+                        _build(_i);
+                    },_i*500)
+                })(i)
+
             }
 
 
-            _build();
         }
 
 
