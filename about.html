@@ -76,6 +76,7 @@
             float: left;
             position: relative;
             margin-top: 22px;
+            overflow: hidden;
         }
         .eventsbox .item.bottom{
             margin-top: 178px;
@@ -94,6 +95,20 @@
             color: #94c8e5;
             font-size: 17px;
             z-index: 10;
+
+            -webkit-transform: scale(0);
+            -moz-transform: scale(0);
+            -ms-transform: scale(0);
+            transform: scale(0);
+            -webkit-transition: transform .3s ease-out;
+            -moz-transition: transform .3s ease-out;
+            transition: transform .3s ease-out;
+        }
+        .eventsbox .item .num.show{
+            -webkit-transform: scale(1);
+            -moz-transform: scale(1);
+            -ms-transform: scale(1);
+            transform: scale(1);
         }
         .eventsbox .item.bottom .num{
             bottom:auto;
@@ -112,6 +127,15 @@
             -moz-transform: rotate(-90deg);
             -ms-transform: rotate(-90deg);
             transform: rotate(-90deg);
+
+            margin-left: -40px;
+
+            -webkit-transition: all .3s ease-out;
+            -moz-transition: all .3s ease-out;
+            transition: all .3s ease-out;
+        }
+        .eventsbox .item .date.show{
+            margin-left: 0px;
         }
         .eventsbox .item.bottom .date{
             top: 100px;
@@ -123,6 +147,24 @@
             position: relative;
             padding-left: 15px;
             padding-bottom: 22px;
+
+            -webkit-transform-origin: bottom;
+            -moz-transform-origin: bottom;
+            -ms-transform-origin: bottom;
+            transform-origin: bottom;
+            -webkit-transform: scaleY(0);
+            -moz-transform: scaleY(0);
+            -ms-transform: scaleY(0);
+            transform: scaleY(0);
+            -webkit-transition: transform .3s ease-out;
+            -moz-transition: transform .3s ease-out;
+            transition: transform .3s ease-out;
+        }
+        .eventsbox .item .con.show{
+            -webkit-transform: scaleY(1);
+            -moz-transform: scaleY(1);
+            -ms-transform: scaleY(1);
+            transform: scaleY(1);
         }
         .eventsbox .item .con:before{
             width: 12px;
@@ -140,6 +182,10 @@
             padding-top: 44px;
             padding-bottom: 0;
             height: 200px;
+            -webkit-transform-origin: top;
+            -moz-transform-origin: top;
+            -ms-transform-origin: top;
+            transform-origin: top;
         }
         .eventsbox .item.bottom .con:before{
             background-color: #666666;
@@ -150,12 +196,44 @@
         .eventsbox .item .con .title{
             font-size: 16px;
             color: #94c8e5;
+            -webkit-transform: translateX(150%);
+            -moz-transform: translateX(150%);
+            -ms-transform: translateX(150%);
+            transform: translateX(150%);
+            -webkit-transition: all .3s ease-out;
+            -moz-transition: all .3s ease-out;
+            transition: all .3s ease-out;
+            transition-delay: .6s;
+            -moz-transition-delay: .6s;
+            -webkit-transition-delay: .6s;
+            -o-transition-delay: .6s;
+            opacity: 0;
         }
         .eventsbox .item .con .desc{
             font-size: 12px;
             margin-top: 6px;
             color: #666;
             line-height: 1.4;
+            -webkit-transform: translateX(100%);
+            -moz-transform: translateX(100%);
+            -ms-transform: translateX(100%);
+            transform: translateX(100%);
+            -webkit-transition: all .6s ease-out;
+            -moz-transition: all .6s ease-out;
+            transition: all .6s ease-out;
+            transition-delay: .6s;
+            -moz-transition-delay: .6s;
+            -webkit-transition-delay: .6s;
+            -o-transition-delay: .6s;
+            opacity: 0;
+        }
+        .eventsbox .item .con.show .title,
+        .eventsbox .item .con.show .desc{
+            -webkit-transform: translateX(0%);
+            -moz-transform: translateX(0%);
+            -ms-transform: translateX(0%);
+            transform: translateX(0%);
+            opacity: 1;
         }
 
         .teammapwrap{width: 100%;position: relative;}
@@ -270,11 +348,14 @@
                 'desc':'开始为医院提供计算机软件开发服务'
             }
         ]
+        var dashijiTimeout;
         function builddsj(){
             var eventsbox = $('#eventsbox');
             var jsondata = dashijidata;
-            var num=0;
-            eventsbox.empty()
+            var jsondata_lenght=jsondata.length;
+            var curnum=0;
+            eventsbox.empty();
+            clearTimeout(dashijiTimeout);
 
             function _tohtml(index,_data){
                 index++;
@@ -296,11 +377,29 @@
                         '</div>';
                 return html;
             }
-
-            for(var i=0;i<jsondata.length;i++){
-                var html = _tohtml(i,jsondata[i]);
-                eventsbox.append(html);
+            function _build(){
+                if(curnum>=jsondata_lenght){
+                    return
+                }
+                var html = _tohtml(curnum,jsondata[curnum]);
+                var $html = $(html);
+                eventsbox.append($html);
+                $html.show();
+                $html.children('.num').addClass('show');
+                curnum++;
+                dashijiTimeout=setTimeout(function(){
+                    $html.children('.con').addClass('show');
+                    dashijiTimeout=setTimeout(function(){
+                        $html.children('.date').addClass('show');
+                        dashijiTimeout=setTimeout(function(){
+                            _build();
+                        },1200)
+                    },300)
+                },300)
             }
+
+
+            _build();
         }
 
 
