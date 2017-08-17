@@ -525,6 +525,9 @@
     color: #6096b2;
     margin: 0 10px;
 }
+.newsshow .crumbs span a{
+    color: #6096b2;
+}
 .newsshow .shead{
     border-bottom: 1px solid #d0d0d0;
     padding-bottom: 10px;
