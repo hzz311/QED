@@ -16,14 +16,6 @@
         .about-image img{width: 210px;}
 
 
-        .work{padding: 30px 20px 0;}
-        .work .swiper-container{width: 100%;margin-left: auto;margin-right: auto;}
-        .work .swiper-slide{background-size: cover;background-position: center;}
-        .work .gallery-top{height: 360px;}
-        .work .gallery-thumbs {height: 150px;padding: 10px 0;  }
-        .work .gallery-thumbs .swiper-slide{width: 32.5%;height: 130px;opacity: 0.5;}
-        .work .gallery-thumbs .swiper-slide-active { opacity: 1;}
-
         .join{padding: 30px 15px;}
         .join .joinwrap{position: relative;min-height: 450px;background-color:#F8F8F8;font-size: 13px;display:-webkit-flex; display: flex;  -webkit-flex-direction: row;  flex-direction: row;}
         .join .joinwrap .typewrap{margin-right: 10px;}
@@ -172,9 +164,28 @@
         .teammapwrap .point{position: absolute;width: 44px;height: 36px;background: url("image/mappoint.png") center no-repeat; background-size: contain;}
         .teammapwrap .point .bubble{opacity: 0;-webkit-transform: scale(0.5);transform: scale(0.5);-webkit-transition: transform .4s;transition: transform .4s;}
         .teammapwrap .point:hover .bubble{opacity:1;transform: scale(1);}
+
+        .work{padding: 30px 20px 0;}
+        .work .videowrap{width: 100%;height: 360px;background-color: #000;}
+        .work .videowrap video{width: 100%;height: 100%;}
+
+        .work .previewwrap{width: 100%;position: relative;padding: 10px 25px;}
+        .work .previewwrap .swiper-container{width: 100%;height: 130px;}
+        .work .previewwrap .swiper-slide{ height:100%; background-size: cover;background-position: center;}
+        .work .previewwrap .swiper-container .swiper-slide-active{}
+
+        .work .previewwrap .arrow-left {
+            background: url(image/arrow_l.png) no-repeat left center;background-size: contain;
+            position: absolute;width: 25px;height: 22px;left: 0; top: 50%; margin-top: -11px;
+            z-index: 10;cursor: pointer;}
+        .work .previewwrap .arrow-right {
+            background: url(image/arrow_r.png) no-repeat right center;background-size: contain;
+            position: absolute;width: 25px;height: 22px;right: 0; top: 50%; margin-top: -11px;
+            z-index: 10;cursor: pointer;}
+
     </style>
     <script src="script/jquery-1.11.2.min.js"></script>
-    <script type="text/javascript" src="script/swiper.js"></script>
+    <script type="text/javascript" src="script/swiper.min.js"></script>
 
     <script>
         $(function(){
@@ -186,9 +197,9 @@
             menulistEl.on('click','.item',function(e){
                 e.preventDefault();
                 var self=$(this);
-                if(self.hasClass('active')){
-                    return false;
-                }
+//                if(self.hasClass('active')){
+//                    return false;
+//                }
                 var selfname=self.attr('data-href');
                 var preItem=menulistEl.children('.active');
                 var preName=preItem.attr('data-href');
@@ -200,7 +211,7 @@
                 showContent(selfname,selfContent);
             });
 //            menulistEl.children(':first').click();
-            menulistEl.children('[data-href="team"]').click();
+            menulistEl.children('[data-href="work"]').click();
 
 
             //投递简历
@@ -296,18 +307,19 @@
             var hasInit=false;
             var wrapEl=null;
 
-
             function init(wrap){
                 if(!hasInit){
                     hasInit=true;
                     wrapEl=wrap;
-
                     var joinwrapEl=wrapEl.children('.joinwrap');
                     var joinformEl=wrapEl.children('.joinform');
                     joinwrapEl.find("#resumedelivery").click(function(e){
                         joinwrapEl.hide();
                         joinformEl.show();
                     });
+                }else{
+                    wrapEl.children('.joinwrap').show();
+                    wrapEl.children('.joinform').hide();
                 }
             }
 
@@ -320,58 +332,26 @@
         var WorkContentObj=(function(){
             var hasInit=false;
             var wrapEl=null;
-            var imageArr=[
-                'image/about_us.jpg'
-                ,'image/about_us.jpg'
-                ,'image/about_us.jpg'
-            ];
-
-            function buildDom(){
-                var slidehtml='';
-                imageArr.forEach(function(url){
-                    slidehtml+='<div class="swiper-slide" style="background-image:url('+url+')"></div>';
-                });
-                var html='';
-                html+='<div class="swiper-container gallery-top" id="work-gallery-top">';
-                html+='  <div class="swiper-wrapper">';
-                html+=      slidehtml;
-                html+='  </div>';
-                html+='</div>';
-                html+='<div class="swiper-container gallery-thumbs" id="work-gallery-thumbs">';
-                html+='  <div class="swiper-wrapper">';
-                html+=      slidehtml;
-                html+='  </div>';
-                html+='  <div class="swiper-button-next swiper-button-white"></div>';
-                html+='  <div class="swiper-button-prev swiper-button-white"></div>';
-                html+='</div>';
-                wrapEl.html(html);
-            }
-
+            var previewSwiper=null;
             function initSwper(){
-                var galleryTop = new Swiper('#work-gallery-top', {
-                    nextButton: '.swiper-button-next',
-                    prevButton: '.swiper-button-prev',
-                    spaceBetween: 10
-                });
-                var galleryThumbs = new Swiper('#work-gallery-thumbs', {
+                var swiper = new Swiper('#work-swiper-container', {
+                    nextButton: '#work-arrow-left',
+                    prevButton: '#work-arrow-right',
+                    slidesPerView: 3,
                     spaceBetween: 10,
-                    centeredSlides: true,
-                    slidesPerView: 'auto',
-                    touchRatio: 0.2,
-                    slideToClickedSlide: true
-                    ,visibilityFullFit: true
-
+                    onClick: function(e) {
+                        showPrevImg();
+                    }
                 });
-                galleryTop.params.control = galleryThumbs;
-                galleryThumbs.params.control = galleryTop;
             }
+            function showPrevImg(clickedSlideIndex) {
 
+
+            }
             function init(wrap){
                 if(!hasInit){
                     hasInit=true;
                     wrapEl=wrap;
-
-                    buildDom();
                     initSwper();
                 }
             }
@@ -484,7 +464,31 @@
                 </div>
                 <div class="teammapdesc">雅森的研发团队来自于南开大学、清华大学、中国科学院、台湾长庚大学、英国UCL大学、美国伦斯勒理工学院、英国爱丁堡大学等顶尖院校</div>
             </div>
-            <div class="content work" data-id="work"></div>
+            <div class="content work" data-id="work">
+                <div class="videowrap">
+                    <video loop="loop" src="test.mp4" controls="controls"></video>
+                </div>
+                <div class="previewwrap">
+                    <div class="swiper-container" id="work-swiper-container">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" style="background-image: url(image/about_us.jpg)"></div>
+                            <div class="swiper-slide" style="background-image: url(image/about_us.jpg)"></div>
+                            <div class="swiper-slide" style="background-image: url(image/about_us.jpg)"></div>
+                            <div class="swiper-slide" style="background-image: url(image/about_us.jpg)"></div>
+                            <div class="swiper-slide" style="background-image: url(image/about_us.jpg)"></div>
+                            <div class="swiper-slide" style="background-image: url(image/about_us.jpg)"></div>
+                            <div class="swiper-slide" style="background-image: url(image/about_us.jpg)"></div>
+                            <div class="swiper-slide" style="background-image: url(image/about_us.jpg)"></div>
+                            <div class="swiper-slide" style="background-image: url(image/about_us.jpg)"></div>
+                            <div class="swiper-slide" style="background-image: url(image/about_us.jpg)"></div>
+                            <div class="swiper-slide" style="background-image: url(image/about_us.jpg)"></div>
+                            <div class="swiper-slide" style="background-image: url(image/about_us.jpg)"></div>
+                        </div>
+                    </div>
+                    <div class="arrow-left" id="work-arrow-right"></div>
+                    <div class="arrow-right" id="work-arrow-left"></div>
+                </div>
+            </div>
             <div class="content join" data-id="join">
                 <div class="joinwrap clearfix">
                     <div class="namewrap">
