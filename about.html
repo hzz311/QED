@@ -100,9 +100,9 @@
             -moz-transform: scale(0);
             -ms-transform: scale(0);
             transform: scale(0);
-            -webkit-transition: transform .3s ease-out;
-            -moz-transition: transform .3s ease-out;
-            transition: transform .3s ease-out;
+            -webkit-transition: transform .2s ease-out;
+            -moz-transition: transform .2s ease-out;
+            transition: transform .2s ease-out;
         }
         .eventsbox .item .num.show{
             -webkit-transform: scale(1);
@@ -130,9 +130,9 @@
 
             margin-left: -40px;
 
-            -webkit-transition: all .3s ease-out;
-            -moz-transition: all .3s ease-out;
-            transition: all .3s ease-out;
+            -webkit-transition: all .2s ease-out;
+            -moz-transition: all .2s ease-out;
+            transition: all .2s ease-out;
         }
         .eventsbox .item .date.show{
             margin-left: 0px;
@@ -156,9 +156,9 @@
             -moz-transform: scaleY(0);
             -ms-transform: scaleY(0);
             transform: scaleY(0);
-            -webkit-transition: transform .3s ease-out;
-            -moz-transition: transform .3s ease-out;
-            transition: transform .3s ease-out;
+            -webkit-transition: transform .2s ease-out;
+            -moz-transition: transform .2s ease-out;
+            transition: transform .2s ease-out;
         }
         .eventsbox .item .con.show{
             -webkit-transform: scaleY(1);
@@ -203,10 +203,10 @@
             -webkit-transition: all .3s ease-out;
             -moz-transition: all .3s ease-out;
             transition: all .3s ease-out;
-            transition-delay: .6s;
-            -moz-transition-delay: .6s;
-            -webkit-transition-delay: .6s;
-            -o-transition-delay: .6s;
+            transition-delay: .4s;
+            -moz-transition-delay: .4s;
+            -webkit-transition-delay: .4s;
+            -o-transition-delay: .4s;
             opacity: 0;
         }
         .eventsbox .item .con .desc{
@@ -218,13 +218,13 @@
             -moz-transform: translateX(100%);
             -ms-transform: translateX(100%);
             transform: translateX(100%);
-            -webkit-transition: all .6s ease-out;
-            -moz-transition: all .6s ease-out;
-            transition: all .6s ease-out;
-            transition-delay: .6s;
-            -moz-transition-delay: .6s;
-            -webkit-transition-delay: .6s;
-            -o-transition-delay: .6s;
+            -webkit-transition: all .5s ease-out;
+            -moz-transition: all .5s ease-out;
+            transition: all .5s ease-out;
+            transition-delay: .4s;
+            -moz-transition-delay: .4s;
+            -webkit-transition-delay: .4s;
+            -o-transition-delay: .4s;
             opacity: 0;
         }
         .eventsbox .item .con.show .title,
@@ -397,9 +397,14 @@
                         $html.children('.date').addClass('show');
                         dashijiTimeout=setTimeout(function(){
                             _build();
-                        },1200)
-                    },300)
-                },300)
+                        },1000)
+                    },200)
+                },200)
+            }
+
+
+            for(var i=0;i<jsondata_lenght;i++){
+                
             }
 
 
