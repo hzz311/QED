@@ -54,7 +54,7 @@ a{text-decoration: none;color: inherit;}
 .menulist .item .iconwrap .name{margin-top: 10px;}
 .menulist .item .namewrap{color:#999;line-height: 18px;min-width:52px;display:-webkit-flex;display: flex;-webkit-flex-direction: column;flex-direction: column;-webkit-align-items: center; align-items:center; justify-content: center;}
 .menulist .item.active .iconwrap{background-color: #999;color: #FFFFFF;}
-.menulist .item:hover .iconwrap{width: 80px;height: 80px;margin: 2px;box-shadow: 3px 6px 15px 0 rgba(0,0,0,.3);}
+.menulist .item:hover .iconwrap{width: 80px;height: 80px;margin: 2px;box-shadow: 3px 6px 15px 0 rgba(0,0,0,.3);cursor: pointer;}
 
 .menulist.bigger{}
 .menulist.bigger .item .iconwrap{width:80px;height: 80px;}
