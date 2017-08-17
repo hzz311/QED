@@ -128,14 +128,14 @@
             -ms-transform: rotate(-90deg);
             transform: rotate(-90deg);
 
-            margin-left: -40px;
+            opacity: 0;
 
             -webkit-transition: all .2s ease-out;
             -moz-transition: all .2s ease-out;
             transition: all .2s ease-out;
         }
         .eventsbox .item .date.show{
-            margin-left: 0px;
+            opacity: 1;
         }
         .eventsbox .item.bottom .date{
             top: 100px;
@@ -196,10 +196,10 @@
         .eventsbox .item .con .title{
             font-size: 16px;
             color: #94c8e5;
-            -webkit-transform: translateX(150%);
+            /*-webkit-transform: translateX(150%);
             -moz-transform: translateX(150%);
             -ms-transform: translateX(150%);
-            transform: translateX(150%);
+            transform: translateX(150%);*/
             -webkit-transition: all .3s ease-out;
             -moz-transition: all .3s ease-out;
             transition: all .3s ease-out;
@@ -214,10 +214,10 @@
             margin-top: 6px;
             color: #666;
             line-height: 1.4;
-            -webkit-transform: translateX(100%);
+            /*-webkit-transform: translateX(100%);
             -moz-transform: translateX(100%);
             -ms-transform: translateX(100%);
-            transform: translateX(100%);
+            transform: translateX(100%);*/
             -webkit-transition: all .5s ease-out;
             -moz-transition: all .5s ease-out;
             transition: all .5s ease-out;
@@ -229,15 +229,30 @@
         }
         .eventsbox .item .con.show .title,
         .eventsbox .item .con.show .desc{
-            -webkit-transform: translateX(0%);
+            /*-webkit-transform: translateX(0%);
             -moz-transform: translateX(0%);
             -ms-transform: translateX(0%);
-            transform: translateX(0%);
+            transform: translateX(0%);*/
             opacity: 1;
         }
 
         .teammapwrap{width: 100%;position: relative;}
         .teammapwrap img{width: 100%;position: relative;}
+        .teammap_img{
+
+            -webkit-perspective: 500;
+            -moz-perspective: 500;
+            -ms-perspective: 500;
+            perspective: 500;
+            -ms-transform: perspective(500px);
+            -moz-transform: perspective(500px);
+            transform-style: preserve-3d;
+            -webkit-transform: rotateX(52deg);
+            -moz-transform: rotateX(52deg);
+            -ms-transform: rotateX(52deg);
+            transform: rotateX(52deg);
+
+        }
         .teammapdesc{line-height: 24px;}
         .teammapwrap .point{position: absolute;width: 44px;height: 36px;background: url("image/mappoint.png") center no-repeat; background-size: contain;}
         .teammapwrap .point .bubble{opacity: 0;-webkit-transform: scale(0.5);transform: scale(0.5);-webkit-transition: transform .4s;transition: transform .4s;}
@@ -597,23 +612,23 @@
             </div>
             <div class="content" data-id="team">
                 <div class="teammapwrap">
-                    <img src="image/teammap.png">
-                    <div class="point" style="top: 105px;left: 195px;">
+                    <img class="teammap_img" src="image/teammap.png">
+                    <div class="point" style="    top: 150px;left: 202px;">
                         <div class="bubble" style="position: absolute;top: 43px;left: -141px;width: 200px;height: 68px;"><img src="image/bubble/team_01.png"></div>
                     </div>
-                    <div class="point" style="top: 92px;left: 324px;">
+                    <div class="point" style="top: 122px;left: 309px;">
                         <div class="bubble" style="position: absolute;top: -70px;left: -112px;width: 171px;height: 67px;"><img src="image/bubble/team_02.png"></div>
                     </div>
-                    <div class="point" style="top: 105px;left: 345px;">
+                    <div class="point" style=" top: 135px;left: 326px;">
                         <div class="bubble" style="position: absolute;top: -71px;left: -111px;width: 169px;height: 64px;"><img src="image/bubble/team_03.png"></div>
                     </div>
                     <div class="point" style="top: 121px;left: 550px;">
                         <div class="bubble" style="position: absolute;top: -71px;left: -161px;width: 220px;height: 68px;"><img src="image/bubble/team_04.png"></div>
                     </div>
-                    <div class="point" style="top: 134px;left: 560px;">
+                    <div class="point" style="top: 130px;left: 570px;">
                         <div class="bubble" style="position: absolute;top: -70px;left: -143px;width: 199px;height: 64px;"><img src="image/bubble/team_05.png"></div>
                     </div>
-                    <div class="point" style="top: 178px;left: 590px;">
+                    <div class="point" style="top: 168px;left: 590px;">
                         <div class="bubble" style="position: absolute;top: 42px;left: -70px;width: 170px;height: 61px;"><img src="image/bubble/team_06.png"></div>
                     </div>
                     <div class="point" style="top: 115px;left: 623px;">
@@ -624,7 +639,7 @@
             </div>
             <div class="content work" data-id="work">
                 <div class="videowrap">
-                    <video id="work-video" loop="loop" src="test.mp4"></video>
+                    <video id="work-video" loop="loop" src="qed.mp4"></video>
                     <div class="descwrap"><div class="desc"><p>DO</p><p>AMAZING</p><p>工作在雅森</p></div></div>
                     <div class="imgpreview"></div>
                 </div>
