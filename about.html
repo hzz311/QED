@@ -367,6 +367,7 @@
             }
         ]
         var dashijiTimeout;
+        var dashijiTimeoutall={};
         function builddsj(){
             var eventsbox = $('#eventsbox');
             var jsondata = dashijidata;
@@ -374,6 +375,9 @@
             var curnum=0;
             eventsbox.empty();
             clearTimeout(dashijiTimeout);
+            for(var key in dashijiTimeoutall){
+                clearTimeout(dashijiTimeoutall[key]);   
+            }
 
             function _tohtml(index,_data){
                 index++;
@@ -419,7 +423,7 @@
 
             for(var i=0;i<jsondata_lenght;i++){
                 (function(_i){
-                    setTimeout(function(){
+                    dashijiTimeoutall[_i]=setTimeout(function(){
                         _build(_i);
                     },_i*500)
                 })(i)
