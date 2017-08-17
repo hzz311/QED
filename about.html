@@ -254,8 +254,9 @@
 
         }
         .teammapdesc{line-height: 24px;}
-        .teammapwrap .point{position: absolute;width: 44px;height: 36px;background: url("image/mappoint.png") center no-repeat; background-size: contain;}
-        .teammapwrap .point .bubble{opacity: 0;-webkit-transform: scale(0.5);transform: scale(0.5);-webkit-transition: transform .4s;transition: transform .4s;}
+        .teammapwrap .point{position: absolute;width: 44px;height: 36px;background: url("image/mappoint.png") center no-repeat; background-size: contain;-webkit-transform: scale(0.8);transform: scale(0.8);-webkit-transition: opacity.4s,transform .2s;transition: opacity.4s,transform .2s;}
+        .teammapwrap .point:hover{-webkit-transform: scale(1);transform: scale(1);}
+        .teammapwrap .point .bubble{opacity: 0;-webkit-transform: scale(0.5);transform: scale(0.5);-webkit-transition: opacity.4s,transform .4s;transition: opacity.4s,transform .4s;}
         .teammapwrap .point:hover .bubble{opacity:1;-webkit-transform: scale(1);transform: scale(1);}
 
         .work{padding: 30px 20px 0;}
@@ -263,7 +264,8 @@
         .work .videowrap video{width: 100%;height: 100%;}
         .work .videowrap .descwrap{width: 100%;height: 100%;position: absolute;z-index: 1;left: 0;top: 0;background-color: rgba(255,255,255,.1);}
         .work .videowrap .descwrap .desc{position: absolute;bottom: 50px;left: 0;width: 100%;line-height: 30px;color: #FFFFFF;font-size: 20px;letter-spacing: 1px;}
-        .work .videowrap .imgpreview{display: none;width: 100%;height: 100%;position: absolute;z-index: 10;left: 0;top: 0;background-position: center;background-size: cover;background-repeat: no-repeat;}
+        .work .videowrap .imgpreview{opacity: 0;-webkit-transform: scale(0.5);transform: scale(0.5);-webkit-transition: opacity.4s,transform .4s ease-in-out;transition: opacity.4s,transform .4s ease-in-out;width: 100%;height: 100%;position: absolute;z-index: 10;left: 0;top: 0;background-position: center;background-size: cover;background-repeat: no-repeat;}
+        .work .videowrap .imgpreview.show{opacity:1;-webkit-transform: scale(1);transform: scale(1);}
         .work .previewwrap{width: 100%;position: relative;padding: 10px 25px;}
         .work .previewwrap .swiper-container{width: 100%;height: 130px;}
         .work .previewwrap .swiper-slide{ height:100%; background-size: cover;background-position: center;cursor: pointer;}
@@ -495,8 +497,16 @@
                 });
             }
             function showPrevImg(imgurl) {
-                imgpreviewEl.css('background-image','url('+imgurl+')');
-                imgpreviewEl.show();
+                if(imgpreviewEl.hasClass('show')){
+                    imgpreviewEl.removeClass('show');
+                    setTimeout(function(){
+                        imgpreviewEl.css('background-image','url('+imgurl+')');
+                        imgpreviewEl.addClass('show');
+                    },400);
+                }else{
+                    imgpreviewEl.css('background-image','url('+imgurl+')');
+                    imgpreviewEl.addClass('show');
+                }
             }
             function transitionEnd(dom,callback) {
                 var events = ['webkitTransitionEnd', 'transitionend', 'oTransitionEnd', 'MSTransitionEnd', 'msTransitionEnd'],
@@ -519,13 +529,14 @@
             function init(wrap){
                 if(videoEl){
                     videoEl.play();
+                    videoEl.volume=0;
                 }
                 if(!hasInit){
                     hasInit=true;
                     wrapEl=wrap;
                     imgpreviewEl=wrapEl.find(".imgpreview");
                     imgpreviewEl.on('click',function(e){
-                           $(this).hide();
+                        $(this).removeClass('show');
                     });
 
                     initSwper();
@@ -561,7 +572,8 @@
                         <path d="M38.694,33.792c1.522,0,2.603,0.31,3.21,0.919c0.568,0.572,0.854,1.55,0.848,2.917v4.519h-5.685    c-0.946-0.021-1.643-0.282-2.128-0.801c-0.633-0.676-0.947-1.837-0.885-3.27l0.002-0.043v-0.044v-4.194h4.391    C38.53,33.793,38.612,33.792,38.694,33.792 M38.694,31.792c-0.096,0-0.192,0.001-0.29,0.003h-6.348v6.194    c-0.146,3.353,1.365,6.078,4.967,6.157h7.729v-6.519C44.771,33.415,42.457,31.792,38.694,31.792L38.694,31.792z"></path>
                         <path d="M14.791,20.132v3.898c-0.118,2.892,0.648,5.304,2.218,6.98c1.376,1.47,3.312,2.272,5.64,2.323h5.445v6.954    H15.025c-2.359-0.051-4.215-0.781-5.515-2.17c-1.593-1.701-2.39-4.466-2.245-7.784l0.002-0.044v-0.044V20.132H14.791     M16.791,18.132H5.267v12.114c-0.287,6.558,2.67,11.888,9.714,12.042h15.112V31.334h-7.445c-4.247-0.093-6.031-3.308-5.857-7.261    V18.132L16.791,18.132z"></path>
                         <path d="M30.723,7.854L30.723,7.854c3.53,0,6.117,0.8,7.689,2.379c1.496,1.502,2.247,3.889,2.232,7.103v10.827    H33.76v-4.507c0.013-2.802-0.75-4.996-2.269-6.521c-1.564-1.572-3.879-2.369-6.879-2.369c-0.125,0-0.251,0.001-0.337,0.003h-4.608    V7.86l10.531,0C30.374,7.855,30.549,7.854,30.723,7.854 M30.722,5.854c-0.187,0-0.376,0.002-0.566,0.006H17.667v10.909h6.608    c0.114-0.002,0.226-0.003,0.337-0.003c4.439,0,7.17,1.913,7.147,6.881v6.516h10.885V17.336    C42.682,9.046,38.128,5.854,30.722,5.854L30.722,5.854z"></path>
-                    </svg>                    <p class="name">关于雅森</p>
+                    </svg>
+                    <p class="name">关于雅森</p>
                 </div>
             </li>
             <li class="item" data-href="events">
