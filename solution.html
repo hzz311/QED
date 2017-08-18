@@ -13,8 +13,19 @@
         .content .item .largerfont{font-size: 20px;font-style: normal;font-weight: bold;}
         .content .item .bigfont{font-style: normal;font-weight: bold;font-size: 12px;}
         .content .item.image{width: 100%;}
-        .content .imagewrap{margin-top: 20px;}
+        .content .imagewrap{margin-top: 20px;position: relative;}
         .content.active .imagewrap{-webkit-animation: iamge-in 1.4s;animation: iamge-in 1.4s;}
+        .content .imagewrap .showresult{position: absolute;bottom:36px;right:52px;width:110px;height:44px;cursor: pointer;}
+
+        .resultwinmask{display:none;position: absolute;width: 100%;height: 100%;left: 0;top: 0;z-index: 999;background-color: rgba(255,255,255,.8);opacity: 0;-webkit-transition: opacity.4s;transition: opacity.4s;}
+        .resultwinmask.in{opacity: 1;}
+        .resultwinmodal{display:none;position: absolute;top: 148px;right: -179px;width: 630px;padding: 35px 18px 18px;opacity: 0;-webkit-transform: scale(0.4);transform: scale(0.4);-webkit-transition: all .5s;transition: all .5s;border-radius: 15px;box-shadow: 0 3px 5px rgba(0,0,0,0.5); background-color: rgba(0,0,0,0.07); z-index:1000;}
+        .resultwinmodal.in{opacity: 1;top:25px;right: 85px;-webkit-transform: scale(1);transform: scale(1);}
+        .resultwinmodal img{border: 15px solid #FFFFFF;width: 100%;height: 347px;display: block;object-fit: cover;object-position: center;}
+        .resultwinmodal .desc{font-size: 12px;line-height: 18px;color: #666;margin-top: 10px;}
+        .resultwinmodal .closebtn{position: absolute;right: 10px;top: 0;width: 30px;height: 30px;cursor: pointer;}
+        .resultwinmodal .closebtn:before{position: absolute;content:'';background-color: #333;width:18px;height: 1px;top: 15px;right: 6px; -webkit-transform: rotate(45deg);transform: rotate(45deg);}
+        .resultwinmodal .closebtn:after{position: absolute;content:'';background-color: #333;width:18px;height: 1px;top: 15px;right: 6px;-webkit-transform: rotate(-45deg);transform: rotate(-45deg);}
 
         @-webkit-keyframes itemwrap-in {
             0%{ opacity:0;  filter:alpha(opacity=0);  -webkit-transform: scale(0.8);  }
@@ -34,9 +45,37 @@
             40%{ opacity: 0;  filter:alpha(opacity=0); margin-top: 100px;}
             100%{ opacity:1;  filter:alpha(opacity=1);  margin-top: 20px;}
         }
+
     </style>
     <script src="script/jquery-1.11.2.min.js"></script>
     <script>
+        var tabResultObj={
+           "content_01":{
+               'img':'image/solution/epilepsy_big.jpg',
+               'desc':['1、致痫灶大小、位置、代谢异常程度等', '2、致痫灶确诊', '3、手术规划、药物治疗方案及术后神经心理受损情况预测']
+           },
+           "content_02":{
+               'img':'image/solution/ad_big.jpg',
+               'desc':['1、代谢异常区域大小、位置、程度等', '2、疾病分型、分期或者预测结果', '3、药物治疗方案及病情发展预测']
+           },
+           "content_03":{
+               'img':'',
+               'desc':['1、代谢异常区域大小、位置、程度等','2、疾病分型、分期或者预测结果','3、药物治疗方案及病情发展预测']
+           },
+           "content_04":{
+               'img':'image/solution/job_big.png',
+               'desc':['1、外周血淋巴细胞微核率', '2、带标记的微核细胞图片']
+           },
+           "content_05":{
+               'img':'image/solution/dtc_big.jpg',
+               'desc':['1、清甲治疗给药剂量及预后判断','2、甲状腺残留组织体积']
+           },
+           "content_06":{
+               'img':'image/solution/nodules_big.jpg',
+               'desc':['1、结节位置、体积','2、良恶性判断、分型']
+           }
+        };
+
         $(function(){
 
             bindEvent();
@@ -58,6 +97,58 @@
 
             });
             menulistEl.children(':first').click();
+
+
+            //浏览输出结果
+            var resultwinmaskEl=$("#resultwinmask");
+            var resultwinmodalEl=$("#resultwinmodal");
+            $(".showresult").on('click',function(e){
+                e.preventDefault();
+                var tabid=$(this).closest('.content').attr('data-id');
+                var resultData=tabResultObj[tabid]||{};
+                resultwinmodalEl.children('img').attr('src',resultData.img||'');
+                var deschtml='';
+                (resultData.desc||[]).forEach(function(text){
+                    deschtml+='<p>'+text+'</p>'
+                });
+                resultwinmodalEl.children('.desc').html(deschtml);
+
+                resultwinmaskEl.show();
+                resultwinmaskEl.addClass('in');
+                resultwinmodalEl.show();
+                setTimeout(function(){
+                    resultwinmodalEl.addClass('in');
+                },100);
+            });
+            resultwinmodalEl.find('.closebtn').click(function(e){
+                e.preventDefault();
+                resultwinmaskEl.removeClass('in');
+                transitionEnd(resultwinmaskEl,function(e){
+                    resultwinmaskEl.hide();
+                });
+                resultwinmodalEl.removeClass('in');
+                transitionEnd(resultwinmodalEl,function(e){
+                    resultwinmodalEl.hide();
+                });
+            });
+        }
+        function transitionEnd(dom,callback) {
+            var events = ['webkitTransitionEnd', 'transitionend', 'oTransitionEnd', 'MSTransitionEnd', 'msTransitionEnd'],
+                    i, j, dom = dom;
+            function fireCallBack(e) {
+                /*jshint validthis:true */
+                if (e.target !== this) return;
+                callback.call(this, e);
+                for (i = 0; i < events.length; i++) {
+                    dom.off(events[i], fireCallBack);
+                }
+            }
+            if (callback) {
+                for (i = 0; i < events.length; i++) {
+                    dom.on(events[i], fireCallBack);
+                }
+            }
+            return this;
         }
     </script>
 </head>
@@ -74,6 +165,9 @@
         </nav>
     </header>
     <div class="pagecontent clearfix">
+        <div class="resultwinmask" id="resultwinmask"></div>
+        <div class="resultwinmodal" id="resultwinmodal"><img src=""><div class="desc"></div><div class="closebtn"></div></div>
+
         <ul class="menulist" id="menulist">
             <li class="item" data-href="content_01">
                 <div class="iconwrap">
@@ -157,6 +251,7 @@
                 </div>
                 <div class="imagewrap">
                     <img class="item image" src="image/solution/epilepsy.png">
+                    <div class="showresult"></div>
                 </div>
             </div>
             <div class="content" data-id="content_02">
@@ -167,6 +262,7 @@
                 </div>
                 <div class="imagewrap">
                     <img class="item image" src="image/solution/ad.png">
+                    <div class="showresult"></div>
                 </div>
             </div>
             <div class="content" data-id="content_03">
@@ -177,6 +273,7 @@
                 </div>
                 <div class="imagewrap">
                     <img class="item image" src="image/solution/pd.png">
+                    <div class="showresult"></div>
                 </div>
             </div>
             <div class="content" data-id="content_04">
@@ -187,6 +284,7 @@
                 </div>
                 <div class="imagewrap">
                     <img class="item image" src="image/solution/job.png">
+                    <div class="showresult"></div>
                 </div>
             </div>
             <div class="content" data-id="content_05">
@@ -197,6 +295,7 @@
                 </div>
                 <div class="imagewrap">
                     <img class="item image" src="image/solution/dtc.png">
+                    <div class="showresult"></div>
                 </div>
             </div>
             <div class="content" data-id="content_06">
@@ -208,6 +307,7 @@
                 </div>
                 <div class="imagewrap">
                     <img class="item image" src="image/solution/nodules.png">
+                    <div class="showresult"></div>
                 </div>
             </div>
         </div>
