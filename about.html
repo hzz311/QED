@@ -260,8 +260,8 @@
         .teammapwrap .point:hover .bubble{opacity:1;-webkit-transform: scale(1);transform: scale(1);}
 
         .work{padding: 30px 20px 0;}
-        .work .videowrap{width: 100%;height: 360px;background-color: #000;position: relative;text-align: center;}
-        .work .videowrap video{width: 100%;height: 100%;}
+        .work .videowrap{width: 100%;height: 360px;position: relative;text-align: center;overflow: hidden;}
+        .work .videowrap video{width: 100%;height: 100%;object-fit: cover;}
         .work .videowrap .descwrap{width: 100%;height: 100%;position: absolute;z-index: 1;left: 0;top: 0;background-color: rgba(255,255,255,.1);}
         .work .videowrap .descwrap .desc{position: absolute;bottom: 50px;left: 0;width: 100%;line-height: 30px;color: #FFFFFF;font-size: 20px;letter-spacing: 1px;}
         .work .videowrap .imgpreview{opacity: 0;-webkit-transform: scale(0.5);transform: scale(0.5);-webkit-transition: opacity.4s,transform .4s ease-in-out;transition: opacity.4s,transform .4s ease-in-out;width: 100%;height: 100%;position: absolute;z-index: 10;left: 0;top: 0;background-position: center;background-size: cover;background-repeat: no-repeat;}
@@ -346,29 +346,29 @@
             {
                 'year':'2006',
                 'title':'创立',
-                'desc':'创始团队组成,开始为医院提供计算机软件开发服务'
+                'desc':'创始团队组成,开始为医院提供计算机软件开发服务。'
             },
             {
                 'year':'2008',
                 'title':'沉淀',
-                'desc':'创始团队组成,开始为医院提供计算机软件开发服务'
+                'desc':'创始团队组成,开始为医院提供计算机软件开发服务。'
             },
             {
                 'year':'2011',
                 'title':'合力',
-                'desc':'开始为医院提供计算机软件开发服务'
+                'desc':'开始为医院提供计算机软件开发服务。'
             },
             {
                 'year':'2014',
                 'title':'精进',
-                'desc':'开始为医院提供计算机软件开发服务'
+                'desc':'开始为医院提供计算机软件开发服务。'
             },
             {
                 'year':'2016',
                 'title':'跨越',
-                'desc':'开始为医院提供计算机软件开发服务'
+                'desc':'开始为医院提供计算机软件开发服务。'
             }
-        ]
+        ];
         var dashijiTimeout;
         var dashijiTimeoutall={};
         function builddsj(){
