@@ -40,7 +40,7 @@
                         </div>
                         <div class="swiper-slide">
                             <div class="imgbox">
-                                <video webkit-playsinline="yes" loop
+                                <video id="indexvideo" webkit-playsinline="yes" loop
                                        x-webkit-airplay="allow" playsinline="true" src="http://www.w3school.com.cn/i/movie.mp4"></video>
                                 <div id="indexvideomask" style="position: absolute;width: 100%;height:100%;top:0;left:0;z-index: 10"></div>
                             </div>
@@ -60,12 +60,10 @@
             </div>
             <div class="swiper-slide">
                 <div class="s_content">
-                    222
                 </div>
             </div>
             <div class="swiper-slide">
                 <div class="s_content">
-                    a1231231
                 </div>
                 <footer class="footer indexfooter">
                     <ul class="nav clearfix">
@@ -137,7 +135,8 @@
 
         self.surTipobj=null;
         self.clear=function(){
-            clearTimeout(tipstimeout)
+            clearTimeout(tipstimeout);
+            clearTimeout(updateID);
         }
 
         function _createtips(){
@@ -176,6 +175,7 @@
             setTimeout(function(){
                 obj.parent().find('.textbox').addClass('show');
                 _createtips();
+                obj.parent().addClass('s_bg01');
                 call&&call();
             },2000)
         }
@@ -199,19 +199,23 @@
         })
         loadimgs(tipsz);
     }
+
+    var updateIDanime_lines;
     function anime_lines(obj,call){
+        cancelAnimationFrame(updateIDanime_lines);
         var obj = obj;
         var maxlength = 149;
         var active=0;
         var imgdata=[];
-        var updateID;
         var image = document.createElement( "img" );
         var timedelay = 0;
+        var firstend=false;
         for(var i=0;i<maxlength+1;i++){
             imgdata.push(imgHost+'image/lines/'+i+'.jpg');
         }
         function _end(){
             obj.parent().find('.textbox').addClass('show');
+            obj.parent().addClass('s_bg03');
             call&&call();
         }
         function _animation(){
@@ -220,9 +224,12 @@
         }
         function _start(){
             if(active>maxlength){
-                cancelAnimationFrame(updateID);
-                _end();
-                return;
+                active = 80
+                //cancelAnimationFrame(updateIDanime_lines);
+                if(!firstend){
+                    firstend = true
+                    _end();
+                }
             }
             if(timedelay==0){
                 _animation();
@@ -231,7 +238,7 @@
             if(timedelay>1){
                 timedelay = 0;
             }
-            updateID = requestAnimationFrame(_start);
+            updateIDanime_lines = requestAnimationFrame(_start);
         }
         loadimgs(imgdata,function(){
             obj.html('<div class="lines"></div>');
@@ -239,16 +246,20 @@
             _start();
         })
     }
+
+    var updateIDanime_analyse;
     function anime_analyse(obj,call,ANIMENAO){
+        cancelAnimationFrame(updateIDanime_analyse);
         var obj = obj;
         var maxlength = 2;
         var active=0;
         var imgdata=[];
         for(var i=0;i<maxlength+1;i++){
-            imgdata.push(imgHost+'image/slide020'+i+'.jpg');
+            imgdata.push(imgHost+'image/slide020'+i+'.png');
         }
         function _end(){
             obj.parent().find('.textbox').addClass('show');
+            obj.parent().addClass('s_bg02');
             call&&call();
         }
         function _start(){
@@ -294,15 +305,15 @@
                 if(_index>=$imgs.length){
                     _index=0;
                 }
-                setTimeout(function(){
+                updateIDanime_analyse=setTimeout(function(){
                     obj.find('.analyse').find('.skew').removeClass('active');
-                    setTimeout(function(){
+                    updateIDanime_analyse=setTimeout(function(){
                         _obj.addClass('active');
                         __run();
                     },200)
                 },2000)
             }
-            setTimeout(function(){
+            updateIDanime_analyse=setTimeout(function(){
                 __run();
                 _end();
             },500);
@@ -319,12 +330,12 @@
         tips.children('.point').remove();
         tips.show();
         loadimgs(imgdata,function(){
-            setTimeout(function(){
+            updateIDanime_analyse=setTimeout(function(){
                 tips.css({'top':'190px','left':'-350px'})
-                setTimeout(function(){
+                updateIDanime_analyse=setTimeout(function(){
                     tips.hide(300);
                 },1500)
-                setTimeout(function(){
+                updateIDanime_analyse=setTimeout(function(){
                     obj.append('<div class="analyse"></div>');
                     _start();
                 },1900)
@@ -335,37 +346,66 @@
         var activeIndex=0;
         var animeNAO = null;
         function anime(swiper){
+            //console.log(swiper)
             activeIndex = swiper.activeIndex;
             var slideEle = swiper.slides[activeIndex];
             var s_content = $(slideEle).find('.s_content');
-            var allcontent = swiper.container.find('.s_content');
-            allcontent.html('').removeClass('s_bg01 s_bg02 s_bg03');
+            var previousIndex = swiper.previousIndex;
+            var previousslide_s_content = $(swiper.slides[previousIndex]).find('.s_content');
+            function _reset(){
+                //previousslide_s_content.empty();
+
+            }
+            function _clearaimeNAO(){
+                if(animeNAO){
+                    animeNAO.clear();
+                }
+            }
+
+
+            previousslide_s_content.removeClass('s_bg01').removeClass('s_bg02').removeClass('s_bg03');
+            setTimeout(function(){
+                previousslide_s_content.empty();
+            },300);
+
+            _clearaimeNAO();
+            cancelAnimationFrame(updateIDanime_analyse);
+            cancelAnimationFrame(updateIDanime_lines);
 
             if(activeIndex==1){
                 var $tet=$('<div class="textbox"><div class="title">基于常规影像快速高效筛查</div><div class="desc">通过神经网络计算机系统，训练海量影像、学习数据规律、发现关联关系，从而生成经验模型，实现对疾病的高效筛查，包括发现病灶、定量分析、治疗方案建议等。</div></div>');
                 var $anime=$('<div class="animebox"></div>');
+                s_content.empty();
                 s_content.append($tet);
                 s_content.append($anime);
                 animeNAO = new anime_nao($anime,function(){
-                    s_content.addClass('s_bg01');
+
                 });
+                animeNAO.clear();
             }else if(activeIndex==2){
                 var $tet=$('<div class="textbox positionright"><div class="title">基于多模态数据的精准分析</div><div class="desc">通过为系统增加多模态数据，包括多设备的医疗影像、病理及生化检验数据、基因信息等，从而形成多维度的神经网络系统，提供给医生更加精准的诊断建议和疗效评价等信息。</div></div>');
                 var $anime=$('<div class="animebox"></div>');
+                s_content.empty();
                 s_content.append($tet);
                 s_content.append($anime);
                 anime_analyse($anime,function(){
-                    s_content.addClass('s_bg02');
+
                 },animeNAO);
+                _clearaimeNAO();
                 animeNAO = null;
             }else if(activeIndex==3){
                 var $tet=$('<div class="textbox w508"><div class="title">基于多模态数据的病情发展预测</div><div class="desc">通过分析多模态数据（影像、病历等）以及长期随访数据，预测病情发展轨迹。对疾病进行早期干预治疗（如老年病、慢性病），大幅降低患病可能性以及有效控制病情发展。</div></div>');
                 var $anime=$('<div class="animebox"></div>');
+                s_content.empty();
                 s_content.append($tet);
                 s_content.append($anime);
                 anime_lines($anime,function(){
-                    s_content.addClass('s_bg03');
+
                 });
+                _clearaimeNAO();
+                animeNAO = null;
+            }else{
+                _clearaimeNAO();
                 animeNAO = null;
             }
 
@@ -391,33 +431,55 @@
             simulateTouch:false,
             paginationClickable: true,
             spaceBetween: 0,
-            speed:0,
+            speed:500,
             mousewheelControl: true,
-            effect: 'fade'
+            effect: 'fade',
+            fade: {
+                crossFade: false
+            }
         });
 
-        indexSwiper.on('slideChangeEnd', function (swiper) {
+        indexSwiper.on('slideChangeStart', function (swiper) {
             //console.log(swiper);
+            var previousIndex = swiper.previousIndex;
+            var activeIndex = swiper.activeIndex;
+            if(activeIndex == 1 && previousIndex == 0){//0-1
+                $('#bannerContainer').addClass('toup')
+            }else if(activeIndex == 0 && previousIndex == 1){//1-0
+                $('#bannerContainer').removeClass('toup')
+            }
+            var previousslide = swiper.slides[previousIndex];
+            $(previousslide).find('.textbox').removeClass('show');
+            $(previousslide).find('.analyse').addClass('hide');
+
+        });
+        indexSwiper.on('slideChangeEnd', function (swiper) {
+            //console.log('222');
             anime(swiper);
         });
+
+
+
 
         bannerSwiper.on('slideChangeEnd', function (swiper) {
             var headindex=$('#headindex');
             headindex.removeClass('bgFFF');
             if(swiper.activeIndex==1){
                 headindex.addClass('bgFFF');
+            }else{
+                $('#indexvideo')[0].pause();
             }
         });
+        $('#indexvideomask').click(function(){
+            $('#indexvideo')[0].play();
+        })
 
     }
     $(function(){
         indexinit();
 
-        //todo
-        $('#indexvideomask').click(function(){
-            var _this=$(this);
-            _this.parent().children('video')[0].play();
-        })
+
+
     });
 </script>
 </html>

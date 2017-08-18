@@ -41,6 +41,26 @@
 
 
 
+#bannerContainer{
+    -webkit-transition: transform .5s ease-out;
+    -moz-transition: transform .5s ease-out;
+    transition: transform .5s ease-out;
+
+
+}
+#bannerContainer.toup{
+    -webkit-transform: translateY(-100%);
+    -ms-transform: translateY(-100%);
+    -moz-transform: translateY(-100%);
+    transform: translateY(-100%);
+}
+#bannerContainer.todown{
+    -webkit-transform: translateY(0%);
+    -ms-transform: translateY(0%);
+    -moz-transform: translateY(0%);
+    transform: translateY(0%);
+}
+
 
 .index_banner .imgbox{
     position:relative;
@@ -212,6 +232,9 @@
     transform: translateY(-50%);
 }
 
+.animebox .analyse.hide .skew{
+    margin-left: -100px;
+}
 .animebox .analyse .skew{
     position: absolute;
     left: 0;
