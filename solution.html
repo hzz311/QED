@@ -6,13 +6,34 @@
     <title>雅森科技</title>
     <link rel="stylesheet" href="css/commom.css">
     <style>
-        .content{display: none;visibility: hidden;color: #555;line-height: 24px;font-size: 13px;padding:50px 30px 10px;letter-spacing:1px;}
+        .content{display: none;visibility: hidden;max-height: 564px;overflow: hidden; color: #555;line-height: 24px;font-size: 13px;padding:50px 30px 10px;letter-spacing:1px;}
         .content.active{display: block;visibility: visible;}
+        .content.active .itemwrap{-webkit-animation: itemwrap-in 1s;animation: itemwrap-in 1s;}
         .content .item{position: relative;padding:10px 0;}
         .content .item .largerfont{font-size: 20px;font-style: normal;font-weight: bold;}
         .content .item .bigfont{font-style: normal;font-weight: bold;}
-        .content .item.image{width: 100%;margin-top: 20px;}
+        .content .item.image{width: 100%;}
+        .content .imagewrap{margin-top: 20px;}
+        .content.active .imagewrap{-webkit-animation: iamge-in 1.4s;animation: iamge-in 1.4s;}
 
+        @-webkit-keyframes itemwrap-in {
+            0%{ opacity:0;  filter:alpha(opacity=0);  -webkit-transform: scale(0.8);  }
+            100%{ opacity:1;  filter:alpha(opacity=1);  -webkit-transform: scale(1);  }
+        }
+        @keyframes itemwrap-in {
+            0%{  opacity:0;  filter:alpha(opacity=0);  transform: scale(0.8); }
+            100%{ opacity:1;  filter:alpha(opacity=1);  transform: scale(1);  }
+        }
+        @-webkit-keyframes iamge-in {
+            0%{ opacity: 0;  filter:alpha(opacity=0); margin-top: 100px;}
+            40%{ opacity: 0;  filter:alpha(opacity=0); margin-top: 100px;}
+            100%{ opacity:1;  filter:alpha(opacity=1);  margin-top: 20px;}
+        }
+        @keyframes iamge-in {
+            0%{ opacity: 0;  filter:alpha(opacity=0); margin-top: 100px;}
+            40%{ opacity: 0;  filter:alpha(opacity=0); margin-top: 100px;}
+            100%{ opacity:1;  filter:alpha(opacity=1);  margin-top: 20px;}
+        }
     </style>
     <script src="script/jquery-1.11.2.min.js"></script>
     <script>
@@ -36,6 +57,7 @@
                 contentlistEl.children('[data-id="'+preName+'"]').removeClass('active');
                 var selfContent=contentlistEl.children('[data-id="'+selfname+'"]');
                 selfContent.addClass('active');
+
             });
             menulistEl.children(':first').click();
         }
@@ -129,45 +151,66 @@
             </li>
         </ul>
         <div class="maincontent" id="contentlist">
-            <div class="content active" data-id="content_01">
-                <div class="item"><i class="largerfont">癫痫</i><i class="bigfont"> （Epilepsy，EP）</i>，是大脑神经元突发性异常放电，导致短暂的大脑功能障碍的一种慢性疾病。在我国癫痫已经成为神经科仅次于头痛的第二大常见病。</div>
-                <div class="item">癫痫致痫灶是神经生理学的概念，是指神经元异常放电的起源区，即直接引起痫性发作的部位。外科手术切除致痫灶成功的关键就在于术前准确定位致痫灶。</div>
-                <div class="item">我们通过采集EEG、MRI、 PET或SPECT的影像数据进行处理分析，并与正常人群组做统计比对，从而计算得到代谢异常的致痫灶大小、位置等信息，通过认知技术，给出治疗方案的建议以及治疗效果的预测。</div>
-                <img class="item image" src="image/solution/epilepsy.png">
+            <div class="content" data-id="content_01">
+                <div class="itemwrap">
+                    <div class="item"><i class="largerfont">癫痫</i><i class="bigfont"> （Epilepsy，EP）</i>，是大脑神经元突发性异常放电，导致短暂的大脑功能障碍的一种慢性疾病。在我国癫痫已经成为神经科仅次于头痛的第二大常见病。</div>
+                    <div class="item">癫痫致痫灶是神经生理学的概念，是指神经元异常放电的起源区，即直接引起痫性发作的部位。外科手术切除致痫灶成功的关键就在于术前准确定位致痫灶。</div>
+                    <div class="item">我们通过采集EEG、MRI、 PET或SPECT的影像数据进行处理分析，并与正常人群组做统计比对，从而计算得到代谢异常的致痫灶大小、位置等信息，通过认知技术，给出治疗方案的建议以及治疗效果的预测。</div>
+                </div>
+                <div class="imagewrap">
+                    <img class="item image" src="image/solution/epilepsy.png">
+                </div>
             </div>
             <div class="content" data-id="content_02">
-                <div class="item"><i class="largerfont">阿尔茨海默病</i><i class="bigfont"> （Alzheimer Disease， AD）</i>，是一种起病隐匿的进行性发展的神经系统退行性疾病。其患者最早表现为记忆、思维、行为障碍，最终会影响基本日常生活能力，增加了照护量，也让家庭和社会承受了沉重的经济负担。</div>
-                <div class="item">目前诊断阿尔兹海默，在临床上还没有非常有用的方法。尤其在早期阶段，阿尔兹海默症很难鉴别，是由于正常老化认知能力下降，还是轻度认识功能障碍，后者往往预示着阿尔兹海默症的可能。</div>
-                <div class="item">雅森通过影像组学及神经学量表的量化分析，使用机器学习的方法，得到组织及代谢异常区域的位置、大小、程度等数据，疾病分型的诊断结论，并给出药物治疗方案以及病情发展的预测。</div>
-                <img class="item image" src="image/solution/ad.png">
+                <div class="itemwrap">
+                    <div class="item"><i class="largerfont">阿尔茨海默病</i><i class="bigfont"> （Alzheimer Disease， AD）</i>，是一种起病隐匿的进行性发展的神经系统退行性疾病。其患者最早表现为记忆、思维、行为障碍，最终会影响基本日常生活能力，增加了照护量，也让家庭和社会承受了沉重的经济负担。</div>
+                    <div class="item">目前诊断阿尔兹海默，在临床上还没有非常有用的方法。尤其在早期阶段，阿尔兹海默症很难鉴别，是由于正常老化认知能力下降，还是轻度认识功能障碍，后者往往预示着阿尔兹海默症的可能。</div>
+                    <div class="item">雅森通过影像组学及神经学量表的量化分析，使用机器学习的方法，得到组织及代谢异常区域的位置、大小、程度等数据，疾病分型的诊断结论，并给出药物治疗方案以及病情发展的预测。</div>
+                </div>
+                <div class="imagewrap">
+                    <img class="item image" src="image/solution/ad.png">
+                </div>
             </div>
             <div class="content" data-id="content_03">
-                <div class="item"><i class="largerfont">帕金森病</i><i class="bigfont">（Parkinson‘s Disease，PD）</i>，是临床常见的进行性神经变性病，主要由黑质致密部多巴胺能神经元变性缺失所致，目前已成为继肿瘤、心脑血管病后中老年人群的“第三杀手”。</div>
-                <div class="item">目前，帕金森病的诊断主要依靠病史、临床表现和体格检查。早期诊断与治疗可以延缓病情进展、改善预后。但是，对于早期患者常规血、脑脊液检查多无异常，头CT、MRI也无特征性，而多模态影像检查在疾病早期甚至亚临床期即可显示异常，可支持诊断 。 </div>
-                <div class="item">雅森通过影像组学、生物标记物及神经学量表的量化分析，使用机器学习的方法，得到组织及代谢异常区域的位置、大小、程度等数据，疾病分型的诊断结论，并给出药物治疗方案以及病情发展的预测。</div>
-                <img class="item image" src="image/solution/pd.png">
+                <div class="itemwrap">
+                    <div class="item"><i class="largerfont">帕金森病</i><i class="bigfont">（Parkinson‘s Disease，PD）</i>，是临床常见的进行性神经变性病，主要由黑质致密部多巴胺能神经元变性缺失所致，目前已成为继肿瘤、心脑血管病后中老年人群的“第三杀手”。</div>
+                    <div class="item">目前，帕金森病的诊断主要依靠病史、临床表现和体格检查。早期诊断与治疗可以延缓病情进展、改善预后。但是，对于早期患者常规血、脑脊液检查多无异常，头CT、MRI也无特征性，而多模态影像检查在疾病早期甚至亚临床期即可显示异常，可支持诊断 。 </div>
+                    <div class="item">雅森通过影像组学、生物标记物及神经学量表的量化分析，使用机器学习的方法，得到组织及代谢异常区域的位置、大小、程度等数据，疾病分型的诊断结论，并给出药物治疗方案以及病情发展的预测。</div>
+                </div>
+                <div class="imagewrap">
+                    <img class="item image" src="image/solution/pd.png">
+                </div>
             </div>
             <div class="content" data-id="content_04">
-                <div class="item"><i class="largerfont">慢性放射性职业病</i>－淋巴微核细胞率是指在微核试验中1000个双核细胞中含有微核的细胞数，正常值范围应<3‰。对于经常接触放射源（如核电站、医院放射科、X射线安检设备等）的职业人群，淋巴微核细胞率的测定是所受辐射损伤评价的重要检测指标之一，亦列为我国慢性放射病诊断的重要检测指标之一。</div>
-                <div class="item">人工镜检的主观性强，易造成分析人员间的检测差异，难以标准化；在显微镜的一个视野下，通常只有十几个或数十个细胞，因此计数1000个细胞，至少要看几十个视野的涂片，导致人工镜检的工作量巨大。</div>
-                <div class="item">雅森通过对细胞涂片的影像进行细胞分割得到多种细胞结构特征，使用机器学习的方法来识别微核淋巴细胞，并计算得到外周血淋巴细胞微核率。</div>
-                <img class="item image" src="image/solution/job.png">
+                <div class="itemwrap">
+                    <div class="item"><i class="largerfont">慢性放射性职业病</i>－淋巴微核细胞率是指在微核试验中1000个双核细胞中含有微核的细胞数，正常值范围应<3‰。对于经常接触放射源（如核电站、医院放射科、X射线安检设备等）的职业人群，淋巴微核细胞率的测定是所受辐射损伤评价的重要检测指标之一，亦列为我国慢性放射病诊断的重要检测指标之一。</div>
+                    <div class="item">人工镜检的主观性强，易造成分析人员间的检测差异，难以标准化；在显微镜的一个视野下，通常只有十几个或数十个细胞，因此计数1000个细胞，至少要看几十个视野的涂片，导致人工镜检的工作量巨大。</div>
+                    <div class="item">雅森通过对细胞涂片的影像进行细胞分割得到多种细胞结构特征，使用机器学习的方法来识别微核淋巴细胞，并计算得到外周血淋巴细胞微核率。</div>
+                </div>
+                <div class="imagewrap">
+                    <img class="item image" src="image/solution/job.png">
+                </div>
             </div>
             <div class="content" data-id="content_05">
-                <div class="item"><i class="largerfont">分化型甲状腺癌</i><i class="bigfont">（Differentiated Thyroid Carcinoma，DTC）</i>，是最常见的内分泌系统恶性肿瘤，其治疗模式为手术切除病灶、术后131碘治疗及促甲状腺激素抑制治疗。</div>
-                <div class="item">由于甲状腺解剖结构特殊，手术全切仍会残留甲状腺组织，必须要通过术后131碘治疗（简称清甲治疗）来降低患者的复发风险。清甲治疗的方案选择需要根据残留甲状腺情况明确给药剂量，已到达最佳的治疗效果。</div>
-                <div class="item">雅森通过对SPECT影像中的甲状腺残留组织进行轮廓提取，并结合影像灰度直方图分析，精确计算残留甲状腺的数量、体积等量化信息，再结合病人的甲状腺131碘吸收率，给出明确的给药剂量及预后判断。
+                <div class="itemwrap">
+                    <div class="item"><i class="largerfont">分化型甲状腺癌</i><i class="bigfont">（Differentiated Thyroid Carcinoma，DTC）</i>，是最常见的内分泌系统恶性肿瘤，其治疗模式为手术切除病灶、术后131碘治疗及促甲状腺激素抑制治疗。</div>
+                    <div class="item">由于甲状腺解剖结构特殊，手术全切仍会残留甲状腺组织，必须要通过术后131碘治疗（简称清甲治疗）来降低患者的复发风险。清甲治疗的方案选择需要根据残留甲状腺情况明确给药剂量，已到达最佳的治疗效果。</div>
+                    <div class="item">雅森通过对SPECT影像中的甲状腺残留组织进行轮廓提取，并结合影像灰度直方图分析，精确计算残留甲状腺的数量、体积等量化信息，再结合病人的甲状腺131碘吸收率，给出明确的给药剂量及预后判断。</div>
                 </div>
-                <img class="item image" src="image/solution/dtc.png">
+                <div class="imagewrap">
+                    <img class="item image" src="image/solution/dtc.png">
+                </div>
             </div>
             <div class="content" data-id="content_06">
-                <div class="item"><i class="largerfont">孤立性肺结节</i>是肺癌的早期的表现，肺癌是发病率和死亡率增长最快，对人群健康和生命威胁最大的恶性肿瘤之一。</div>
-                <div class="item">肺癌死亡率高居不下的主要原因是早期患者通常没有明显的临床症状，因此早期漏诊率很高。
+                <div class="itemwrap">
+                    <div class="item"><i class="largerfont">孤立性肺结节</i>是肺癌的早期的表现，肺癌是发病率和死亡率增长最快，对人群健康和生命威胁最大的恶性肿瘤之一。</div>
+                    <div class="item">肺癌死亡率高居不下的主要原因是早期患者通常没有明显的临床症状，因此早期漏诊率很高。</div>
+                    <div class="item">传统的单纯依靠X线或者CT影像进行肺结节的检测，通常只能做到解剖结构的分析，对于结节的良恶性判断显得有些力不从心。而PET/CT技术可以将病灶的功能信息同步分析，是目前肺功能评估、肺结节检测和诊断最有效的手段。</div>
+                    <div class="item">采集肺影像（CT和PET），通过基于统计学的影像分割方法对孤立性肺结节进行目标区域的检测及提取，再基于病灶的PET征象和CT征象（如SUVmax值、毛刺、分叶等）和患者的病史、吸烟史等临床信息进行量化分析，最后通过SGNN分类器得到孤立性肺结节的位置、体积、良恶性判读等量化信息。</div>
                 </div>
-                <div class="item">传统的单纯依靠X线或者CT影像进行肺结节的检测，通常只能做到解剖结构的分析，对于结节的良恶性判断显得有些力不从心。而PET/CT技术可以将病灶的功能信息同步分析，是目前肺功能评估、肺结节检测和诊断最有效的手段。</div>
-                <div class="item">采集肺影像（CT和PET），通过基于统计学的影像分割方法对孤立性肺结节进行目标区域的检测及提取，再基于病灶的PET征象和CT征象（如SUVmax值、毛刺、分叶等）和患者的病史、吸烟史等临床信息进行量化分析，最后通过SGNN分类器得到孤立性肺结节的位置、体积、良恶性判读等量化信息。
+                <div class="imagewrap">
+                    <img class="item image" src="image/solution/nodules.png">
                 </div>
-                <img class="item image" src="image/solution/nodules.png">
             </div>
         </div>
     </div>
