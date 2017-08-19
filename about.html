@@ -58,25 +58,29 @@
         .eventsbox{
             height: 400px;
             position: relative;
-            overflow: auto;
+            /*overflow: auto;*/
             margin-top: 30px;
         }
         .eventsbox:before{
             position: absolute;
             top:50%;
-            width: 100%;
+            width: 110%;
             border-bottom: 1px dashed #cecece;
             content: ' ';
             left: 0;
             z-index: 0;
         }
+        .eventsbox .item:first-child{
+            margin-left:0;
+        }
         .eventsbox .item{
-            width: 140px;
+            width: 150px;
             height: 200px;
             float: left;
             position: relative;
             margin-top: 22px;
             overflow: hidden;
+            margin-left: -4px;
         }
         .eventsbox .item.bottom{
             margin-top: 178px;
@@ -157,9 +161,9 @@
             -moz-transform: scaleY(0);
             -ms-transform: scaleY(0);
             transform: scaleY(0);
-            -webkit-transition: transform .3s ease-out;
-            -moz-transition: transform .3s ease-out;
-            transition: transform .3s ease-out;
+            -webkit-transition: transform 1s ease-out;
+            -moz-transition: transform 1s ease-out;
+            transition: transform 1s ease-out;
         }
         .eventsbox .item .con.show{
             -webkit-transform: scaleY(1);
@@ -204,10 +208,10 @@
             -webkit-transition: all .3s ease-out;
             -moz-transition: all .3s ease-out;
             transition: all .3s ease-out;
-            transition-delay: .4s;
-            -moz-transition-delay: .4s;
-            -webkit-transition-delay: .4s;
-            -o-transition-delay: .4s;
+            transition-delay: .8s;
+            -moz-transition-delay: .8s;
+            -webkit-transition-delay: .8s;
+            -o-transition-delay: .8s;
             opacity: 0;
         }
         .eventsbox .item .con .desc{
@@ -222,10 +226,10 @@
             -webkit-transition: all .5s ease-out;
             -moz-transition: all .5s ease-out;
             transition: all .5s ease-out;
-            transition-delay: .4s;
-            -moz-transition-delay: .4s;
-            -webkit-transition-delay: .4s;
-            -o-transition-delay: .4s;
+            transition-delay: .8s;
+            -moz-transition-delay: .8s;
+            -webkit-transition-delay: .8s;
+            -o-transition-delay: .8s;
             opacity: 0;
         }
         .eventsbox .item .con.show .title,
@@ -258,11 +262,18 @@
         .teammapwrap .point:hover{-webkit-transform: scale(1);transform: scale(1);}
         .teammapwrap .point .bubble{opacity: 0;-webkit-transform: scale(0.5);transform: scale(0.5);-webkit-transition: opacity.4s,transform .4s;transition: opacity.4s,transform .4s;}
         .teammapwrap .point:hover .bubble{opacity:1;-webkit-transform: scale(1);transform: scale(1);}
+        .teammapwrap .point.show{
+            -webkit-transform: scale(1);transform: scale(1);
+        }
+        .teammapwrap .point.show .bubble{
+            opacity:1;-webkit-transform: scale(1);transform: scale(1);
+        }
 
         .work{padding: 30px 20px 0;}
         .work .videowrap{width: 100%;height: 360px;position: relative;text-align: center;overflow: hidden;}
         .work .videowrap video{width: 100%;height: 100%;object-fit: cover;}
-        .work .videowrap .descwrap{width: 100%;height: 100%;position: absolute;z-index: 1;left: 0;top: 0;background-color: rgba(255,255,255,.1);}
+        .work .videowrap .descwrap{width: 100%;height: 100%;position: absolute;z-index: 1;left: 0;top: 0;
+            background-color: rgba(0,0,0,.2);}
         .work .videowrap .descwrap .desc{position: absolute;bottom: 50px;left: 0;width: 100%;line-height: 30px;color: #FFFFFF;font-size: 20px;letter-spacing: 1px;}
         .work .videowrap .imgpreview{opacity: 0;-webkit-transform: scale(0.5);transform: scale(0.5);-webkit-transition: opacity.4s,transform .4s ease-in-out;transition: opacity.4s,transform .4s ease-in-out;width: 100%;height: 100%;position: absolute;z-index: 10;left: 0;top: 0;background-position: center;background-size: cover;background-repeat: no-repeat;}
         .work .videowrap .imgpreview.show{opacity:1;-webkit-transform: scale(1);transform: scale(1);}
@@ -419,7 +430,7 @@
                         /*dashijiTimeout=setTimeout(function(){
                             _build();
                         },1000)*/
-                    },200)
+                    },1000)
                 },200)
             }
 
@@ -609,7 +620,7 @@
                 </div>
             </li>
         </ul>
-        <div class="maincontent" id="contentlist">
+        <div class="maincontent" id="contentlist" style="overflow:inherit">
             <div class="content" data-id="about">
                 <p class="about-title">— Vision for life </p>
                 <div class="about-content">长期以来，由于医疗资源、各地区研究水平的差异，加之政策等因素带来的信息不对称，使得相同的疾病在不同的国家、地区获得的诊断和治疗效果大不相同。</div>

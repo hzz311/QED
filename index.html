@@ -34,18 +34,20 @@
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <div class="imgbox">
-                                <img class="bgimg" src="image/banner001.jpg">
-                                <img class="text" src="image/banner001_text.png">
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="imgbox">
                                 <video id="indexvideo" webkit-playsinline="yes" loop
                                        x-webkit-airplay="allow" playsinline="true" src="http://www.w3school.com.cn/i/movie.mp4"></video>
                                 <div id="indexvideomask" style="position: absolute;width: 100%;height:100%;top:0;left:0;z-index: 10"></div>
                             </div>
                         </div>
-                        <div class="swiper-slide">33333 3</div>
+                        <div class="swiper-slide">
+                            <div class="imgbox">
+                                <img class="bgimg" src="image/banner001.jpg">
+                                <img class="text" src="image/banner001_text.png">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            3333
+                        </div>
                     </div>
                     <div class="swiper-pagination"></div>
                     <div class="swiper-button-next swiper-button-black"></div>
@@ -99,6 +101,7 @@
             };
 
     var imgHost='';
+    var index_arrow_b = $('#index_arrow_b');
 
     function loadimgs(data,call,progress){
         var newa = new Array;
@@ -409,19 +412,24 @@
                 animeNAO = null;
             }
 
-            var index_arrow_b = $('#index_arrow_b');
             if(activeIndex==3){
                 index_arrow_b.hide();
             }else{
                 index_arrow_b.show();
             }
+
+            if(activeIndex!=0){
+                $('#indexvideo')[0].pause();
+            }
+
         }
         var bannerSwiper = new Swiper('#bannerContainer', {
             pagination: '.swiper-pagination',
             paginationClickable: true,
             nextButton: '.swiper-button-next',
             prevButton: '.swiper-button-prev',
-            spaceBetween: 0
+            spaceBetween: 0,
+            //loop:true
         });
 
 
@@ -460,11 +468,13 @@
 
 
 
-
+        var headindex=$('#headindex');
+        headindex.addClass('bgFFF');
         bannerSwiper.on('slideChangeEnd', function (swiper) {
-            var headindex=$('#headindex');
             headindex.removeClass('bgFFF');
-            if(swiper.activeIndex==1){
+            //console.log(swiper)
+            //console.log(swiper.activeIndex)
+            if(swiper.activeIndex==0){
                 headindex.addClass('bgFFF');
             }else{
                 $('#indexvideo')[0].pause();
@@ -472,6 +482,10 @@
         });
         $('#indexvideomask').click(function(){
             $('#indexvideo')[0].play();
+        })
+
+        index_arrow_b.click(function(){
+            indexSwiper.slideNext();
         })
 
     }

@@ -8,9 +8,28 @@
     <style>
         .title{font-size: 22px;line-height: 40px;color: #555555;text-align: center;padding-top: 35px;}
         .logowrap{width: 720px;margin: auto;color: #555555;text-align: center;}
-        .logowrap .item{width: 25%;float: left;padding:20px 0;}
+        .logowrap .item{width: 25%;float: left;padding:20px 0;
+            opacity:0;
+            -webkit-transition: all .5s ease-out;
+            -moz-transition: all .5s ease-out;
+            transition: all .5s ease-out;
+
+            -webkit-transform: scale(0);
+            -ms-transform: scale(0);
+            -moz-transform: scale(0);
+            transform: scale(0);
+        }
+        .logowrap .item.show{
+            -webkit-transform: scale(1);
+            -ms-transform: scale(1);
+            -moz-transform: scale(1);
+            transform: scale(1);
+            opacity:1;
+        }
         .logowrap .item .icon{height: 46px;display: inline-block;}
         .logowrap .item .name{margin-top: 8px;font-size: 13px;}
+
+
     </style>
     <script type="text/javascript" src="script/jquery-1.11.2.min.js"></script>
     <script>
@@ -34,10 +53,16 @@
         ];
         $(function(){
             var html='';
-            logoArr.forEach(function(item){
-                html+=' <li class="item"><img class="icon" src="'+item.icon+'"> <p class="name">'+item.name+'</p> </li>';
+            logoArr.forEach(function(item,index){
+                var subhtml =$(' <li class="item"><img class="icon" src="'+item.icon+'"> <p class="name">'+item.name+'</p> </li>');
+                setTimeout(function(){
+                    $("#logowrap").append(subhtml);
+                    subhtml.show();
+                    subhtml.addClass('show')
+                },index*100)
+
             });
-            $("#logowrap").html(html);
+
         });
     </script>
 </head>
