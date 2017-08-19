@@ -37,6 +37,7 @@
 
         .join{padding: 30px 15px;}
         .join .joinwrap{position: relative;min-height: 450px;background-color:#F8F8F8;font-size: 13px;display:-webkit-flex; display: flex;  -webkit-flex-direction: row;  flex-direction: row;}
+        .join.active .joinwrap{-webkit-animation: join-in 1s;animation: join-in 1s;}
         .join .joinwrap .typewrap{margin-right: 10px;}
         .join .joinwrap .typewrap .item{max-width:30px;cursor: pointer;padding: 23px 8px;background-color:#94C8E5;color:#FFFFFF;border-top-right-radius:6px;border-bottom-right-radius:6px;margin-bottom:3px;}
         .join .joinwrap .typewrap .item:last-child{margin-bottom: 0;}
@@ -69,8 +70,8 @@
         .join .joinform .formwrap .protocol{font-size: 12px;color: #666;margin-top: 15px;}
         .join .joinform .formwrap .protocol .selectbtn{position: relative;vertical-align:middle;display: inline-block;width: 16px;height: 16px;border: 1px solid #666;}
         .join .joinform .formwrap .protocol .selectbtn.active:before{position: absolute;content: '';background-color:#666;width: 8px;height: 8px;left: 3px;top: 3px;}
-
-
+        @-webkit-keyframes join-in {0%{ opacity:0;-webkit-transform: scale(0.8);  } 100%{ opacity:1; -webkit-transform: scale(1);  } }
+        @keyframes join-in { 0%{ opacity:0;transform: scale(0.8); } 100%{ opacity:1;transform: scale(1);  } }
 
 
 
