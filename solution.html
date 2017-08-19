@@ -50,29 +50,35 @@
     <script src="script/jquery-1.11.2.min.js"></script>
     <script>
         var tabResultObj={
-           "content_01":{
+           "content_01":{//癫痫
                'img':'image/solution/epilepsy_big.jpg',
                'desc':['1、致痫灶大小、位置、代谢异常程度等', '2、致痫灶确诊', '3、手术规划、药物治疗方案及术后神经心理受损情况预测']
+               ,file:[]//序列图
            },
-           "content_02":{
+           "content_02":{//AD
                'img':'image/solution/ad_big.jpg',
                'desc':['1、代谢异常区域大小、位置、程度等', '2、疾病分型、分期或者预测结果', '3、药物治疗方案及病情发展预测']
+               ,file:[]
            },
-           "content_03":{
+           "content_03":{//PD
                'img':'image/solution/pd_big.jpg',
                'desc':['1、代谢异常区域大小、位置、程度等','2、疾病分型、分期或者预测结果','3、药物治疗方案及病情发展预测']
+               ,file:[]
            },
-           "content_04":{
+           "content_04":{//职业病
                'img':'image/solution/job_big.png',
                'desc':['1、外周血淋巴细胞微核率', '2、带标记的微核细胞图片']
+               ,file:[]
            },
-           "content_05":{
+           "content_05":{//DTC
                'img':'image/solution/dtc_big.jpg',
                'desc':['1、清甲治疗给药剂量及预后判断','2、甲状腺残留组织体积']
+               ,file:[]
            },
-           "content_06":{
+           "content_06":{//肺
                'img':'image/solution/nodules_big.jpg',
                'desc':['1、结节位置、体积','2、良恶性判断、分型']
+               ,file:[]
            }
         };
 
@@ -95,6 +101,7 @@
                 var selfContent=contentlistEl.children('[data-id="'+selfname+'"]');
                 setTimeout(function(){
                     selfContent.addClass('active');
+                    showContent(selfname,selfContent);
                 },10);
 
             });
@@ -134,6 +141,12 @@
                 });
             });
         }
+        function showContent(type,wrap){
+            var imgArr=tabResultObj[type]||[];
+            var imgwrap=wrap.children('.imagewrap');
+            //todo 序列图动画
+        }
+
         function transitionEnd(dom,callback) {
             var events = ['webkitTransitionEnd', 'transitionend', 'oTransitionEnd', 'MSTransitionEnd', 'msTransitionEnd'],
                     i, j, dom = dom;
