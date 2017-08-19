@@ -93,7 +93,9 @@
                 var preName=preItem.attr('data-href');
                 contentlistEl.children('[data-id="'+preName+'"]').removeClass('active');
                 var selfContent=contentlistEl.children('[data-id="'+selfname+'"]');
-                selfContent.addClass('active');
+                setTimeout(function(){
+                    selfContent.addClass('active');
+                },10);
 
             });
             menulistEl.children(':first').click();

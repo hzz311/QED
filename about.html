@@ -326,8 +326,10 @@
                 self.addClass('active');
                 contentlistEl.children('[data-id="'+preName+'"]').removeClass('active');
                 var selfContent=contentlistEl.children('[data-id="'+selfname+'"]');
-                selfContent.addClass('active');
-                showContent(selfname,selfContent);
+                setTimeout(function(){
+                    selfContent.addClass('active');
+                    showContent(selfname,selfContent);
+                },10);
             });
             menulistEl.children(':first').click();
 //            menulistEl.children('[data-href="work"]').click();
@@ -460,7 +462,7 @@
 
 
         var TeamContentObj=(function(){
-            var wrapEl=null,teammapwrapEl=null,startanitimerid=-1;
+            var wrapEl=null,teammapwrapEl=null,startanitimerid=-1,buildtimerid=-1,showtimerid=-1;
             var pointArr=[{
                     point:{top:150,left:202}
                     ,bubble:{top:43,left:-141,width:200,height:68,img:'image/bubble/team_01.png'}
@@ -494,12 +496,12 @@
                     var pointEl = $('<div class="point" style="top:' + point.top + 'px;left:' + point.left + 'px;"><div class="bubble" style="top:' + bubble.top + 'px;left:' + bubble.left + 'px;width:' + bubble.width + 'px;height:' + bubble.height + 'px;"><img src="' + bubble.img + '"></div></div>');
                     teammapwrapEl.append(pointEl);
                     pointEl.show();
-                    setTimeout(function () {
+                    buildtimerid=setTimeout(function () {
                         pointEl.addClass('show');
                         buildPoint(++index);
                     }, 300);
                 }else{
-                    setTimeout(function(){
+                    showtimerid=setTimeout(function(){
                         $(teammapwrapEl.children('.point')[0]).addClass('hover');
                     },500);
                 }
@@ -507,6 +509,8 @@
             function init(wrap){
                 wrapEl=wrap;teammapwrapEl=wrapEl.children('.teammapwrap');
                 clearTimeout(startanitimerid);
+                clearTimeout(buildtimerid);
+                clearTimeout(showtimerid);
                 teammapwrapEl.children('.point').remove();
                 startanitimerid=setTimeout(function(){
                     buildPoint();
