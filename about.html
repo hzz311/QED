@@ -261,29 +261,23 @@
         }
 
         /**↓↓↓雅森团队↓↓↓**/
+        .team{height: 530px;padding: 0 30px; overflow: hidden;}
         .teammapwrap{width: 100%;position: relative;}
+        .content.active .teammapwrap{-webkit-animation: team-iamge-in 1s;animation: team-iamge-in 1s;}
         .teammapwrap img{width: 100%;position: relative;}
-        .teammap_img{
-            -webkit-perspective: 500;
-            -moz-perspective: 500;
-            -ms-perspective: 500;
-            perspective: 500;
-            -ms-transform: perspective(500px);
-            -moz-transform: perspective(500px);
-            transform-style: preserve-3d;
-            -webkit-transform: rotateX(52deg);
-            -moz-transform: rotateX(52deg);
-            -ms-transform: rotateX(52deg);
-            transform: rotateX(52deg);
-
-        }
+        .teammap_img{-webkit-perspective: 500;-moz-perspective: 500;-ms-perspective: 500; perspective: 500; -ms-transform: perspective(500px); -moz-transform: perspective(500px); transform-style: preserve-3d; -webkit-transform: rotateX(52deg); -moz-transform: rotateX(52deg); -ms-transform: rotateX(52deg);transform: rotateX(52deg);}
         .teammapdesc{line-height: 24px;}
-        .teammapwrap .point{position: absolute;width: 44px;height: 36px;background: url("image/mappoint.png") center no-repeat; background-size: contain;-webkit-transform: scale(0.8);transform: scale(0.8);-webkit-transition: opacity.4s,transform .2s;transition: opacity.4s,transform .2s;}
-        .teammapwrap .point:hover{-webkit-transform: scale(1);transform: scale(1);}
-        .teammapwrap .point .bubble{opacity: 0;-webkit-transform: scale(0.5);transform: scale(0.5);-webkit-transition: opacity.4s,transform .4s;transition: opacity.4s,transform .4s;}
-        .teammapwrap .point:hover .bubble{opacity:1;-webkit-transform: scale(1);transform: scale(1);}
-        .teammapwrap .point.show{ -webkit-transform: scale(1);transform: scale(1);  }
-        .teammapwrap .point.show .bubble{ opacity:1;-webkit-transform: scale(1);transform: scale(1);  }
+        .content.active .teammapdesc{-webkit-animation: team-desc-in 1.8s;animation: team-desc-in 1.8s;}
+        .teammapwrap .point{display:none;position: absolute;width: 44px;height: 36px;background: url("image/mappoint.png") center no-repeat; background-size: contain;opacity: 0; -webkit-transform: scale(0);transform: scale(0);-webkit-transition: opacity.3s,transform .5s ease-in-out;transition: opacity.5s,transform .5s ease-in-out;}
+        .teammapwrap .point.show{opacity:1;-webkit-transform: scale(0.7);transform: scale(0.7);}
+        .teammapwrap .point:hover,.teammapwrap .point.hover{-webkit-transform: scale(1);transform: scale(1);}
+        .teammapwrap .point .bubble{position: absolute;opacity: 0;-webkit-transform: scale(0.5);transform: scale(0.5);-webkit-transition: opacity.4s,transform .4s;transition: opacity.4s,transform .4s;}
+        .teammapwrap .point.hover .bubble{opacity:1;-webkit-transform: scale(1);transform: scale(1);}
+
+        @-webkit-keyframes team-iamge-in{0%{opacity:0;margin-top:100px;}100%{opacity:1;margin-top: 0;}}
+        @keyframes team-iamge-in{0%{opacity: 0;filter:alpha(opacity=0);margin-top: 100px;}100%{opacity:1;margin-top: 0;}}
+        @-webkit-keyframes team-desc-in{0%{ opacity:0;-webkit-transform: scale(0.8);}33%{ opacity:0;-webkit-transform: scale(0.8);}100%{opacity:1;-webkit-transform: scale(1);}}
+        @keyframes team-desc-in{0%{opacity:0;transform: scale(0.8);}33%{opacity:0;transform: scale(0.8);}100%{opacity:1;transform: scale(1);}}
         /**↑↑↑雅森团队↑↑↑**/
 
 
@@ -354,7 +348,7 @@
                     builddsj();
                     break;
                 case 'team'://雅森团队
-
+                    TeamContentObj.init(wrap);
                     break;
                 case 'work'://工作在雅森
                     WorkContentObj.init(wrap);
@@ -465,13 +459,68 @@
         }
 
 
-        var AboutContentObj=(function(){
-            var wrapEl=null;
+        var TeamContentObj=(function(){
+            var wrapEl=null,teammapwrapEl=null,startanitimerid=-1;
+            var pointArr=[{
+                    point:{top:150,left:202}
+                    ,bubble:{top:43,left:-141,width:200,height:68,img:'image/bubble/team_01.png'}
+                },{
+                    point:{top:122,left:309}
+                    ,bubble:{top:-70,left:-112,width:171,height:67,img:'image/bubble/team_02.png'}
+                },{
+                    point:{top:135,left:326}
+                    ,bubble:{top:-71,left:-111,width:169,height:64,img:'image/bubble/team_03.png'}
+                },{
+                    point:{top:121,left:550}
+                    ,bubble:{top:-71,left:-161,width:220,height:68,img:'image/bubble/team_04.png'}
+                },{
+                    point:{top:130,left:570}
+                    ,bubble:{top:-70,left:-143,width:199,height:64,img:'image/bubble/team_05.png'}
+                },{
+                    point:{top:168,left:590}
+                    ,bubble:{top:42,left:-70,width:170,height:61,img:'image/bubble/team_06.png'}
+                },{
+                    point:{top:115,left:623}
+                    ,bubble:{top:-66,left:-73,width:174,height:62,img:'image/bubble/team_07.png'}
+                }
+            ];
 
+            function buildPoint(index){
+                if(!index){index=0;}
+                if(index<pointArr.length) {
+                    var item = pointArr[index];
+                    var point = item.point;
+                    var bubble = item.bubble;
+                    var pointEl = $('<div class="point" style="top:' + point.top + 'px;left:' + point.left + 'px;"><div class="bubble" style="top:' + bubble.top + 'px;left:' + bubble.left + 'px;width:' + bubble.width + 'px;height:' + bubble.height + 'px;"><img src="' + bubble.img + '"></div></div>');
+                    teammapwrapEl.append(pointEl);
+                    pointEl.show();
+                    setTimeout(function () {
+                        pointEl.addClass('show');
+                        buildPoint(++index);
+                    }, 300);
+                }else{
+                    setTimeout(function(){
+                        $(teammapwrapEl.children('.point')[0]).addClass('hover');
+                    },500);
+                }
+            }
             function init(wrap){
-                wrapEl=wrap;
-
-
+                wrapEl=wrap;teammapwrapEl=wrapEl.children('.teammapwrap');
+                clearTimeout(startanitimerid);
+                teammapwrapEl.children('.point').remove();
+                startanitimerid=setTimeout(function(){
+                    buildPoint();
+                },1000);
+                teammapwrapEl.unbind('mouseover');
+                teammapwrapEl.unbind('mouseout');
+                teammapwrapEl.on('mouseover','.point',function(e){
+                    e.preventDefault();
+                    $(this).addClass('hover');
+                });
+                teammapwrapEl.on('mouseout','.point',function(e){
+                    e.preventDefault();
+                    $(this).removeClass('hover');
+                });
             }
             return {init:init}
         })();
@@ -670,31 +719,8 @@
             <div class="content" data-id="events">
                 <div class="eventsbox" id="eventsbox"></div>
             </div>
-            <div class="content" data-id="team">
-                <div class="teammapwrap">
-                    <img class="teammap_img" src="image/teammap.png">
-                    <div class="point" style="    top: 150px;left: 202px;">
-                        <div class="bubble" style="position: absolute;top: 43px;left: -141px;width: 200px;height: 68px;"><img src="image/bubble/team_01.png"></div>
-                    </div>
-                    <div class="point" style="top: 122px;left: 309px;">
-                        <div class="bubble" style="position: absolute;top: -70px;left: -112px;width: 171px;height: 67px;"><img src="image/bubble/team_02.png"></div>
-                    </div>
-                    <div class="point" style=" top: 135px;left: 326px;">
-                        <div class="bubble" style="position: absolute;top: -71px;left: -111px;width: 169px;height: 64px;"><img src="image/bubble/team_03.png"></div>
-                    </div>
-                    <div class="point" style="top: 121px;left: 550px;">
-                        <div class="bubble" style="position: absolute;top: -71px;left: -161px;width: 220px;height: 68px;"><img src="image/bubble/team_04.png"></div>
-                    </div>
-                    <div class="point" style="top: 130px;left: 570px;">
-                        <div class="bubble" style="position: absolute;top: -70px;left: -143px;width: 199px;height: 64px;"><img src="image/bubble/team_05.png"></div>
-                    </div>
-                    <div class="point" style="top: 168px;left: 590px;">
-                        <div class="bubble" style="position: absolute;top: 42px;left: -70px;width: 170px;height: 61px;"><img src="image/bubble/team_06.png"></div>
-                    </div>
-                    <div class="point" style="top: 115px;left: 623px;">
-                        <div class="bubble" style="position: absolute;top: -66px;left: -73px;width: 174px;height: 62px;"><img src="image/bubble/team_07.png"></div>
-                    </div>
-                </div>
+            <div class="content team" data-id="team">
+                <div class="teammapwrap"><img class="teammap_img" src="image/teammap.png"></div>
                 <div class="teammapdesc">雅森的研发团队来自于南开大学、清华大学、中国科学院、台湾长庚大学、英国UCL大学、美国伦斯勒理工学院、英国爱丁堡大学等顶尖院校。</div>
             </div>
             <div class="content work" data-id="work">
