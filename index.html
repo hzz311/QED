@@ -26,32 +26,14 @@
     </div>
 
 
-    <div class="swiper-container" id="indexContainer">
+    <div class="swiper-container index_banner" id="indexContainer">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
 
-                <div class="swiper-container index_banner" id="bannerContainer">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="imgbox">
-                                <video id="indexvideo" webkit-playsinline="yes" loop
-                                       x-webkit-airplay="allow" playsinline="true" src="http://www.w3school.com.cn/i/movie.mp4"></video>
-                                <div id="indexvideomask" style="position: absolute;width: 100%;height:100%;top:0;left:0;z-index: 10"></div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="imgbox">
-                                <img class="bgimg" src="image/banner001.jpg">
-                                <img class="text" src="image/banner001_text.png">
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            3333
-                        </div>
-                    </div>
-                    <div class="swiper-pagination"></div>
-                    <div class="swiper-button-next swiper-button-black"></div>
-                    <div class="swiper-button-prev swiper-button-black"></div>
+                <div class="imgbox" id="bannerContainer">
+                    <video id="indexvideo" webkit-playsinline="yes" loop
+                           x-webkit-airplay="allow" playsinline="true" src="test.mp4"></video>
+                    <div id="indexvideomask" style="position: absolute;width: 100%;height:100%;top:0;left:0;z-index: 10"></div>
                 </div>
 
             </div>
@@ -128,10 +110,12 @@
         var updateID;
         var tipsz=[
             imgHost+'image/tips01_l.png',
-            imgHost+'image/tips01_t.png'
+            imgHost+'image/tips01_t.png',
+            imgHost+'image/tips01_t2.png'
         ];
         var tipstimeout;
         var image = document.createElement( "img" );
+        image.className = 'naoimg';
         for(var i=0;i<maxlength+1;i++){
             imgdata.push(imgHost+'image/nao/'+i+'.jpg');
         }
@@ -144,7 +128,7 @@
 
         function _createtips(){
             var tipobj1=$('<div class="tips"><img class="line" src="'+tipsz[0]+'"><img class="text" src="'+tipsz[1]+'"><span class="point"></span></div>');
-            var tipobj2=$('<div class="tips position2"><img class="line" src="'+tipsz[0]+'"><img class="text" src="'+tipsz[1]+'"><span class="point"></span></div>');
+            var tipobj2=$('<div class="tips position2"><img class="line" src="'+tipsz[0]+'"><img class="text" src="'+tipsz[2]+'"><span class="point"></span></div>');
             obj.find('.nao').append(tipobj1);
             obj.find('.nao').append(tipobj2);
             tipobj1.show();
@@ -176,9 +160,11 @@
         function _end(){
             obj.find('.nao').addClass('toright');
             setTimeout(function(){
-                obj.parent().find('.textbox').addClass('show');
-                _createtips();
                 obj.parent().addClass('s_bg01');
+                setTimeout(function(){
+                    obj.parent().find('.textbox').addClass('show');
+                    _createtips();
+                },1500)
                 call&&call();
             },2000)
         }
@@ -213,12 +199,16 @@
         var image = document.createElement( "img" );
         var timedelay = 0;
         var firstend=false;
+        var linestimedelay = 0;
         for(var i=0;i<maxlength+1;i++){
             imgdata.push(imgHost+'image/lines/'+i+'.jpg');
         }
         function _end(){
-            obj.parent().find('.textbox').addClass('show');
+
             obj.parent().addClass('s_bg03');
+            setTimeout(function(){
+                obj.parent().find('.textbox').addClass('show');
+            },1500)
             call&&call();
         }
         function _animation(){
@@ -227,11 +217,18 @@
         }
         function _start(){
             if(active>maxlength){
-                active = 80
-                //cancelAnimationFrame(updateIDanime_lines);
                 if(!firstend){
                     firstend = true
                     _end();
+                }
+
+                linestimedelay++;
+                if(linestimedelay>90){
+                    active = 80
+                    linestimedelay = 0;
+                    //cancelAnimationFrame(updateIDanime_lines);
+                }else {
+                    active = maxlength;
                 }
             }
             if(timedelay==0){
@@ -261,8 +258,11 @@
             imgdata.push(imgHost+'image/slide020'+i+'.png');
         }
         function _end(){
-            obj.parent().find('.textbox').addClass('show');
+
             obj.parent().addClass('s_bg02');
+            setTimeout(function(){
+                obj.parent().find('.textbox').addClass('show');
+            },1500)
             call&&call();
         }
         function _start(){
@@ -277,30 +277,9 @@
                 (function(num,obj){
                     setTimeout(function(){
                         obj.css('opacity',1);
-                    },num*200);
+                    },num*500);
                 })(i,img)
 
-                /*img.on('click',function(){
-                    var _this=$(this);
-                    var classname = _this.attr('class');
-                    obj.find('.analyse').find('.skew').removeClass('onhover').removeClass('active');
-                    if(classname.indexOf('active')!=-1){
-                        _this.removeClass('onhover');
-                    }else{
-                        _this.addClass('active');
-                    }
-                })*/
-                /*img.mouseover(function(){
-                    var _this=$(this);
-                    var classname = _this.attr('class');
-                    if(classname.indexOf('active')==-1){
-                        _this.addClass('onhover');
-                    }
-                })
-                img.mouseout(function(){
-                    var _this=$(this);
-                    _this.removeClass('onhover');
-                })*/
             }
             function __run(){
                 var _obj = $imgs[_index];
@@ -314,12 +293,12 @@
                         _obj.addClass('active');
                         __run();
                     },200)
-                },2000)
+                },2400)
             }
             updateIDanime_analyse=setTimeout(function(){
                 __run();
                 _end();
-            },500);
+            },1400);
         }
 
         var tips=$('<div class="tips show"><img class="line" src="image/tips01_l.png"><img class="text" src="image/tips01_t.png"><span class="point"></span></div>');
@@ -376,9 +355,11 @@
             cancelAnimationFrame(updateIDanime_lines);
 
             if(activeIndex==1){
+                var $bg = $('<div class="mbg b01"></div>');
                 var $tet=$('<div class="textbox"><div class="title">基于常规影像快速高效筛查</div><div class="desc">通过神经网络计算机系统，训练海量影像、学习数据规律、发现关联关系，从而生成经验模型，实现对疾病的高效筛查，包括发现病灶、定量分析、治疗方案建议等。</div></div>');
                 var $anime=$('<div class="animebox"></div>');
                 s_content.empty();
+                s_content.append($bg);
                 s_content.append($tet);
                 s_content.append($anime);
                 animeNAO = new anime_nao($anime,function(){
@@ -386,9 +367,11 @@
                 });
                 animeNAO.clear();
             }else if(activeIndex==2){
+                var $bg = $('<div class="mbg b02"></div>');
                 var $tet=$('<div class="textbox positionright"><div class="title">基于多模态数据的精准分析</div><div class="desc">通过为系统增加多模态数据，包括多设备的医疗影像、病理及生化检验数据、基因信息等，从而形成多维度的神经网络系统，提供给医生更加精准的诊断建议和疗效评价等信息。</div></div>');
                 var $anime=$('<div class="animebox"></div>');
                 s_content.empty();
+                s_content.append($bg);
                 s_content.append($tet);
                 s_content.append($anime);
                 anime_analyse($anime,function(){
@@ -397,9 +380,11 @@
                 _clearaimeNAO();
                 animeNAO = null;
             }else if(activeIndex==3){
+                var $bg = $('<div class="mbg b03"></div>');
                 var $tet=$('<div class="textbox w508"><div class="title">基于多模态数据的病情发展预测</div><div class="desc">通过分析多模态数据（影像、病历等）以及长期随访数据，预测病情发展轨迹。对疾病进行早期干预治疗（如老年病、慢性病），大幅降低患病可能性以及有效控制病情发展。</div></div>');
                 var $anime=$('<div class="animebox"></div>');
                 s_content.empty();
+                s_content.append($bg);
                 s_content.append($tet);
                 s_content.append($anime);
                 anime_lines($anime,function(){
@@ -423,14 +408,6 @@
             }
 
         }
-        var bannerSwiper = new Swiper('#bannerContainer', {
-            pagination: '.swiper-pagination',
-            paginationClickable: true,
-            nextButton: '.swiper-button-next',
-            prevButton: '.swiper-button-prev',
-            spaceBetween: 0,
-            //loop:true
-        });
 
 
         var indexSwiper = new Swiper('#indexContainer', {
@@ -459,6 +436,8 @@
             var previousslide = swiper.slides[previousIndex];
             $(previousslide).find('.textbox').removeClass('show');
             $(previousslide).find('.analyse').addClass('hide');
+            $(previousslide).find('.naoimg').addClass('hideright');
+
 
         });
         indexSwiper.on('slideChangeEnd', function (swiper) {
@@ -470,16 +449,7 @@
 
         var headindex=$('#headindex');
         headindex.addClass('bgFFF');
-        bannerSwiper.on('slideChangeEnd', function (swiper) {
-            headindex.removeClass('bgFFF');
-            //console.log(swiper)
-            //console.log(swiper.activeIndex)
-            if(swiper.activeIndex==0){
-                headindex.addClass('bgFFF');
-            }else{
-                $('#indexvideo')[0].pause();
-            }
-        });
+
         $('#indexvideomask').click(function(){
             $('#indexvideo')[0].play();
         })

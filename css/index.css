@@ -140,22 +140,47 @@
     -ms-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
     transform: translateY(-50%);
-    -webkit-transition: all .3s ease-out;
-    -moz-transition: all .3s ease-out;
-    transition: all .3s ease-out;
-    background-size: 0px auto;
 }
-.s_content.s_bg01{
+.s_content .mbg{
+    position: absolute;
+    left: 0;
+    top:0;
+    width:100%;
+    height:100%;
+    opacity:0;
+    -webkit-transition: all .5s ease-out;
+    -moz-transition: all .5s ease-out;
+    transition: all .5s ease-out;
+
+    -webkit-transform: scale(.3);
+    transform: scale(.3);
+}
+.s_content .mbg.b01{
     background: url(../image/sbg_01.jpg) no-repeat left 30%;
     background-size: 500px auto;
 }
-.s_content.s_bg02{
+.s_content .mbg.b02{
     background: url(../image/sbg_02.jpg) no-repeat right 30%;
     background-size: auto;
 }
-.s_content.s_bg03{
+.s_content .mbg.b03{
     background: url(../image/sbg_03.jpg) no-repeat left 30%;
     background-size: 500px auto;
+}
+.s_content.s_bg01 .mbg{
+    opacity:1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+.s_content.s_bg02 .mbg{
+    opacity:1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+.s_content.s_bg03 .mbg{
+    opacity:1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
 }
 .s_content .textbox{
     width: 472px;
@@ -176,6 +201,11 @@
 .s_content .textbox.positionright{
     left: auto;
     right: 0;
+
+    -webkit-transform: translateY(-50%) translateX(100px);
+    -ms-transform: translateY(-50%) translateX(100px);
+    -moz-transform: translateY(-50%) translateX(100px);
+    transform: translateY(-50%) translateX(100px);
 }
 .s_content .textbox.w508{
     width: 508px;
@@ -224,7 +254,20 @@
     -moz-transform: translateY(-50%) translateX(390px);
     transform: translateY(-50%) translateX(390px);
 }
-.animebox .nao img{vertical-align: bottom}
+.animebox .nao img{
+    vertical-align: bottom;
+}
+.animebox .nao .naoimg{
+    -webkit-transition: transform .5s ease-out;
+    -moz-transition: transform .5s ease-out;
+    transition: transform .5s ease-out;
+}
+.animebox .nao .naoimg.hideright{
+    -webkit-transform:translateX(120px);
+    -ms-transform: translateX(120px);
+    -moz-transform:translateX(120px);
+    transform:translateX(120px);
+}
 
 .animebox .lines{
     width: 700px;
@@ -311,8 +354,15 @@
     right: -20px;
     bottom: -20px;
     border-radius: 50%;
-    -webkit-animation: an-scale 1s alternate infinite linear;
-    animation: an-scale 1s alternate infinite linear;
+    -webkit-transform:scale(0);
+    transform:scale(0);
+    opacity:0.5;
+
+    -webkit-transition: all .3s ease-out;
+    -moz-transition: all .3s ease-out;
+    transition: all .3s ease-out;
+    /*-webkit-animation: an-scale 1s alternate linear;
+    animation: an-scale 1s alternate linear;*/
 }
 .animebox .nao .tips .text{
     -webkit-transform: scale(0);
@@ -329,9 +379,18 @@
     -moz-transition: transform .5s ease-out;
     transition: transform .5s ease-out;
 }
+.animebox .nao .tips.show .point{
+    -webkit-transform:scale(1);
+    transform:scale(1);
+    opacity:1
+}
 .animebox .nao .tips.show .line{
     -webkit-transform: scale(1);
     transform: scale(1);
+    transition-delay: .2s;
+    -moz-transition-delay: .2s;
+    -webkit-transition-delay: .2s;
+    -o-transition-delay: .2s;
 }
 .animebox .nao .tips.show .text{
     -webkit-transform: scale(1);
