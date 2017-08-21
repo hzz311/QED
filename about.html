@@ -520,6 +520,7 @@
                 teammapwrapEl.unbind('mouseout');
                 teammapwrapEl.on('mouseover','.point',function(e){
                     e.preventDefault();
+                    teammapwrapEl.children('.hover').removeClass('hover');
                     $(this).addClass('hover');
                 });
                 teammapwrapEl.on('mouseout','.point',function(e){
