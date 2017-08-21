@@ -13,30 +13,30 @@
 
         /**↓↓↓关于我们↓↓↓**/
         .content.active .about-desc-wrap:first-child{-webkit-animation: about-content-first-in 1.2s;animation: about-content-first-in 1.2s;}
-        .content.active .about-desc-wrap:last-child{-webkit-animation: about-content-last-in 3.3s;animation: about-content-last-in 3.3s;}
-        .about-desc-wrap .about-title{font-size: 18px;line-height: 40px;color: #94C8E5;letter-spacing: 3px;}
-        .about-desc-wrap .about-content{color: #555;line-height: 24px;letter-spacing:1px;font-size: 13px;}
+        .content.active .about-desc-wrap:last-child{-webkit-animation: about-content-last-in 2s;animation: about-content-last-in 2s;}
+        .about-desc-wrap .about-title{font-size: 18px;line-height: 40px;color: #94C8E5;letter-spacing: 1px;}
+        .about-desc-wrap .about-content{color: #555;line-height: 24px;}
         .about-image{padding: 15px 0 3px; display:-webkit-flex; display: flex;  -webkit-flex-direction: row;  flex-direction: row;  -webkit-align-items: center;  align-items:center;  justify-content: space-between;}
         .about-image img{width: 210px;}
-        .content.active .about-image img:first-child{-webkit-animation: about-img-in-1 1.5s ease-out;animation: about-img-in-1 1.5s ease-out;}
-        .content.active .about-image img:nth-child(2){-webkit-animation: about-img-in-2 2s ease-out;animation: about-img-in-2 2s ease-out;}
-        .content.active .about-image img:last-child{-webkit-animation: about-img-in-3 2.5s ease-out;animation: about-img-in-3 2.5s ease-out;}
+        .content.active .about-image img:first-child{-webkit-animation: about-img-in-1 1.3s ease-out;animation: about-img-in-1 1.3s ease-out;}
+        .content.active .about-image img:nth-child(2){-webkit-animation: about-img-in-2 1.5s ease-out;animation: about-img-in-2 1.5s ease-out;}
+        .content.active .about-image img:last-child{-webkit-animation: about-img-in-3 1.7s ease-out;animation: about-img-in-3 1.7s ease-out;}
 
         @-webkit-keyframes about-content-first-in{0%{opacity:0;-webkit-transform: scale(0.8);}100%{opacity:1;-webkit-transform:scale(1);}}
         @keyframes about-content-first-in{0%{opacity:0;transform: scale(0.8);}100%{opacity:1;transform: scale(1);}}
-        @-webkit-keyframes about-content-last-in{0%{opacity:0;-webkit-transform: scale(0.8);}61%{opacity:0;-webkit-transform: scale(0.8);}100%{opacity:1;-webkit-transform:scale(1);}}
-        @keyframes about-content-last-in{0%{opacity:0;transform: scale(0.8);}61%{opacity:0;transform: scale(0.8);}100%{opacity:1;transform: scale(1);}}
-        @-webkit-keyframes about-img-in-1{0%{opacity:0;-webkit-transform: scale(0);}33%{opacity:0;-webkit-transform: scale(0);}100%{opacity:1;-webkit-transform:scale(1);}}
-        @keyframes about-img-in-1{0%{opacity:0;transform: scale(0);}33%{opacity:0;transform: scale(0);}100%{opacity:1;transform: scale(1);}}
-        @-webkit-keyframes about-img-in-2{0%{opacity:0;-webkit-transform: scale(0);}50%{opacity:0;-webkit-transform: scale(0);}100%{opacity:1;-webkit-transform:scale(1);}}
-        @keyframes about-img-in-2{0%{opacity:0;transform: scale(0);}50%{opacity:0;transform: scale(0);}100%{opacity:1;transform: scale(1);}}
-        @-webkit-keyframes about-img-in-3{0%{opacity:0;-webkit-transform: scale(0);}60%{opacity:0;-webkit-transform: scale(0);}100%{opacity:1;-webkit-transform:scale(1);}}
-        @keyframes about-img-in-3{0%{opacity:0;transform: scale(0);}60%{opacity:0;transform: scale(0);}100%{opacity:1;transform: scale(1);}}
+        @-webkit-keyframes about-content-last-in{0%{opacity:0;-webkit-transform: scale(0.8);}100%{opacity:1;-webkit-transform:scale(1);}}
+        @keyframes about-content-last-in{0%{opacity:0;transform: scale(0.8);}100%{opacity:1;transform: scale(1);}}
+        @-webkit-keyframes about-img-in-1{0%{opacity:0;-webkit-transform: scale(0);}100%{opacity:1;-webkit-transform:scale(1);}}
+        @keyframes about-img-in-1{0%{opacity:0;transform: scale(0);}100%{opacity:1;transform: scale(1);}}
+        @-webkit-keyframes about-img-in-2{0%{opacity:0;-webkit-transform: scale(0);}100%{opacity:1;-webkit-transform:scale(1);}}
+        @keyframes about-img-in-2{0%{opacity:0;transform: scale(0);}100%{opacity:1;transform: scale(1);}}
+        @-webkit-keyframes about-img-in-3{0%{opacity:0;-webkit-transform: scale(0);}100%{opacity:1;-webkit-transform:scale(1);}}
+        @keyframes about-img-in-3{0%{opacity:0;transform: scale(0);}100%{opacity:1;transform: scale(1);}}
         /**↑↑↑关于我们↑↑↑**/
 
 
         .join{padding: 30px 15px;}
-        .join .joinwrap{position: relative;min-height: 450px;background-color:#F8F8F8;font-size: 13px;display:-webkit-flex; display: flex;  -webkit-flex-direction: row;  flex-direction: row;}
+        .join .joinwrap{position: relative;min-height: 450px;background-color:#F8F8F8;display:-webkit-flex; display: flex;  -webkit-flex-direction: row;  flex-direction: row;}
         .join.active .joinwrap{-webkit-animation: join-in 1s;animation: join-in 1s;}
         .join .joinwrap .typewrap{margin-right: 10px;}
         .join .joinwrap .typewrap .item{max-width:30px;cursor: pointer;padding: 23px 8px;background-color:#94C8E5;color:#FFFFFF;border-top-right-radius:6px;border-bottom-right-radius:6px;margin-bottom:3px;}
@@ -46,7 +46,8 @@
         .join .joinwrap .namewrap .items{min-height: 100%;line-height: 24px;padding:0 25px;border-right: 1px solid #999;text-align: center;}
         .join .joinwrap .namewrap .items .item{width:120px;line-height: 24px;padding: 20px 0;color: #999;cursor: pointer;}
         .join .joinwrap .namewrap .items .item.active{color: #333;}
-        .join .joinwrap .requirewrap{position: relative;height: 100%; padding: 30px;-webkit-box-flex: 1;-ms-flex: 1;flex: 1;}
+        .join .joinwrap .requirewrap{position: relative;padding: 30px;background-color:#FFFFFF; -webkit-box-flex: 1;-ms-flex: 1;flex: 1;}
+        .join .joinwrap .requirewrap pre{font-family: inherit;}
         .join .joinwrap .requirewrap .title{padding: 35px 0 15px 0;}
         .join .joinwrap .requirewrap .title:nth-child(1){padding-top: 0;}
         .join .joinwrap .requirewrap .desc{line-height: 24px;white-space:pre-wrap;}
@@ -66,8 +67,9 @@
         .join .joinform .formwrap .left,.join .joinform .formwrap .right{float: left;padding-left: 25px;}
         .join .joinform .formwrap .uploaddiv{display: inline-block;width: 138px;border: 1px solid #333;height: 30px;line-height: 28px;position: relative;text-align: center;}
         .join .joinform .formwrap .uploaddiv input{position: absolute;left:0;top: 0;width: 100%;height: 100%;opacity: 0;}
+        .join .joinform .formwrap .filename{margin-left: 5px;}
         .join .joinform .formwrap .desc{font-size: 12px;color: #666;margin-top: -5px;margin-bottom: 38px;}
-        .join .joinform .formwrap .protocol{font-size: 12px;color: #666;margin-top: 15px;}
+        .join .joinform .formwrap .protocol{font-size: 12px;color: #666;padding: 15px 0;}
         .join .joinform .formwrap .protocol .selectbtn{position: relative;vertical-align:middle;display: inline-block;width: 16px;height: 16px;border: 1px solid #666;}
         .join .joinform .formwrap .protocol .selectbtn.active:before{position: absolute;content: '';background-color:#666;width: 8px;height: 8px;left: 3px;top: 3px;}
         @-webkit-keyframes join-in {0%{ opacity:0;-webkit-transform: scale(0.8);  } 100%{ opacity:1; -webkit-transform: scale(1);  } }
@@ -286,7 +288,7 @@
         .work .videowrap{width: 100%;height: 360px;position: relative;text-align: center;overflow: hidden;}
         .work .videowrap video{width: 100%;height: 100%;object-fit: cover;}
         .work .videowrap .descwrap{width: 100%;height: 100%;position: absolute;z-index: 1;left: 0;top: 0;  background-color: rgba(0,0,0,.2);}
-        .work .videowrap .descwrap .desc{position: absolute;bottom: 50px;left: 0;width: 100%;line-height: 30px;color: #FFFFFF;font-size: 20px;letter-spacing: 1px;}
+        .work .videowrap .descwrap .desc{position: absolute;bottom: 50px;left: 0;width: 100%;line-height: 30px;color: #FFFFFF;font-size: 20px;}
         .work .videowrap .imgpreview{opacity: 0;-webkit-transform: scale(0.5);transform: scale(0.5);-webkit-transition: opacity.4s,transform .4s ease-in-out;transition: opacity.4s,transform .4s ease-in-out;width: 100%;height: 100%;position: absolute;z-index: 10;left: 0;top: 0;background-position: center;background-size: cover;background-repeat: no-repeat;}
         .work .videowrap .imgpreview.show{opacity:1;-webkit-transform: scale(1);transform: scale(1);}
         .work .previewwrap{width: 100%;position: relative;padding: 10px 25px;}
@@ -546,6 +548,14 @@
                         joinwrapEl.hide();
                         joinformEl.show();
                     });
+
+                    joinformEl.find('.right').find('input').on('change',function(e){
+                        var files=this.files;
+                        if(files.length>0){
+                            var name=files[0].name;
+                            $(this).closest('label').children('.filename').text(name);
+                        }
+                    });
                 }else{
                     wrapEl.children('.joinwrap').show();
                     wrapEl.children('.joinform').hide();
@@ -769,7 +779,7 @@
                     </div>
                 </div>
                 <div class="joinform">
-                    <p>投递简历</p>
+                    <p style="line-height: 24px;">投递简历</p>
                     <div class="formwrap">
                         <div class="name">产品验证专员</div>
                         <p class="time">有效期至：2017-7-30</p>
@@ -784,9 +794,9 @@
                                 </label>
                             </div>
                             <div class="right">
-                                <label>上传简历&nbsp;&nbsp;<div class="uploaddiv"><input type="file">选择文件</div></label>
+                                <label>上传简历&nbsp;&nbsp;<div class="uploaddiv"><input type="file">选择文件</div><span class="filename"></span></label>
                                 <p class="desc">简历最大2M，DOC/PDF/PPT格式，请用：职位|学校|学历 命名</p>
-                                <label>上传文档&nbsp;&nbsp;<div class="uploaddiv"><input type="file">选择文件</div></label>
+                                <label>上传文档&nbsp;&nbsp;<div class="uploaddiv"><input type="file">选择文件</div><span class="filename"></span></label>
                                 <p class="desc">分析报告等可以证明实力的文档，文件最大4MB</p>
                             </div>
                         </form>
