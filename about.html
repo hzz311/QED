@@ -14,7 +14,7 @@
         /**↓↓↓关于我们↓↓↓**/
         .content.active .about-desc-wrap:first-child{-webkit-animation: about-content-first-in 1.2s;animation: about-content-first-in 1.2s;}
         .content.active .about-desc-wrap:last-child{-webkit-animation: about-content-last-in 2s;animation: about-content-last-in 2s;}
-        .about-desc-wrap .about-title{font-size: 18px;line-height: 40px;color: #94C8E5;letter-spacing: 1px;}
+        .about-desc-wrap .about-title{font-size: 20px;line-height: 40px;color: #94C8E5;letter-spacing: 1px;}
         .about-desc-wrap .about-content{color: #555;line-height: 24px;}
         .about-image{padding: 15px 0 3px; display:-webkit-flex; display: flex;  -webkit-flex-direction: row;  flex-direction: row;  -webkit-align-items: center;  align-items:center;  justify-content: space-between;}
         .about-image img{width: 210px;}
@@ -54,6 +54,8 @@
         .join .joinwrap .requirewrap .resumebtn{height: 35px;line-height: 35px;width: 100px;margin: 15px auto; display: block; border: none;background-color:#94C8E5;color: #FFFFFF;font-size: 15px;cursor: pointer;}
 
         .join .joinform{font-size: 16px;display: none;}
+        .join .joinform .crumbs{line-height: 30px;}
+        .join .joinform .crumbs a{margin: 0 8px;color: #666;cursor: pointer}
         .join .joinform .formwrap{background-color:#F8F8F8;text-align: center;}
         .join .joinform .formwrap .submitbtn{height: 40px;width: 150px;display: block;margin: auto; border: none;background-color:#94C8E5;color: #FFFFFF;font-size: 15px;cursor: pointer;}
         .join .joinform .formwrap .name{font-size: 24px;padding-top: 35px;}
@@ -553,9 +555,20 @@
                         var files=this.files;
                         if(files.length>0){
                             var name=files[0].name;
-                            $(this).closest('label').children('.filename').text(name);
+                            var uppername=name.toUpperCase();
+                            if(!/\.(DOC|DOCX|PDF|PPT)$/.test(uppername)){
+                                alert("请选择正确格式的文件！");
+                                return false;
+                            }else{
+                                $(this).closest('label').children('.filename').text(name);
+                            }
                         }
                     });
+                    joinformEl.children('.crumbs').find('a').click(function(e){
+                        e.preventDefault();
+                        wrapEl.children('.joinwrap').show();
+                        wrapEl.children('.joinform').hide();
+                    })
                 }else{
                     wrapEl.children('.joinwrap').show();
                     wrapEl.children('.joinform').hide();
@@ -717,7 +730,7 @@
         <div class="maincontent" id="contentlist" style="overflow:inherit">
             <div class="content" data-id="about">
                 <div class="about-desc-wrap">
-                    <p class="about-title">— Vision for life </p>
+                    <p class="about-title">Vision for life </p>
                     <div class="about-content">长期以来，由于医疗资源、各地区研究水平的差异，加之政策等因素带来的信息不对称，使得相同的疾病在不同的国家、地区获得的诊断和治疗效果大不相同。</div>
                     <div class="about-content">雅森科技基于大数据分析技术、图形图像识别技术，加之计算机的深度学习能力，将海量数据转化为精准高效的诊断能力，这些能力可以通过人工智能的方式交付给社会。这些数据工具将帮助各地的人们获得平等的诊断机会，无论你是在旧金山还是在赞比亚。</div>
                 </div>
@@ -727,7 +740,7 @@
                     <img src="image/about_03.jpg">
                 </div>
                 <div class="about-desc-wrap">
-                    <p class="about-title">— AI 赋能</p>
+                    <p class="about-title">AI 赋能</p>
                     <div class="about-content">雅森科技成立于2006年，是国内最早专注于医学影像人工智能分析、核医学定量及CAD分析的高科技企业；长期致力于影像预处理、分析建模、大数据分析、深度学习辅助诊断等领域。产品覆盖脑、神经、甲状腺、血液、呼吸、病理等多模态分析技术。</div>
                     <div class="about-content">同时也面向医疗机构提供业界领先的统一AI集成平台，为医疗机构实现“AI赋能”。</div>
                 </div>
@@ -779,7 +792,7 @@
                     </div>
                 </div>
                 <div class="joinform">
-                    <p style="line-height: 24px;">投递简历</p>
+                    <p class="crumbs"><a href="javascript:void(0);">职位列表</a>／ 投递简历</p>
                     <div class="formwrap">
                         <div class="name">产品验证专员</div>
                         <p class="time">有效期至：2017-7-30</p>
