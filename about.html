@@ -556,12 +556,12 @@
                         if(files.length>0){
                             var name=files[0].name;
                             var uppername=name.toUpperCase();
-                            if(!/\.(DOC|DOCX|PDF|PPT)$/.test(uppername)){
-                                alert("请选择正确格式的文件！");
-                                return false;
-                            }else{
+//                            if(!/\.(DOC|DOCX|PDF|PPT)$/.test(uppername)){ //todo 正式使用时请放开
+//                                alert("请选择正确格式的文件！");
+//                                return false;
+//                            }else{
                                 $(this).closest('label').children('.filename').text(name);
-                            }
+//                            }
                         }
                     });
                     joinformEl.children('.crumbs').find('a').click(function(e){
