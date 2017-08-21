@@ -12,7 +12,7 @@
 }
 html{ width:100%; height:100%;}
 body{
-    font-family:SimHei,Arial, sans-serif;line-height: 1; color:#333;position:relative;height:100%; text-rendering: optimizeLegibility;
+    font-family:SimHei,"Microsoft YaHei",Arial, sans-serif;line-height: 1; color:#333;position:relative;height:100%; text-rendering: optimizeLegibility;
     -webkit-text-size-adjust:none; -webkit-overflow-scrolling:touch;
     font-size: 14px;
 }
