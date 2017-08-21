@@ -8,14 +8,47 @@
     <style>
         .flowchart{padding:30px 60px;}
         .flowchart .title{font-size: 22px;line-height: 50px; color: #555555;}
-        .flowchart .image{width:100%;display: inline-block;}
+        .flowchart .imagebox{
+            position: relative;height: 380px;
+        }
+        .flowchart .image{width:100%;display: inline-block;position: absolute;
+            top:0;left: 0;
+            -webkit-transition: all .8s ease-out;
+            -moz-transition: all .8s ease-out;
+            transition: all .8s ease-out;
+            opacity: 0;
+        }
+        .flowchart .image.show{
+            opacity: 1;
+        }
 
         .videowrap{position: relative;padding-left:119px;overflow: hidden;}
         .videowrap .desc{position: absolute;bottom: 0;left:0; width: 102px;font-size: 16px;letter-spacing: 1px;line-height: 28px;}
         .videowrap .smallvideo{width: 630px;height: 360px;}
     </style>
     <script type="text/javascript" src="script/jquery-1.11.2.min.js"></script>
+    <script>
+        function _init(){
+            var imgHost = '';
+            for(var i=0;i<4;i++){
+                var url = imgHost+'image/ai_n0'+(i+1)+'.png';
+                var img = $('<img class="image" src="'+url+'">');
+                $('#flowchartimgbox').append(img);
+                img.show();
+                (function(_img,_i){
+                    setTimeout(function(){
+                        _img.addClass('show')
+                    },_i*700);
+                })(img,i)
+            }
 
+        }
+
+
+        $(function(){
+            _init();
+        });
+    </script>
 </head>
 <body>
     <header class="header">
@@ -30,9 +63,9 @@
         </nav>
     </header>
     <div class="pagecontent clearfix">
-        <div class="flowchart">
+        <div class="flowchart" id="flowchart">
             <p class="title">雅森天玑平台</p>
-            <img class="image" src="image/ai_01.png">
+            <div class="imagebox" id="flowchartimgbox"></div>
         </div>
     </div>
     <footer class="footer">
