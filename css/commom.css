@@ -37,6 +37,8 @@ a{text-decoration: none;color: inherit;}
 .header .nav{margin-left: 200px;text-align: center;}
 .header .nav a{display: inline-block;width: 16.666666%;float: left;}
 .header .nav a.active{color: #999;}
+.header .nav a:hover{color: #58B3EF;}
+
 /**底部版权说明**/
 .footer{text-align: center;background-color: darkgrey;padding: 18px 0;font-size: 12px;color: #FFFFFF;}
 .footer .nav{display: inline-block;}
@@ -53,11 +55,10 @@ a{text-decoration: none;color: inherit;}
 .menulist .item .iconwrap .icon{width: 34px;height: 34px;}
 .menulist .item .iconwrap .name{margin-top: 10px;}
 .menulist .item .namewrap{color:#999;line-height: 18px;min-width:52px;display:-webkit-flex;display: flex;-webkit-flex-direction: column;flex-direction: column;-webkit-align-items: center; align-items:center; justify-content: center;}
-.menulist .item.active .iconwrap{background-color: #999;color: #FFFFFF;}
+.menulist .item.active .iconwrap{background-color:#58B3EF;;color: #FFFFFF;}
 .menulist .item:hover .iconwrap{width: 80px;height: 80px;margin: 2px;box-shadow: 3px 6px 15px 0 rgba(0,0,0,.3);cursor: pointer;}
 
 .menulist.bigger{}
 .menulist.bigger .item .iconwrap{width:80px;height: 80px;}
 .menulist.bigger .item .iconwrap .icon{margin-top: -8px;}
-.menulist.bigger .item.active .iconwrap{background-color:#94C8E5;}
 .menulist.bigger .item:hover .iconwrap{width: 90px;height: 90px;box-shadow: 0 6px 15px 0 rgba(0,0,0,.3);}
