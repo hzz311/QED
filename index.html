@@ -32,8 +32,10 @@
 
                 <div class="imgbox" id="bannerContainer">
                     <video id="indexvideo" webkit-playsinline="yes" loop
-                           x-webkit-airplay="allow" playsinline="true" src="test.mp4"></video>
-                    <div id="indexvideomask" style="position: absolute;width: 100%;height:100%;top:0;left:0;z-index: 10"></div>
+                           x-webkit-airplay="allow" playsinline="true" autoplay="autoplay" src="test.mp4"></video>
+                    <div id="indexvideomask" style="position: absolute;width: 100%;height:100%;
+                    background: url(image/banner001_text_w.png)center 85% rgba(0,0,0,.2) no-repeat;
+                    top:0;left:0;z-index: 10"></div>
                 </div>
 
             </div>
@@ -114,6 +116,7 @@
             imgHost+'image/tips01_t2.png'
         ];
         var tipstimeout;
+        var lunxun = 3;
         var image = document.createElement( "img" );
         image.className = 'naoimg';
         for(var i=0;i<maxlength+1;i++){
@@ -152,7 +155,11 @@
                 self.surTipobj = curobj;
                 aindex=!aindex;
                 tipstimeout=setTimeout(function(){
-                    __a();
+                    if(lunxun>0){
+                        lunxun--;
+                        __a();
+                    }
+
                 },4000)
             }
             __a();
@@ -200,6 +207,7 @@
         var timedelay = 0;
         var firstend=false;
         var linestimedelay = 0;
+        var lunxun = 3;
         for(var i=0;i<maxlength+1;i++){
             imgdata.push(imgHost+'image/lines/'+i+'.jpg');
         }
@@ -216,8 +224,12 @@
             active++;
         }
         function _start(){
+            if(lunxun<1){
+                return
+            }
             if(active>maxlength){
                 if(!firstend){
+                    lunxun--;
                     firstend = true
                     _end();
                 }
@@ -226,6 +238,7 @@
                 if(linestimedelay>90){
                     active = 80
                     linestimedelay = 0;
+                    lunxun--;
                     //cancelAnimationFrame(updateIDanime_lines);
                 }else {
                     active = maxlength;
@@ -254,6 +267,7 @@
         var maxlength = 2;
         var active=0;
         var imgdata=[];
+        var lunxun = 6;
         for(var i=0;i<maxlength+1;i++){
             imgdata.push(imgHost+'image/slide020'+i+'.png');
         }
@@ -290,8 +304,11 @@
                 updateIDanime_analyse=setTimeout(function(){
                     obj.find('.analyse').find('.skew').removeClass('active');
                     updateIDanime_analyse=setTimeout(function(){
-                        _obj.addClass('active');
-                        __run();
+                        if(lunxun>0){
+                            lunxun--;
+                            _obj.addClass('active');
+                            __run();
+                        }
                     },200)
                 },2400)
             }
@@ -301,7 +318,7 @@
             },1400);
         }
 
-        var tips=$('<div class="tips show"><img class="line" src="image/tips01_l.png"><img class="text" src="image/tips01_t.png"><span class="point"></span></div>');
+        /*var tips=$('<div class="tips show"><img class="line" src="image/tips01_l.png"><img class="text" src="image/tips01_t.png"><span class="point"></span></div>');
         if(ANIMENAO && ANIMENAO['surTipobj']){
             tips=ANIMENAO['surTipobj'];
             ANIMENAO.clear();
@@ -310,9 +327,9 @@
         obj.children('.toright').append(tips);
         tips.children('.line').remove();
         tips.children('.point').remove();
-        tips.show();
+        tips.show();*/
         loadimgs(imgdata,function(){
-            updateIDanime_analyse=setTimeout(function(){
+            /*updateIDanime_analyse=setTimeout(function(){
                 tips.css({'top':'190px','left':'-350px'})
                 updateIDanime_analyse=setTimeout(function(){
                     tips.hide(300);
@@ -321,7 +338,9 @@
                     obj.append('<div class="analyse"></div>');
                     _start();
                 },1900)
-            },300)
+            },300)*/
+            obj.append('<div class="analyse"></div>');
+            _start();
         })
     }
     function indexinit(){
