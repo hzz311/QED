@@ -152,8 +152,8 @@
     -moz-transition: all .5s ease-out;
     transition: all .5s ease-out;
 
-    -webkit-transform: scale(.3);
-    transform: scale(.3);
+    -webkit-transform: scale(.8);
+    transform: scale(.8);
 }
 .s_content .mbg.b01{
     background: url(../image/sbg_01.jpg) no-repeat left 30%;
@@ -161,11 +161,12 @@
 }
 .s_content .mbg.b02{
     background: url(../image/sbg_02.jpg) no-repeat right 30%;
-    background-size: auto;
+    background-size: 500px auto;
 }
 .s_content .mbg.b03{
     background: url(../image/sbg_03.jpg) no-repeat left 30%;
     background-size: 500px auto;
+    z-index: 10;
 }
 .s_content.s_bg01 .mbg{
     opacity:1;
@@ -208,7 +209,7 @@
     transform: translateY(-50%) translateX(100px);
 }
 .s_content .textbox.w508{
-    width: 508px;
+    width: 520px;
 }
 .s_content .textbox.show{
     opacity:1;
