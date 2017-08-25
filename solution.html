@@ -8,38 +8,56 @@
     <link rel="stylesheet" href="css/solution.css">
     <script src="script/jquery-1.11.2.min.js"></script>
     <script>
+        var imgHost='image/solution/';//'__PUBLIC__Home/';
         var tabResultObj={
            "content_01":{//癫痫
-               'img':'image/solution/epilepsy_big.jpg',
+               'img':imgHost+'epilepsy_big.jpg',
                'desc':['1、致痫灶大小、位置、代谢异常程度等', '2、致痫灶确诊', '3、手术规划、药物治疗方案及术后神经心理受损情况预测']
+               ,filelen:75//序列图
                ,file:[]//序列图
            },
            "content_02":{//AD
-               'img':'image/solution/ad_big.jpg',
+               'img':imgHost+'ad_big.jpg',
                'desc':['1、代谢异常区域大小、位置、程度等', '2、疾病分型、分期或者预测结果', '3、药物治疗方案及病情发展预测']
+               ,filelen:75//序列图
                ,file:[]
            },
            "content_03":{//PD
-               'img':'image/solution/pd_big.jpg',
+               'img':imgHost+'pd_big.jpg',
                'desc':['1、代谢异常区域大小、位置、程度等','2、疾病分型、分期或者预测结果','3、药物治疗方案及病情发展预测']
+               ,filelen:81//序列图
                ,file:[]
            },
            "content_04":{//职业病
-               'img':'image/solution/job_big.png',
+               'img':imgHost+'job_big.png',
                'desc':['1、外周血淋巴细胞微核率', '2、带标记的微核细胞图片']
+               ,filelen:73//序列图
                ,file:[]
            },
            "content_05":{//DTC
-               'img':'image/solution/dtc_big.jpg',
+               'img':imgHost+'dtc_big.jpg',
                'desc':['1、清甲治疗给药剂量及预后判断','2、甲状腺残留组织体积']
+               ,filelen:81//序列图
                ,file:[]
            },
            "content_06":{//肺
-               'img':'image/solution/nodules_big.jpg',
+               'img':imgHost+'nodules_big.jpg',
                'desc':['1、结节位置、体积','2、良恶性判断、分型']
+               ,filelen:78//序列图
                ,file:[]
            }
         };
+
+        window.requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.msRequestAnimationFrame ||
+                function (callback) {
+                    return setTimeout(callback, 1000 / 60);
+                };
+        window.cancelAnimationFrame = window.cancelAnimationFrame || window.webkitCancelAnimationFrame || window.mozCancelAnimationFrame || window.msCancelAnimationFrame ||
+                function (id) {
+                    clearTimeout(id);
+                };
+
+
 
         $(function(){
 
@@ -59,6 +77,7 @@
                 var preName=preItem.attr('data-href');
                 contentlistEl.children('[data-id="'+preName+'"]').removeClass('active');
                 var selfContent=contentlistEl.children('[data-id="'+selfname+'"]');
+                closeAnimate(selfContent.children('.imagewrap'));
                 setTimeout(function(){
                     selfContent.addClass('active');
                     showContent(selfname,selfContent);
@@ -66,14 +85,6 @@
 
             });
             menulistEl.children(':first').click();
-
-
-            //浏览输出结果
-            $(".showresult").on('click',function(e){
-                e.preventDefault();
-                showResult($(this));
-            });
-
         }
 
         function showResult(self){
@@ -106,10 +117,91 @@
             });
         }
 
+        var animateParams={
+            id:-1,
+            active:0,
+            imgel:null,
+            files:[],
+            delaytime:0
+        };
         function showContent(type,wrap){
-            var imgArr=tabResultObj[type]||[];
             var imgwrap=wrap.children('.imagewrap');
-            //todo 序列图动画
+            var resultData=tabResultObj[type]||{};
+            var length=resultData.filelen||0;
+            animateParams={id:-1, active:0,imgel:null, files:[],delaytime:0};
+            if(resultData.file.length>0){
+                startAnimate(resultData.file,imgwrap);
+            }else{
+                loadImgSource({
+                    wrap:imgwrap,
+                    dir:type,
+                    len:length,
+                    file:resultData.file,
+                    progress:function(){},
+                    call:function(data,wrapEl){
+                        startAnimate(data,wrapEl);
+                    }
+                });
+            }
+        }
+
+        function closeAnimate(imagewrap){
+            cancelAnimationFrame(animateParams.id);
+            imagewrap.empty();
+        }
+
+        function endAnimate(imagewrap){
+            cancelAnimationFrame(animateParams.id);
+            imagewrap.append('<div class="showresult"></div>');
+            imagewrap.children('.showresult').on('click',function(e){
+                e.preventDefault();
+                showResult($(this));
+            });
+        }
+
+        function animatefun(){
+            var url=animateParams.files[animateParams.active];
+            animateParams.imgel.attr('src',url);
+            animateParams.active++;
+        }
+
+        function startAnimate(data,imagewrap){
+            if(animateParams.active==0){
+                imagewrap.html('<img src=""/>');
+                animateParams.imgel=imagewrap.children('img');
+                animateParams.files=data;
+            }else if(animateParams.active>animateParams.files.length-1){
+                return endAnimate(animateParams.imgel.parent());
+            }
+
+            if(animateParams.delaytime>1){
+                animateParams.delaytime=0;
+            }
+            if(animateParams.delaytime==0){
+                animatefun();
+            }
+            animateParams.delaytime++;
+
+            animateParams.id = requestAnimationFrame(startAnimate);
+        }
+
+
+        function loadImgSource(params){
+            (function(opts){
+                for(var i= 0;i<opts.len;i++){
+                    (function(url){
+                        var img1=new Image();
+                        img1.src=url;
+                        img1.onload=function(){
+                            opts.file.push(url);
+                            if(opts.file.length>=opts.len){
+                                opts.call&&opts.call(opts.file,opts.wrap);
+                            }
+                            opts.progress&&opts.progress(Number(opts.file.length/opts.len*100).toFixed(0));
+                        }
+                    })(imgHost+opts.dir+'/'+i+'.jpg');
+                }
+            })(params);
         }
 
         function transitionEnd(dom,callback) {
@@ -227,10 +319,7 @@
                     <div class="item">癫痫致痫灶是神经生理学的概念，是指神经元异常放电的起源区，即直接引起痫性发作的部位。外科手术切除致痫灶成功的关键就在于术前准确定位致痫灶。</div>
                     <div class="item">我们通过采集EEG、MRI、 PET或SPECT的影像数据进行处理分析，并与正常人群组做统计比对，从而计算得到代谢异常的致痫灶大小、位置等信息，通过认知技术，给出治疗方案的建议以及治疗效果的预测。</div>
                 </div>
-                <div class="imagewrap">
-                    <img class="item image" src="image/solution/epilepsy.png">
-                    <div class="showresult"></div>
-                </div>
+                <div class="imagewrap"></div>
             </div>
             <div class="content" data-id="content_02">
                 <div class="itemwrap">
@@ -238,10 +327,7 @@
                     <div class="item">目前诊断阿尔兹海默，在临床上还没有非常有用的方法。尤其在早期阶段，阿尔兹海默症很难鉴别，是由于正常老化认知能力下降，还是轻度认识功能障碍，后者往往预示着阿尔兹海默症的可能。</div>
                     <div class="item">雅森通过影像组学及神经学量表的量化分析，使用机器学习的方法，得到组织及代谢异常区域的位置、大小、程度等数据，疾病分型的诊断结论，并给出药物治疗方案以及病情发展的预测。</div>
                 </div>
-                <div class="imagewrap">
-                    <img class="item image" src="image/solution/ad.png">
-                    <div class="showresult"></div>
-                </div>
+                <div class="imagewrap"></div>
             </div>
             <div class="content" data-id="content_03">
                 <div class="itemwrap">
@@ -249,10 +335,7 @@
                     <div class="item">目前，帕金森病的诊断主要依靠病史、临床表现和体格检查。早期诊断与治疗可以延缓病情进展、改善预后。但是，对于早期患者常规血、脑脊液检查多无异常，头CT、MRI也无特征性，而多模态影像检查在疾病早期甚至亚临床期即可显示异常，可支持诊断 。 </div>
                     <div class="item">雅森通过影像组学、生物标记物及神经学量表的量化分析，使用机器学习的方法，得到组织及代谢异常区域的位置、大小、程度等数据，疾病分型的诊断结论，并给出药物治疗方案以及病情发展的预测。</div>
                 </div>
-                <div class="imagewrap">
-                    <img class="item image" src="image/solution/pd.png">
-                    <div class="showresult"></div>
-                </div>
+                <div class="imagewrap"></div>
             </div>
             <div class="content" data-id="content_04">
                 <div class="itemwrap">
@@ -260,10 +343,7 @@
                     <div class="item">人工镜检的主观性强，易造成分析人员间的检测差异，难以标准化；在显微镜的一个视野下，通常只有十几个或数十个细胞，因此计数1000个细胞，至少要看几十个视野的涂片，导致人工镜检的工作量巨大。</div>
                     <div class="item">雅森通过对细胞涂片的影像进行细胞分割得到多种细胞结构特征，使用机器学习的方法来识别微核淋巴细胞，并计算得到外周血淋巴细胞微核率。</div>
                 </div>
-                <div class="imagewrap">
-                    <img class="item image" src="image/solution/job.png">
-                    <div class="showresult"></div>
-                </div>
+                <div class="imagewrap"></div>
             </div>
             <div class="content" data-id="content_05">
                 <div class="itemwrap">
@@ -271,10 +351,7 @@
                     <div class="item">由于甲状腺解剖结构特殊，手术全切仍会残留甲状腺组织，必须要通过术后131碘治疗（简称清甲治疗）来降低患者的复发风险。清甲治疗的方案选择需要根据残留甲状腺情况明确给药剂量，已到达最佳的治疗效果。</div>
                     <div class="item">雅森通过对SPECT影像中的甲状腺残留组织进行轮廓提取，并结合影像灰度直方图分析，精确计算残留甲状腺的数量、体积等量化信息，再结合病人的甲状腺131碘吸收率，给出明确的给药剂量及预后判断。</div>
                 </div>
-                <div class="imagewrap">
-                    <img class="item image" src="image/solution/dtc.png">
-                    <div class="showresult"></div>
-                </div>
+                <div class="imagewrap"></div>
             </div>
             <div class="content" data-id="content_06">
                 <div class="itemwrap">
@@ -283,10 +360,7 @@
                     <div class="item">传统的单纯依靠X线或者CT影像进行肺结节的检测，通常只能做到解剖结构的分析，对于结节的良恶性判断显得有些力不从心。而PET/CT技术可以将病灶的功能信息同步分析，是目前肺功能评估、肺结节检测和诊断最有效的手段。</div>
                     <div class="item">采集肺影像（CT和PET），通过基于统计学的影像分割方法对孤立性肺结节进行目标区域的检测及提取，再基于病灶的PET征象和CT征象（如SUVmax值、毛刺、分叶等）和患者的病史、吸烟史等临床信息进行量化分析，最后通过SGNN分类器得到孤立性肺结节的位置、体积、良恶性判读等量化信息。</div>
                 </div>
-                <div class="imagewrap">
-                    <img class="item image" src="image/solution/nodules.png">
-                    <div class="showresult"></div>
-                </div>
+                <div class="imagewrap"></div>
             </div>
         </div>
     </div>
