@@ -5,48 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no,minimal-ui">
     <title>雅森科技</title>
     <link rel="stylesheet" href="css/commom.css">
-    <style>
-        .content{display: none;visibility: hidden;max-height: 564px;overflow: hidden; color: #555;line-height: 24px;padding:50px 29px 0px;}
-        .content.active{display: block;visibility: visible;}
-        .content.active .itemwrap{-webkit-animation: itemwrap-in 1s;animation: itemwrap-in 1s;}
-        .content .item{position: relative;padding:10px 0;}
-        .content .item .largerfont{font-size: 20px;font-style: normal;font-weight: bold;}
-        .content .item .bigfont{font-style: normal;font-weight: bold;font-size: 12px;}
-        .content .item.image{width: 100%;}
-        .content .imagewrap{margin-top: 20px;position: relative;}
-        .content.active .imagewrap{-webkit-animation: iamge-in 1.4s;animation: iamge-in 1.4s;}
-        .content .imagewrap .showresult{position: absolute;bottom:36px;right:52px;width:110px;height:44px;cursor: pointer;}
-
-        .resultwinmask{display:none;position: absolute;width: 100%;height: 100%;left: 0;top: 0;z-index: 999;background-color: rgba(255,255,255,.8);opacity: 0;-webkit-transition: opacity.4s;transition: opacity.4s;}
-        .resultwinmask.in{opacity: 1;}
-        .resultwinmodal{display:none;position: absolute;top: 148px;right: -179px;width: 630px;padding: 35px 18px 18px;opacity: 0;-webkit-transform: scale(0.4);transform: scale(0.4);-webkit-transition: all .5s;transition: all .5s;border-radius: 15px;box-shadow: 0 3px 5px rgba(0,0,0,0.5); background-color: rgba(0,0,0,0.07); z-index:1000;}
-        .resultwinmodal.in{opacity: 1;top:25px;right: 85px;-webkit-transform: scale(1);transform: scale(1);}
-        .resultwinmodal img{border: 15px solid #FFFFFF;width: 100%;height: 347px;display: block;object-fit: cover;object-position: center;}
-        .resultwinmodal .desc{font-size: 12px;line-height: 18px;color: #666;margin-top: 10px;}
-        .resultwinmodal .closebtn{position: absolute;right: 10px;top: 0;width: 30px;height: 30px;cursor: pointer;}
-        .resultwinmodal .closebtn:before{position: absolute;content:'';background-color: #333;width:18px;height: 1px;top: 15px;right: 6px; -webkit-transform: rotate(45deg);transform: rotate(45deg);}
-        .resultwinmodal .closebtn:after{position: absolute;content:'';background-color: #333;width:18px;height: 1px;top: 15px;right: 6px;-webkit-transform: rotate(-45deg);transform: rotate(-45deg);}
-
-        @-webkit-keyframes itemwrap-in {
-            0%{ opacity:0;  filter:alpha(opacity=0);  -webkit-transform: scale(0.8);  }
-            100%{ opacity:1;  filter:alpha(opacity=1);  -webkit-transform: scale(1);  }
-        }
-        @keyframes itemwrap-in {
-            0%{  opacity:0;  filter:alpha(opacity=0);  transform: scale(0.8); }
-            100%{ opacity:1;  filter:alpha(opacity=1);  transform: scale(1);  }
-        }
-        @-webkit-keyframes iamge-in {
-            0%{ opacity: 0;  filter:alpha(opacity=0); margin-top: 100px;}
-            40%{ opacity: 0;  filter:alpha(opacity=0); margin-top: 100px;}
-            100%{ opacity:1;  filter:alpha(opacity=1);  margin-top: 20px;}
-        }
-        @keyframes iamge-in {
-            0%{ opacity: 0;  filter:alpha(opacity=0); margin-top: 100px;}
-            40%{ opacity: 0;  filter:alpha(opacity=0); margin-top: 100px;}
-            100%{ opacity:1;  filter:alpha(opacity=1);  margin-top: 20px;}
-        }
-
-    </style>
+    <link rel="stylesheet" href="css/solution.css">
     <script src="script/jquery-1.11.2.min.js"></script>
     <script>
         var tabResultObj={
@@ -87,6 +46,7 @@
             bindEvent();
         });
         function bindEvent(){
+            //左侧菜单点击
             var menulistEl=$("#menulist");
             var contentlistEl=$("#contentlist");
             menulistEl.on('click','.item',function(e){
@@ -109,26 +69,30 @@
 
 
             //浏览输出结果
-            var resultwinmaskEl=$("#resultwinmask");
-            var resultwinmodalEl=$("#resultwinmodal");
             $(".showresult").on('click',function(e){
                 e.preventDefault();
-                var tabid=$(this).closest('.content').attr('data-id');
-                var resultData=tabResultObj[tabid]||{};
-                resultwinmodalEl.children('img').attr('src',resultData.img||'');
-                var deschtml='';
-                (resultData.desc||[]).forEach(function(text){
-                    deschtml+='<p>'+text+'</p>'
-                });
-                resultwinmodalEl.children('.desc').html(deschtml);
-
-                resultwinmaskEl.show();
-                resultwinmaskEl.addClass('in');
-                resultwinmodalEl.show();
-                setTimeout(function(){
-                    resultwinmodalEl.addClass('in');
-                },100);
+                showResult($(this));
             });
+
+        }
+
+        function showResult(self){
+            var tabid=self.closest('.content').attr('data-id');
+            var resultData=tabResultObj[tabid]||{};
+            var deschtml='';
+            (resultData.desc||[]).forEach(function(text){
+                deschtml+='<p>'+text+'</p>'
+            });
+            var imagewrapEl=self.closest('.imagewrap');
+            imagewrapEl.append('<div class="resultwinmodal"><img src="'+(resultData.img||'')+'"><div class="desc">'+deschtml+'</div><div class="closebtn"></div></div>');
+
+            var resultwinmaskEl=$("#resultwinmask"),resultwinmodalEl=imagewrapEl.children('.resultwinmodal');
+            resultwinmaskEl.show();
+            resultwinmodalEl.show();
+            setTimeout(function(){
+                resultwinmaskEl.addClass('in');
+                resultwinmodalEl.addClass('in');
+            },10);
             resultwinmodalEl.find('.closebtn').click(function(e){
                 e.preventDefault();
                 resultwinmaskEl.removeClass('in');
@@ -137,10 +101,11 @@
                 });
                 resultwinmodalEl.removeClass('in');
                 transitionEnd(resultwinmodalEl,function(e){
-                    resultwinmodalEl.hide();
+                    resultwinmodalEl.remove();
                 });
             });
         }
+
         function showContent(type,wrap){
             var imgArr=tabResultObj[type]||[];
             var imgwrap=wrap.children('.imagewrap');
@@ -181,8 +146,6 @@
     </header>
     <div class="pagecontent clearfix">
         <div class="resultwinmask" id="resultwinmask"></div>
-        <div class="resultwinmodal" id="resultwinmodal"><img src=""><div class="desc"></div><div class="closebtn"></div></div>
-
         <ul class="menulist" id="menulist">
             <li class="item" data-href="content_01">
                 <div class="iconwrap">
