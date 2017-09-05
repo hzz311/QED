@@ -6,33 +6,16 @@
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../css/commom.css">
     <link rel="stylesheet" href="mobile.css">
-    <title>雅森团队</title>
+    <title>咨询联系</title>
     <style>
-        .teamwrap{background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#FFFFFF), to(#abd4f5));border: 1px solid #dedede;box-shadow: 0 2px 5px rgba(0,0,0,.3);border-radius: 15px;}
-        .teamwrap .bootompoint{text-align: center;color: #FFFFFF;padding: 25px 0 12px;}
-        .teamwrap .bootompoint .icon{width: 22px;}
-        .teamwrap .desc{padding: 8px 25px;color: #555;line-height: 22px;border-top: 1px solid #FFFFFF;}
-
-        .teamwrap .mapwrap{position: relative;width: 382px;height: 209px;}
-        .teamwrap .mapwrap .mapimg{display: block;}
-        .teamwrap .mapwrap .point {
-            left: 110px;
-            top: 80px;
-            position: absolute;
-            width: 44px;
-            height: 36px;
-            background: url(../image/mappoint.png) center no-repeat;
-            background-size: contain;
-        }
+        .blue{color: #58B3EF;}
+        .contectwrap{}
+        .contectwrap .desc{font-size: 10px;line-height: 18px;}
     </style>
     <script src="../script/jquery-1.11.2.min.js"></script>
     <script src="scrollspy.js"></script>
     <script>
         $(function(){
-            var scaleRatio=$(window).width()/414;
-            var scaleOffset=(414/2)*(scaleRatio-1);
-            $(".mapwrap").css({'-webkit-transform':'scale('+scaleRatio+')','transform':'scale('+scaleRatio+')','margin-left':scaleOffset+'px'});
-
             var pagewraplist=$(".pagewrap");
             pagewraplist.on('scrollSpy:enter', function() {
                 console.log('enter:', $(this).attr('data-name'));
@@ -116,41 +99,14 @@
     </div>
 </div>
 <div class="pagewrap" data-name="0">
-    <p class="pagetitle">雅森团队</p>
-    <div class="teamwrap ani-scale">
-        <div class="mapwrap">
-            <img class="mapimg" src="../image/teammap.png">
-            <div class="point"></div>
-        </div>
-        <p class="bootompoint"><svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M879.044 427.309c0-223.853-175.267-405.976-390.629-405.976-215.393 0-390.63 182.121-390.63 405.976 0 101.571 35.652 197.456 100.794 272.169l-0.766 0.823 286.334 319.756 294.454-320.209-0.363-0.368c65.133-74.714 100.806-170.6 100.806-272.171zM488.415 586.406c-81.722 0-148.222-69.155-148.222-154.096 0-84.911 66.5-154.009 148.222-154.009 81.74 0 148.21 69.098 148.21 154.009-0 84.941-66.468 154.096-148.21 154.096z"></path></svg></p>
-        <p class="desc">发的郭德纲噶打个刚到发的郭德纲噶打个刚到发的郭德纲噶打个刚到发的郭德纲噶打个刚到发的郭德纲噶打个刚到发的</p>
-    </div>
-</div>
-<div class="pagewrap" data-name="1">
-    <p class="pagetitle">1</p>
-    <div class="teamwrap ani-scale">
-        <div class="mapwrap">
-            <img class="mapimg" src="../image/teammap.png">
-            <div class="point"></div>
-        </div>
-        <p class="bootompoint"><svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M879.044 427.309c0-223.853-175.267-405.976-390.629-405.976-215.393 0-390.63 182.121-390.63 405.976 0 101.571 35.652 197.456 100.794 272.169l-0.766 0.823 286.334 319.756 294.454-320.209-0.363-0.368c65.133-74.714 100.806-170.6 100.806-272.171zM488.415 586.406c-81.722 0-148.222-69.155-148.222-154.096 0-84.911 66.5-154.009 148.222-154.009 81.74 0 148.21 69.098 148.21 154.009-0 84.941-66.468 154.096-148.21 154.096z"></path></svg></p>
-        <p class="desc">发的郭德纲噶打个刚到发的郭德纲噶打个刚到发的郭德纲噶打个刚到发的郭德纲噶打个刚到发的郭德纲噶打个刚到发的</p>
-    </div>
-</div>
-<div class="pagewrap" data-name="2">
-    <p class="pagetitle">2</p>
-    <div class="teamwrap ani-scale">
-        <div class="mapwrap"><img src="../image/teammap.png"></div>
-        <p class="bootompoint"><svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M879.044 427.309c0-223.853-175.267-405.976-390.629-405.976-215.393 0-390.63 182.121-390.63 405.976 0 101.571 35.652 197.456 100.794 272.169l-0.766 0.823 286.334 319.756 294.454-320.209-0.363-0.368c65.133-74.714 100.806-170.6 100.806-272.171zM488.415 586.406c-81.722 0-148.222-69.155-148.222-154.096 0-84.911 66.5-154.009 148.222-154.009 81.74 0 148.21 69.098 148.21 154.009-0 84.941-66.468 154.096-148.21 154.096z"></path></svg></p>
-        <p class="desc">发的郭德纲噶打个刚到发的郭德纲噶打个刚到发的郭德纲噶打个刚到发的郭德纲噶打个刚到发的郭德纲噶打个刚到发的</p>
-    </div>
-</div>
-<div class="pagewrap" data-name="3">
-    <p class="pagetitle">3</p>
-    <div class="teamwrap ani-scale">
-        <div class="mapwrap"><img src="../image/teammap.png"></div>
-        <p class="bootompoint"><svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M879.044 427.309c0-223.853-175.267-405.976-390.629-405.976-215.393 0-390.63 182.121-390.63 405.976 0 101.571 35.652 197.456 100.794 272.169l-0.766 0.823 286.334 319.756 294.454-320.209-0.363-0.368c65.133-74.714 100.806-170.6 100.806-272.171zM488.415 586.406c-81.722 0-148.222-69.155-148.222-154.096 0-84.911 66.5-154.009 148.222-154.009 81.74 0 148.21 69.098 148.21 154.009-0 84.941-66.468 154.096-148.21 154.096z"></path></svg></p>
-        <p class="desc">发的郭德纲噶打个刚到发的郭德纲噶打个刚到发的郭德纲噶打个刚到发的郭德纲噶打个刚到发的郭德纲噶打个刚到发的</p>
+    <div class="contectwrap ani-scale">
+        <p class="pagetitle">CONTECT <span class="blue">US</span></p>
+        <p class="desc">如果您对我们的产品感兴趣，欢迎索取详细的产品资料。</p>
+        <p class="desc">如果您有意愿和雅森合作拓展业务，欢迎留下您的联系方式,或者直接联系我们。</p>
+        <div class="item"><label>姓名</label><input type="text"></div>
+        <div class="label sexwrap"><span class="sex">女士</span><span class="sex">先生</span><div class="slide"></div></div>        <div><label>手机</label><input type="text"></div>
+        <div><label>邮箱</label><input type="text"></div>
+        <div><label>留言</label><textarea></textarea></div>
     </div>
 </div>
 </body>
