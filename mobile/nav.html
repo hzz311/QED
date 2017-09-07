@@ -3,41 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no,minimal-ui">
-    <link rel="stylesheet" href="css/mobile.css">
     <title>导航模板</title>
-    <script src="../script/jquery-1.11.2.min.js"></script>
-    <script>
-        $(function(){
-            var pagemenubtn=$("#pagemenubtn"),pagenav=$("#pagenav"),navlist=pagenav.children('.list');
-            var pagenavin=function(v){
-                if(v){
-                    pagenav.addClass('in');
-                    pagemenubtn.addClass('out');
-                }else{
-                    pagenav.removeClass('in');
-                    pagemenubtn.removeClass('out');
-                }
-            };
-            pagemenubtn.on('click',function(e){
-                e.preventDefault();
-                pagenavin(true);
-            });
-            pagenav.children('.navbg').on("click",function(e){
-                e.preventDefault();
-                pagenavin(false);
-            });
-            navlist.children('.close').on("click",function(e){
-                e.preventDefault();
-                pagenavin(false);
-            });
-            navlist.children('.item').on("click",function(e){
-//                e.preventDefault();
-                pagenavin(false);
-                //
-            });
-
-        })
-    </script>
+    <link rel="stylesheet" href="css/mobile.css">
+    <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="js/mobile.js"></script>
 </head>
 <body>
 <header class="pagetop clearfix">
