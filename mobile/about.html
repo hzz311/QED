@@ -17,16 +17,23 @@
                 verticalCentered:false,
                 afterLoad: function(anchorLink, index){
                     fullpageEl.children().eq(index-1).addClass('in');
+                    if(index==4){
+                        workObj.init(true);
+                    }
                 },
                 onLeave: function(index, direction){
                     fullpageEl.children().eq(index-1).removeClass('in');
+                    if(index==4){
+                        workObj.init(false);
+                    }
                 }
             });
-            $.fn.fullpage.moveTo(3);
+            $.fn.fullpage.moveTo(4);
 
             initMapSize();
 
         });
+
         function initMapSize(){
             var mapwrapEl=$("#mapwrap");
             var width=mapwrapEl.width();
@@ -43,6 +50,75 @@
                 ,'margin-bottom':scaleOffsetY+'px'
             });
         }
+        var workObj=(function(){
+            var initstate=false,isloading=false;
+            var workBodyEl=null,imgListEl=null;
+
+            function getImgData(call){
+                if(isloading){return}
+                isloading=true;
+
+                //todo获取数据
+
+                isloading=false;
+                var videobg='image/about_work.jpg';
+                var imgArr=[
+                    'image/about_work.jpg'
+                    ,'image/about_work.jpg'
+                    ,'image/about_work.jpg'
+                    ,'image/about_work.jpg'
+                    ,'image/about_work.jpg'
+                    ,'image/about_work.jpg'
+                    ,'image/about_work.jpg'
+                    ,'image/about_work.jpg'
+                    ,'image/about_work.jpg'
+                    ,'image/about_work.jpg'
+                    ,'image/about_work.jpg'
+                    ,'image/about_work.jpg'
+                ];
+                workBodyEl.find('.bgbody').css('background-image','url("'+videobg+'")');
+                imgArr.forEach(function(url){
+                    imgListEl.append('<div class="item out"><div class="itembody" style="background-image: url('+url+')"></div></div>');
+                });
+                call&&call();
+            }
+
+            function setAnimation(state){
+                if(state){
+                    setTimeout(function(){
+                        workBodyEl.find('.videobg').removeClass('out');
+                        imgListEl.children('.item').each(function(index,item){
+                            (function(i,el){
+                                setTimeout(function(){
+                                    el.removeClass('out');
+                                },i*300);
+                            })(index,$(item));
+                        })
+                    },100);
+                }else{
+                    workBodyEl.find('.videobg').addClass('out');
+                    imgListEl.children('.item').addClass('out');
+                }
+            }
+            function bindEvent(){
+
+            }
+            function init(state){
+                workBodyEl=$('#workbody');
+                imgListEl=workBodyEl.children('.imglist');
+                if(!initstate){
+                    initstate=true;
+                    getImgData(function(){
+                        setAnimation(state);
+                    });
+                    bindEvent();
+                }else{
+                    setAnimation(state);
+                }
+            }
+
+            return {init:init};
+        })();
     </script>
 </head>
 <body>
@@ -104,8 +180,14 @@
             <p class="dot"><span></span></p>
         </div>
     </div>
-    <div class="section pagewrap">
-        <div class="pagetitle ani-scale">工作在雅森</div>
+    <div class="section pagewrap workwrap">
+        <div id="workbody" class="workbody">
+            <div class="pagetitle ani-scale">工作在雅森</div>
+            <div class="videobg out"><div class="bgbody">
+                <div class="playicon"><svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M512 0C230.4 0 0 230.4 0 512 0 793.6 230.4 1024 512 1024 793.6 1024 1024 793.6 1024 512 1024 230.4 793.6 0 512 0L512 0ZM409.6 742.4 409.6 281.6 716.8 512 409.6 742.4 409.6 742.4Z"></path></svg></div>
+            </div></div>
+            <div class="imglist clearfix"></div>
+        </div>
     </div>
 </div>
 </body>
