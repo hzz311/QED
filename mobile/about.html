@@ -22,7 +22,27 @@
                     fullpageEl.children().eq(index-1).removeClass('in');
                 }
             });
+            $.fn.fullpage.moveTo(3);
+
+            initMapSize();
+
         });
+        function initMapSize(){
+            var mapwrapEl=$("#mapwrap");
+            var width=mapwrapEl.width();
+            var height=mapwrapEl.height();
+            var parantWidth=mapwrapEl.parent().width();
+            var scaleRatio=parantWidth/width;
+            var scaleOffsetX=(parantWidth-width)/2;
+            var scaleOffsetY=height/2*(scaleRatio-1);
+            mapwrapEl.css({
+                '-webkit-transform':'scale('+scaleRatio+')'
+                ,'transform':'scale('+scaleRatio+')'
+                ,'margin-left':scaleOffsetX+'px'
+                ,'margin-top':scaleOffsetY+'px'
+                ,'margin-bottom':scaleOffsetY+'px'
+            });
+        }
     </script>
 </head>
 <body>
@@ -48,7 +68,7 @@
 <a id="godown" class="godown"><span class="circle"><span class="down"></span></span></a>
 
 <div id="fullpage">
-    <div class="section pagewrap aboutbody">
+    <div class="section pagewrap aboutwrap">
         <div class="pagetitle ani-scale">关于雅森</div>
         <div class="ani-scale">
             <div class="name">— Vision for life </div>
@@ -63,12 +83,29 @@
         </div>
     </div>
     <div class="section pagewrap">
+        <div class="pagetitle ani-scale">大事记</div>
+
+    </div>
+    <div class="section pagewrap teamwrap">
+        <div class="pagetitle ani-scale">雅森团队</div>
+        <div class="teambody ani-scale">
+            <div id="mapwrap" class="mapwrap">
+                <img class="mapimg" src="image/teammap.png">
+                <div class="point" style="left: 90px;top: 50px;"></div>
+                <div class="point" style="left: 156px;top: 44px;"></div>
+                <div class="point" style="left: 167px;top: 50px;"></div>
+                <div class="point" style="left: 268px;top: 61px;"></div>
+                <div class="point" style="left: 275px;top: 67px;"></div>
+                <div class="point" style="left: 308px;top: 55px;"></div>
+                <div class="point" style="left: 292px;top: 87px;"></div>
+            </div>
+            <p class="bootompoint"><svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M879.044 427.309c0-223.853-175.267-405.976-390.629-405.976-215.393 0-390.63 182.121-390.63 405.976 0 101.571 35.652 197.456 100.794 272.169l-0.766 0.823 286.334 319.756 294.454-320.209-0.363-0.368c65.133-74.714 100.806-170.6 100.806-272.171zM488.415 586.406c-81.722 0-148.222-69.155-148.222-154.096 0-84.911 66.5-154.009 148.222-154.009 81.74 0 148.21 69.098 148.21 154.009-0 84.941-66.468 154.096-148.21 154.096z"></path></svg></p>
+            <p class="desc">雅森的研发团队来自于南开大学、清华大学、中国科学院、台湾长庚大学、英国UCL大学、美国伦斯勒理工学院、英国爱丁堡大学等顶尖院校。</p>
+            <p class="dot"><span></span></p>
+        </div>
     </div>
     <div class="section pagewrap">
-    </div>
-    <div class="section pagewrap">
-    </div>
-    <div class="section pagewrap">
+        <div class="pagetitle ani-scale">工作在雅森</div>
     </div>
 </div>
 </body>
