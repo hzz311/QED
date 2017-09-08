@@ -243,3 +243,121 @@ a{text-decoration: none;color: inherit;}
 }
 
 
+.pageai_box{
+    position: relative;
+}
+.pageai_box .image{
+    width:80%;
+    top:4em;
+    left: 10%;
+    display: inline-block;position: absolute;
+    -webkit-transition: all .8s ease-out;
+    -moz-transition: all .8s ease-out;
+    transition: all .8s ease-out;
+    opacity: 0;
+}
+.pageai_box .image.show{
+    opacity: 1;
+}
+
+
+.pagenews_box{
+    padding: 5rem 1.71rem 1rem;
+}
+.pagenews_box .headtitle{
+    text-align: center;
+    font-size:  1.54rem;
+}
+.pagenews_box .headtabs{
+    text-align: center;
+}
+.pagenews_box .headtabs ul{
+    margin: 2em auto .8em;
+    background-color: #f2f2f2;
+    display: inline-block;
+    font-size: 1.2em;
+    border-radius: 1.2em;
+}
+.pagenews_box .headtabs li{
+    display: inline-block;
+    color: #54b5f6;
+    cursor: pointer;
+    background-color: #f2f2f2;
+    height: 2.2em;
+    line-height: 2.2em;
+    padding: 0 1.5em;
+    border-radius: 1.2em;
+}
+.pagenews_box .headtabs li.active{
+    color: #ffffff;
+    background-color: #54b5f6;
+}
+.pagenews_box .list{
+    overflow: hidden;
+    margin:0 -.6rem;
+}
+.pagenews_box .list .item{
+    float: left;
+    width: 50%;
+    padding:0 .6rem;
+    margin-top: 1.2rem;
+}
+.pagenews_box .list .item a{
+    display: block;
+    border: 1px solid #e1e1e1;
+}
+.pagenews_box .list .item a:hover,
+.pagenews_box .list .item a:active{
+    color: #54b5f6;
+}
+.pagenews_box .list .item .img{
+    position: relative;
+}
+.pagenews_box .list .item .img img{
+    vertical-align: bottom;
+    width: 100%;
+}
+.pagenews_box .list .item .date{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: #ffffff;
+    padding: .4rem;
+}
+.pagenews_box .list .item .title{
+    font-size: .75em;
+    line-height: 1.3em;
+    height: 2.6em;
+    padding: 0 .3em;
+    margin: 1em 0;
+    text-align: center;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    -webkit-align-items: center;
+    align-items:center;
+    justify-content: flex-start;
+}
+.pagenews_box .list .item .title p{
+    max-height: 2.6em;
+    width: 100%;
+    overflow: hidden;
+}
+
+.newsshow .shead .title{
+    color: #34576a;
+    margin: 0 0 15px;
+    line-height: 1.4;
+    font-size: 22px;
+}
+.newsshow .shead .date{
+    color: #999999;
+    line-height: 1;
+}
+.newsshow .mcon{
+    margin: 20px 0;
+    line-height: 1.5;
+}
+
+
