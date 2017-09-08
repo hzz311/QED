@@ -28,7 +28,7 @@ a{text-decoration: none;color: inherit;}
 .pagenav .navbg{position: absolute;left: 0;top: 0;width: 100%;height: 100%;-webkit-transition: transform 0.3s ease-in-out;transition: transform 0.3s ease-in-out;}
 .pagenav .list{
     width: 17rem;padding:3.84rem 0 6.4rem;
-    background-color:rgba(0,0,0,0.5);color: #000;
+    background-color:rgba(0,0,0,0.5);color: #FFFFFF;
     position: absolute;z-index: 1;left: 0;height: 100%;
     -webkit-transition: transform 0.3s ease-in-out;transition: transform 0.3s ease-in-out;
     display: -webkit-flex;
@@ -41,9 +41,9 @@ a{text-decoration: none;color: inherit;}
 }
 .pagenav.in .navbg{-webkit-transform: translateX(-100%);transform: translateX(-100%);}
 .pagenav.in .list{-webkit-transform: translateX(-17rem);transform: translateX(-17rem);}
-.pagenav .list .item{display: block;padding:0.85rem 1.71rem;border: 1px solid #dddddd;border-radius: 10px; }
+.pagenav .list .item{display: block;padding:0.85rem 1.71rem;border: 1px solid #FFFFFF;border-radius: 10px; }
 .pagenav .list .close{position: absolute;right:2px;top:0;width: 44px;height: 44px;}
-.pagenav .list .close:before,.pagenav .close:after{content: '';position: absolute; background-color: #000;height: 1px;width: 16px;top: 21px;left: 14px;}
+.pagenav .list .close:before,.pagenav .close:after{content: '';position: absolute; background-color: #FFFFFF;height: 1px;width: 16px;top: 21px;left: 14px;}
 .pagenav .list .close:before{-webkit-transform: rotate(-45deg);transform: rotate(-45deg);}
 .pagenav .list .close:after{-webkit-transform: rotate(45deg);transform: rotate(45deg);}
 .pagenav .list .logo{text-align: center;position: absolute;bottom: 25px;left: 0;width: 100%;}
@@ -54,7 +54,7 @@ a{text-decoration: none;color: inherit;}
 .godown .circle .down{display: inline-block;width: 8px;height: 8px;margin-top: 9px; border-top: 2px solid #000;border-right: 2px solid #000;-webkit-transform: rotate(-45deg);transform: rotate(-45deg);}
 
 /**内容部分**/
-.pagewrap{position: relative;padding-top: 4.27rem;}
+.pagewrap{position: relative;padding-top: 4.27rem;padding-left: 1.71rem;padding-right: 1.71rem;}
 .pagetitle{font-size: 1.54rem;padding:0.85rem 1.71rem 1.71rem;text-align: center;}
 .pagewrap .cont_upper{position: relative;}
 .pagewrap .cont_lower{position: absolute;display: block; left: 0;bottom: 0;width: 100%;z-index: 5;}
