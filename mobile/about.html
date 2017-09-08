@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/jquery.fullpage.min.css">
     <script src="js/jquery-1.11.2.min.js"></script>
     <script src="js/jquery.fullpage.min.js"></script>
+    <!--<script src="js/scrolloverflow.min.js"></script>-->
     <script src="js/mobile.js"></script>
     <script>
         $(document).ready(function() {
@@ -15,6 +16,7 @@
             fullpageEl.fullpage({
                 css3: true,
                 verticalCentered:false,
+//                scrollOverflow:true,
                 afterLoad: function(anchorLink, index){
                     fullpageEl.children().eq(index-1).addClass('in');
                     if(index==4){
@@ -51,7 +53,7 @@
             });
         }
         var workObj=(function(){
-            var initstate=false,isloading=false;
+            var isloading=false;
             var workBodyEl=null,imgListEl=null;
 
             function getImgData(call){
@@ -106,15 +108,18 @@
             function init(state){
                 workBodyEl=$('#workbody');
                 imgListEl=workBodyEl.children('.imglist');
-                if(!initstate){
-                    initstate=true;
+                workBodyEl.find('.bgbody').css('background-image','');
+                imgListEl.empty();
+                if(state){
+                    //入场
                     getImgData(function(){
                         setAnimation(state);
                     });
-                    bindEvent();
                 }else{
+                    //离场
                     setAnimation(state);
                 }
+                bindEvent();
             }
 
             return {init:init};
