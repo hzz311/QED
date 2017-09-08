@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no,minimal-ui">
+    <title>雅森科技</title>
+    <link rel="stylesheet" href="css/mobile.css">
+    <link rel="stylesheet" href="css/jquery.fullpage.min.css">
+    <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="js/jquery.fullpage.min.js"></script>
+    <script src="js/mobile.js"></script>
+    <script>
+        $(document).ready(function() {
+            var fullpageEl=$('#fullpage'),godownEl=$('#godown');
+            fullpageEl.fullpage({
+                css3: true,
+                verticalCentered:false,
+                afterLoad: function(anchorLink, index){
+                    fullpageEl.children().eq(index-1).addClass('in');
+                    if(index>=6){
+
+                    }
+                },
+                onLeave: function(index, direction){
+                    fullpageEl.children().eq(index-1).removeClass('in');
+                }
+            });
+            godownEl.click(function(e){
+                $.fn.fullpage.moveSectionDown();
+            })
+            //$.fn.fullpage.moveTo(2);
+        });
+    </script>
+</head>
+<body>
+<header class="pagetop clearfix">
+    <a class="logo"><img class="icon" src="image/logo.png"></a>
+    <div id="pagemenubtn" class="menu"><svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M114.000404 563.226708c-28.290323 0.045025-50.79999-22.851451-50.28015-51.138704 0.521886-28.290323 23.879873-51.27685 52.167127-51.322899l790.842753 0.008186c28.290323-0.045025 50.79999 22.851451 50.278103 51.140751-0.51984 28.287253-23.876804 51.274804-52.167127 51.319829L114.000404 563.226708zM117.271914 166.426427c-28.290323 0.045025-50.79999-22.851451-50.28015-51.138704 0.521886-28.290323 23.879873-51.27685 52.167127-51.322899l790.842753 0.008186c28.290323-0.045025 50.79999 22.851451 50.278103 51.140751-0.51984 28.287253-23.876804 51.274804-52.167127 51.319829L117.271914 166.426427zM114.000404 960.025966c-28.290323 0.045025-50.79999-22.851451-50.28015-51.138704 0.521886-28.290323 23.879873-51.27685 52.167127-51.322899l790.842753 0.008186c28.290323-0.045025 50.79999 22.851451 50.278103 51.140751-0.51984 28.287253-23.876804 51.274804-52.167127 51.319829L114.000404 960.025966z"></path></svg></div>
+</header>
+<div id="pagenav" class="pagenav">
+    <div class="navbg"></div>
+    <div class="list">
+        <div class="close"></div>
+        <a class="item">进入首页</a>
+        <a class="item">解决方案</a>
+        <a class="item">人工智能</a>
+        <a class="item">合作机构</a>
+        <a class="item">关于我们</a>
+        <a class="item">加入雅森</a>
+        <a class="item">新闻中心</a>
+        <a class="item">咨询联系</a>
+        <div class="logo"><img class="icon" src="image/logo_01.png"></div>
+    </div>
+</div>
+<a id="godown" class="godown"><span class="circle"><span class="down"></span></span></a>
+
+<!--
+<div class="section pagewrap solution">
+    <div class="cont_upper ani-scale">
+        <div class="name">癫痫<span>  (  Epilepsy，EP  )  </span></div>
+        <div class="desc">癫痫是大脑神经元突发性异常放电，导致短暂的大脑功能障碍的一种慢性疾病。在我国癫痫已经成为神经科仅次于头痛的第二大常见病。</div>
+        <div class="desc">癫痫致痫灶是神经生理学的概念，是指神经元异常放电的起源区，即直接引起痫性发作的部位。外科手术切除致痫灶成功的关键就在于术前准确定位致痫灶。</div>
+        <div class="desc">我们通过采集EEG、MRI、 PET或SPECT的影像数据进行处理分析，并与正常人群组做统计比对，从而计算得到代谢异常的致痫灶大小、位置等信息，通过认知技术，给出治疗方案的建议以及治疗效果的预测。</div>
+        <div class="button">浏览输出结果</div>
+    </div>
+    <div class="cont_lower ani-bottom-in"><img src="image/solution/dx.png"></div>
+</div>
+-->
+
+
+<div id="fullpage">
+    <div class="section">
+        <div class="index_box_bg"></div>
+        <div class="index_tet1 ani-scale"><img src="image/index/index_text.png"></div>
+        <ul class="index_ctr">
+            <li><a href="#"><img src="image/index/icon_arrow_r.png">解决方案</a></li>
+            <li><img src="image/index/icon_play.png">观看视频</li>
+        </ul>
+    </div>
+    <div class="section">
+        <div class="index_c_num"><img src="image/index/index_n_01.jpg"></div>
+        <div class="index_c_pic"><img src="image/index/index_t01.jpg"></div>
+        <div class="index_c_text">
+            <div class="info">
+                <h5>基于常规影像快速高效筛查</h5>
+                <p>通过神经网络计算机系统，训练海量影像、学习数据规律、发现关联关系，从而生成经验模型，实现对疾病的高效筛查，包括发现病灶、定量分析、治疗方案建议等。</p>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="index_c_num"><img src="image/index/index_n_02.jpg"></div>
+        <div class="index_c_pic"><img src="image/index/index_t02.jpg"></div>
+        <div class="index_c_text">
+            <div class="info">
+                <h5>基于多模态数据的精准分析</h5>
+                <p>通过为系统增加多模态数据，包括多设备的医疗影像、病理及生化检验数据、基因信息等，从而形成多维度的神经网络系统，提供给医生更加精准的诊断建议和疗效评价等信息。</p>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="index_c_num"><img src="image/index/index_n_03.jpg"></div>
+        <div class="index_c_pic"><img src="image/index/index_t03.jpg"></div>
+        <div class="index_c_text">
+            <div class="info">
+                <h5>基于多模态数据的病情发展预测</h5>
+                <p>通过分析多模态数据（影像、病历等）以及长期随访数据，预测病情发展轨迹。对疾病进行早期干预治疗（如老年病、慢性病），大幅降低患病可能性以及有效控制病情发展。</p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
