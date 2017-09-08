@@ -5,29 +5,158 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no,minimal-ui">
     <link rel="stylesheet" href="css/mobile.css">
     <title>咨询联系</title>
-    <style>
-        .blue{color: #58B3EF;}
-        .contectwrap{}
-        .contectwrap .desc{font-size: 10px;line-height: 18px;}
-    </style>
     <script src="js/jquery-1.11.2.min.js"></script>
     <script src="js/mobile.js"></script>
     <script>
         $(function(){
+            var formEl=$("#formel");
+            formEl.find('.sexwrap').on('click',function(e){
+                var self=$(this);
+                if(self.hasClass('active')){
+                    self.removeClass('active');
+                }else{
+                    self.addClass('active');
+                }
+            });
+
+
+            formEl.find('.submitbtn').click(function(e){
+                var name=formEl.find('.namewrap').find('input').val().trim();
+                if(!name){
+                    return showTip('请输入姓名！');
+                }else if(!/^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9])*$/.test(name)){
+                    return showTip('请填写真实姓名');
+                }
+                var mobile=formEl.find('.mobilewrap').find('input').val().trim();
+                if(!mobile){
+                    return showTip('请填写手机号');
+                }else if(!(/^1[3|4|5|7|8][0-9]{9}$/.test(mobile))){
+                    return showTip('请填写正确的手机号');
+                }
+                var mail=formEl.find('.mailwrap').find('input').val().trim();
+                if(!mail){
+                    return showTip('请填写您的邮箱');
+                }else if(!(/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/.test(mail))){
+                    return showTip('请填写正确的邮箱');
+                }
+                var message=formEl.find('.messagewrap').find('textarea').val().trim();
+                if(!message){
+                    return showTip('请输入您的留言');
+                }
+                var sex=formEl.find('.sexwrap').hasClass('active')?2:1;// 2:男，1女
+
+                //ajax todo
+                showTip('提交成功');
+                formEl[0].reset();
+            });
+
+
+
+            function showTip(opts){
+                var wrapper=$('body'),msg='',times=3000;
+                if(typeof opts === 'string'){
+                    msg=opts;
+                }else{
+                    msg=opts.msg;
+                    times=opts.times||times;
+                    wrapper=opts.warp||wrapper;
+                }
+                wrapper.append('<div class="m-tipwinmask"><span class="m-tipwin">'+msg+'</span></div>');
+                var tipwin =wrapper.children('.m-tipwinmask:last');
+                tipwin.show();
+                tipwin.addClass('m-tipwinmask_in');
+
+                var hideTipAlert=function(){
+                    tipwin.removeClass('m-tipwinmask_in');
+                    transitionEnd(tipwin,function (e) {
+                        tipwin.remove();
+                    });
+                };
+                var tipshowTimeoutId=setTimeout(function(){
+                    hideTipAlert();
+                },times);
+                tipwin.click(function(e){
+                    e.preventDefault();
+                    clearTimeout(tipshowTimeoutId);
+                    hideTipAlert();
+                });
+            }
+            function transitionEnd(dom,callback) {
+                var events = ['webkitTransitionEnd', 'transitionend', 'oTransitionEnd', 'MSTransitionEnd', 'msTransitionEnd'],
+                        i, j, dom = dom;
+                function fireCallBack(e) {
+                    /*jshint validthis:true */
+                    if (e.target !== this) return;
+                    callback.call(this, e);
+                    for (i = 0; i < events.length; i++) {
+                        dom.off(events[i], fireCallBack);
+                    }
+                }
+                if (callback) {
+                    for (i = 0; i < events.length; i++) {
+                        dom.on(events[i], fireCallBack);
+                    }
+                }
+                return this;
+            }
 
         })
     </script>
 </head>
 <body>
+
+
+<header class="pagetop clearfix">
+    <a class="logo"><img class="icon" src="image/logo.png"></a>
+    <div id="pagemenubtn" class="menu"><svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M114.000404 563.226708c-28.290323 0.045025-50.79999-22.851451-50.28015-51.138704 0.521886-28.290323 23.879873-51.27685 52.167127-51.322899l790.842753 0.008186c28.290323-0.045025 50.79999 22.851451 50.278103 51.140751-0.51984 28.287253-23.876804 51.274804-52.167127 51.319829L114.000404 563.226708zM117.271914 166.426427c-28.290323 0.045025-50.79999-22.851451-50.28015-51.138704 0.521886-28.290323 23.879873-51.27685 52.167127-51.322899l790.842753 0.008186c28.290323-0.045025 50.79999 22.851451 50.278103 51.140751-0.51984 28.287253-23.876804 51.274804-52.167127 51.319829L117.271914 166.426427zM114.000404 960.025966c-28.290323 0.045025-50.79999-22.851451-50.28015-51.138704 0.521886-28.290323 23.879873-51.27685 52.167127-51.322899l790.842753 0.008186c28.290323-0.045025 50.79999 22.851451 50.278103 51.140751-0.51984 28.287253-23.876804 51.274804-52.167127 51.319829L114.000404 960.025966z"></path></svg></div>
+</header>
+<div id="pagenav" class="pagenav">
+    <div class="navbg"></div>
+    <div class="list">
+        <div class="close"></div>
+        <a class="item">进入首页</a>
+        <a class="item">解决方案</a>
+        <a class="item">人工智能</a>
+        <a class="item">合作机构</a>
+        <a class="item">关于我们</a>
+        <a class="item">加入雅森</a>
+        <a class="item">新闻中心</a>
+        <a class="item">咨询联系</a>
+        <div class="logo"><img class="icon" src="image/logo_01.png"></div>
+    </div>
+</div>
+
+
 <div class="pagewrap">
-    <div class="contectwrap ani-scale">
-        <p class="pagetitle">CONTACT <span class="blue">US</span></p>
-        <p class="desc">如果您对我们的产品感兴趣，欢迎索取详细的产品资料。</p>
-        <p class="desc">如果您有意愿和雅森合作拓展业务，欢迎留下您的联系方式,或者直接联系我们。</p>
-        <div class="item"><label>姓名</label><input type="text"></div>
-        <div class="label sexwrap"><span class="sex">女士</span><span class="sex">先生</span><div class="slide"></div></div>        <div><label>手机</label><input type="text"></div>
-        <div><label>邮箱</label><input type="text"></div>
-        <div><label>留言</label><textarea></textarea></div>
+    <div class="contectwrap">
+        <form id="formel" class="form clearfix" onsubmit="return false;">
+            <p class="pagetitle">CONTACT <span class="blue">US</span></p>
+            <p class="desc">如果您对我们的产品感兴趣，欢迎索取详细的产品资料。</p>
+            <p class="desc">如果您有意愿和雅森合作拓展业务，欢迎留下您的联系方式,或者直接联系我们。</p>
+            <div class="item namewrap"><label>姓名</label><input type="text"></div>
+            <div class="item sexwrap"><span class="sex">女士</span><span class="sex">先生</span><div class="slide"></div></div>
+            <div class="item mobilewrap"><label>手机</label><input type="text"></div>
+            <div class="item mailwrap"><label>邮箱</label><input type="text"></div>
+            <div class="item messagewrap"><label>留言</label><input type="text"></div>
+
+
+            <div class="detail">
+                <p>北京雅森科技发展有限公司</p>
+                <p><svg class="icon" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M1.984 145.488c0 0-44.976 228.992 293.6 567.568 2.464 2.448 4.832 4.672 7.264 7.088 2.432 2.432 4.656 4.816 7.104 7.28 338.576 338.576 567.568 293.6 567.568 293.6 14.016-1.872 43.472-10.272 53.44-20.272 0 0 52.096-42.816 84.016-95.568 31.936-52.736-28.416-132.304-63.136-167.008-70.048-70.048-134.464-83.712-162.832-64.24-12.752 8.752-63.424 63.36-63.424 63.36-9.984 10-29.744 18.304-43.872 18.48 0 0-88.544 0.896-253.248-161.248C266.32 429.84 267.2 341.296 267.2 341.296c0.192-14.112 8.48-33.888 18.48-43.872 0 0 62.816-62.768 63.36-63.424 23.824-29.824-15.632-103.968-64.24-162.832-31.248-37.84-56.56-59.984-103.904-69.008C117.712-9.872 4.24 74.288 1.984 145.488z"></path></svg>
+                    <span class="text">&nbsp;+861084245607</span>
+                </p>
+                <p><svg class="icon" viewBox="0 0 1396 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M1368.436364 958.836364V158.254545v-27.927272l-428.218182 381.672727 428.218182 446.836364z m-651.636364-344.436364L884.363636 465.454545 1312.581818 74.472727H121.018182L549.236364 465.454545l167.563636 148.945455z m577.163636 400.290909h18.618182L884.363636 567.854545 716.8 716.8 549.236364 567.854545l-428.218182 437.527273h18.618182l1154.327272 9.309091zM65.163636 139.636364v819.2l428.218182-428.218182L65.163636 139.636364z"></path></svg>
+                    <span class="text">&nbsp;contact@qed-tec.com</span>
+                </p>
+                <p><svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M536.380952 48.713143C334.409143 48.713143 170.666667 215.04 170.666667 420.230095s365.714286 603.721143 365.714286 603.721143S902.095238 625.42019 902.095238 420.230095 738.352762 48.713143 536.380952 48.713143zM536.380952 513.121524c-75.776 0-137.167238-62.366476-137.167238-139.312762S460.604952 234.496 536.380952 234.496c75.727238 0 137.167238 62.366476 137.167238 139.312762S612.10819 513.121524 536.380952 513.121524z"></path></svg>
+                    <span class="text">&nbsp;北京市朝阳区望京 SOHO 塔 1B 座 1507</span>
+                </p>
+
+            </div>
+
+            <button class="submitbtn">提交</button>
+
+        </form>
     </div>
 </div>
 </body>
