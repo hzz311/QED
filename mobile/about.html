@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no,minimal-ui">
+    <title>关于我们</title>
+    <link rel="stylesheet" href="css/mobile.css">
+    <link rel="stylesheet" href="css/jquery.fullpage.min.css">
+    <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="js/jquery.fullpage.min.js"></script>
+    <script src="js/mobile.js"></script>
+    <script>
+        $(document).ready(function() {
+            var fullpageEl=$('#fullpage'),godownEl=$('#godown');
+            fullpageEl.fullpage({
+                css3: true,
+                verticalCentered:false,
+                afterLoad: function(anchorLink, index){
+                    fullpageEl.children().eq(index-1).addClass('in');
+                },
+                onLeave: function(index, direction){
+                    fullpageEl.children().eq(index-1).removeClass('in');
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<header class="pagetop clearfix">
+    <a class="logo"><img class="icon" src="image/logo.png"></a>
+    <div id="pagemenubtn" class="menu"><svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M114.000404 563.226708c-28.290323 0.045025-50.79999-22.851451-50.28015-51.138704 0.521886-28.290323 23.879873-51.27685 52.167127-51.322899l790.842753 0.008186c28.290323-0.045025 50.79999 22.851451 50.278103 51.140751-0.51984 28.287253-23.876804 51.274804-52.167127 51.319829L114.000404 563.226708zM117.271914 166.426427c-28.290323 0.045025-50.79999-22.851451-50.28015-51.138704 0.521886-28.290323 23.879873-51.27685 52.167127-51.322899l790.842753 0.008186c28.290323-0.045025 50.79999 22.851451 50.278103 51.140751-0.51984 28.287253-23.876804 51.274804-52.167127 51.319829L117.271914 166.426427zM114.000404 960.025966c-28.290323 0.045025-50.79999-22.851451-50.28015-51.138704 0.521886-28.290323 23.879873-51.27685 52.167127-51.322899l790.842753 0.008186c28.290323-0.045025 50.79999 22.851451 50.278103 51.140751-0.51984 28.287253-23.876804 51.274804-52.167127 51.319829L114.000404 960.025966z"></path></svg></div>
+</header>
+<div id="pagenav" class="pagenav">
+    <div class="navbg"></div>
+    <div class="list">
+        <div class="close"></div>
+        <a class="item">进入首页</a>
+        <a class="item">解决方案</a>
+        <a class="item">人工智能</a>
+        <a class="item">合作机构</a>
+        <a class="item">关于我们</a>
+        <a class="item">加入雅森</a>
+        <a class="item">新闻中心</a>
+        <a class="item">咨询联系</a>
+        <div class="logo"><img class="icon" src="image/logo_01.png"></div>
+    </div>
+</div>
+<a id="godown" class="godown"><span class="circle"><span class="down"></span></span></a>
+
+<div id="fullpage">
+    <div class="section pagewrap">
+        <div class="pagetitle ani-scale">关于雅森</div>
+        <div class="aboutbody">
+            <div class="ani-scale">
+                <div class="name">— Vision for life </div>
+                <div class="desc">长期以来，由于医疗资源、各地区研究水平的差异，加之政策等因素带来的信息不对称，使得相同的疾病在不同的国家、地区获得的诊断和治疗效果大不相同。</div>
+                <div class="desc">雅森科技基于大数据分析技术、图形图像识别技术，加之计算机的深度学习能力，将海量数据转化为精准高效的诊断能力，这些能力可以通过人工智能的方式交付给社会。这些数据工具将帮助各地的人们获得平等的诊断机会，无论你是在旧金山还是在赞比亚。</div>
+            </div>
+            <div class="img ani-scale" style="background-image: url(image/about_desc.jpg)"></div>
+            <div class="ani-scale">
+                <div class="name">— AI 赋能</div>
+                <div class="desc">雅森科技成立于2006年，是国内最早专注于医学影像人工智能分析、核医学定量及CAD分析的高科技企业；长期致力于影像预处理、分析建模、大数据分析、深度学习辅助诊断等领域。产品覆盖脑、神经、甲状腺、血液、呼吸、病理等多模态分析技术。</div>
+                <div class="desc">同时也面向医疗机构提供业界领先的统一AI集成平台，为医疗机构实现“AI赋能”。</div>
+            </div>
+        </div>
+    </div>
+    <div class="section pagewrap solution">
+    </div>
+    <div class="section pagewrap solution">
+    </div>
+    <div class="section pagewrap solution">
+    </div>
+    <div class="section pagewrap solution">
+    </div>
+</div>
+</body>
+</html>

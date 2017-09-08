@@ -41,7 +41,7 @@ a{text-decoration: none;color: inherit;}
 }
 .pagenav.in .navbg{-webkit-transform: translateX(-100%);transform: translateX(-100%);}
 .pagenav.in .list{-webkit-transform: translateX(-17rem);transform: translateX(-17rem);}
-.pagenav .list .item{display: block;padding:0.85rem 1.71rem;border: 1px solid #FFFFFF;border-radius: 10px; }
+.pagenav .list .item{display: block;padding:0.85rem 1.71rem;border: 1px solid #FFFFFF;border-radius: 10px;font-size: 1.2rem;}
 .pagenav .list .close{position: absolute;right:2px;top:0;width: 44px;height: 44px;}
 .pagenav .list .close:before,.pagenav .close:after{content: '';position: absolute; background-color: #FFFFFF;height: 1px;width: 16px;top: 21px;left: 14px;}
 .pagenav .list .close:before{-webkit-transform: rotate(-45deg);transform: rotate(-45deg);}
@@ -93,7 +93,7 @@ a{text-decoration: none;color: inherit;}
 
 /**内容部分**/
 .pagewrap{position: relative;padding-top: 4.27rem;padding-left: 1.71rem;padding-right: 1.71rem;}
-.pagetitle{font-size: 1.54rem;padding:0.85rem 1.71rem 1.71rem;text-align: center;}
+.pagetitle{font-size: 1.54rem;padding:0.5rem 1.71rem 0.8rem;text-align: center;}
 .pagewrap .cont_upper{position: relative;z-index: 1;top: 0;}
 .pagewrap .cont_lower{position: absolute;display: block;left: 0;bottom: 0;width: 100%;z-index: 5;height: 50%;text-align: center;}
 .pagewrap .cont_lower .lower-body{position: relative;display: block;top: 45%;-webkit-transform: translateY(-50%);transform: translateY(-50%);}
@@ -118,13 +118,24 @@ a{text-decoration: none;color: inherit;}
 
 /***合作机构*/
 .logowrap{color: #516068;}
-.logowrap .item{float: left;width: 33.3333%;padding:1rem 0 1.2rem; text-align: center;opacity:0;-webkit-transform: scale(0);transform: scale(0); -webkit-transition: all .5s ease-out;transition: all .5s ease-out;}
+.logowrap .item{float: left;width: 33.3333%;padding:1.2rem 0; text-align: center;opacity:0;-webkit-transform: scale(0);transform: scale(0); -webkit-transition: all .5s ease-out;transition: all .5s ease-out;}
 .logowrap .item.show{  -webkit-transform: scale(1); transform: scale(1);  opacity:1; }
-.logowrap .item .icon{height: 33px;display: inline-block;}
-.logowrap .item .name{margin-top: 8px;font-size: 13px;}
+.logowrap .item .icon{height: 2.816rem;display: inline-block;}
+.logowrap .item .name{margin-top: 0.683rem;font-size: 1.1rem;}
 
-
-
+/**关于雅森**/
+.aboutbody{height:calc(100% - 2.8rem);padding-bottom:0.5rem;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    -webkit-align-items: center;
+    align-items:center;
+    justify-content: space-between;
+}
+.aboutbody .name{font-size: 1.365rem;color: #54B5F6;padding-top: 0.7rem;padding-bottom: 0.7rem;}
+.aboutbody .img{-webkit-flex:1;flex: 1;width:80%;margin: 0.5rem 0; background: center no-repeat;background-size: cover;}
+.aboutbody .desc{padding-bottom: 0.35rem;line-height: 1.7rem;text-align: justify;}
 
 
 
