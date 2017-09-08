@@ -49,9 +49,47 @@ a{text-decoration: none;color: inherit;}
 .pagenav .list .logo{text-align: center;position: absolute;bottom: 25px;left: 0;width: 100%;}
 .pagenav .list .logo .icon{display: inline-block;height: 22px;}
 
-.godown{position: fixed;z-index: 99;width: 40px;height: 40px;left: 50%; bottom: 10px;margin-left: -1.71rem;text-align: center;}
+.godown{position: fixed;z-index: 99;width: 40px;height: 40px;left: 50%; bottom: 10px;margin-left: -1.71rem;text-align: center;
+    -webkit-animation: an-up-down 1s infinite linear;
+    animation: an-up-down 1s infinite linear;
+    -webkit-transition: opacity .4s;transition: opacity .4s;
+}
+.godown.out{opacity: 0;}
 .godown .circle{display: inline-block;width: 22px;height: 22px;margin-top: 9px;border-radius: 50%;background-color: rgba(0,0,0,.15);}
 .godown .circle .down{display: inline-block;width: 8px;height: 8px;margin-top: 9px; border-top: 2px solid #000;border-right: 2px solid #000;-webkit-transform: rotate(-45deg);transform: rotate(-45deg);}
+
+@-webkit-keyframes an-up-down {
+    0% {
+        -webkit-transform:translateY(0);
+    }
+    25% {
+        -webkit-transform:translateY(10%);
+    }
+    75% {
+        -webkit-transform:translateY(10%);
+    }
+    100% {
+        -webkit-transform:translateY(0);
+    }
+}
+@keyframes an-up-down {
+    0% {
+        -webkit-transform:translateY(0);
+        transform:translateY(0);
+    }
+    25% {
+        -webkit-transform:translateY(10%);
+        transform:translateY(10%);
+    }
+    75% {
+        -webkit-transform:translateY(10%);
+        transform:translateY(-10%);
+    }
+    100% {
+        -webkit-transform:translateY(0);
+        transform:translateY(0);
+    }
+}
 
 /**内容部分**/
 .pagewrap{position: relative;padding-top: 4.27rem;padding-left: 1.71rem;padding-right: 1.71rem;}
@@ -78,9 +116,12 @@ a{text-decoration: none;color: inherit;}
 .solution .button{display: inline-block;margin-top: 1rem;background-color:#54B5F6;color: #FFFFFF;padding:1rem 1.71rem;font-size: 1.1rem;border-radius: 5px;}
 .solution .cont_lower{padding-left: 3rem;padding-right: 3rem;height: 40%;/*background-color: #F7F7F7*/}
 
-
-
-
+/***合作机构*/
+.logowrap{color: #516068;}
+.logowrap .item{float: left;width: 33.3333%;padding:1rem 0 1.2rem; text-align: center;opacity:0;-webkit-transform: scale(0);transform: scale(0); -webkit-transition: all .5s ease-out;transition: all .5s ease-out;}
+.logowrap .item.show{  -webkit-transform: scale(1); transform: scale(1);  opacity:1; }
+.logowrap .item .icon{height: 33px;display: inline-block;}
+.logowrap .item .name{margin-top: 8px;font-size: 13px;}
 
 
 
