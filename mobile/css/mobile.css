@@ -124,7 +124,7 @@ a{text-decoration: none;color: inherit;}
 .logowrap .item .name{margin-top: 0.683rem;font-size: 1.1rem;}
 
 /**关于雅森**/
-.aboutbody{height:calc(100% - 2.8rem);padding-bottom:0.5rem;
+.aboutbody{padding-bottom:0.5rem;
     display: -webkit-flex;
     display: flex;
     flex-direction: column;
