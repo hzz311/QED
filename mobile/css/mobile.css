@@ -62,17 +62,13 @@ a{text-decoration: none;color: inherit;}
 
 
 /*页面入场动画*/
-.pagewrap .ani-scale{opacity:0;-webkit-transform: scale(0.6);transform: scale(0.6);-webkit-transition: all 1s;transition: all 1s;}
-.pagewrap.in .ani-scale{opacity:1;-webkit-transform: scale(1);transform: scale(1);}
-.pagewrap .ani-bottom-in{opacity:0;-webkit-transition: all 1s;transition: all 1s;-webkit-transform: translateY(50%);transform: translateY(50%);}
-.pagewrap.in .ani-bottom-in{opacity:1;-webkit-transform: translateY(0);transform: translateY(0);}
-.pagewrap .ani-top-in{opacity:0;-webkit-transition: all 1s;transition: all 1s;}
-.pagewrap.in .ani-top-in{opacity:1;top: 0;}
+.ani-scale{opacity:0;-webkit-transform: scale(0.6);transform: scale(0.6);-webkit-transition: all 1s;transition: all 1s;}
+.in .ani-scale{opacity:1;-webkit-transform: scale(1);transform: scale(1);}
+.ani-bottom-in{opacity:0;-webkit-transition: all 1s;transition: all 1s;-webkit-transform: translateY(50%);transform: translateY(50%);}
+.in .ani-bottom-in{opacity:1;-webkit-transform: translateY(0);transform: translateY(0);}
+.ani-top-in{opacity:0;-webkit-transition: all 1s;transition: all 1s;}
+.in .ani-top-in{opacity:1;top: 0;}
 
-
-@media screen and (max-height: 600px) {
-    .pagewrap.in .ani-bottom-in{opacity:1;-webkit-transform: translateY(-55%);transform: translateY(-55%);}
-}
 
 /**解决方案**/
 .solution .bg{position: absolute; left:0;top: 0;width: 100%;height: 65%; background: url("../image/solution/bg.png") no-repeat bottom center;background-size: 100%;}
