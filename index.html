@@ -103,7 +103,46 @@
             })(data[i]);
         }
     }
+    function _loadimgdata(){
+        var LOAD={};
+        var loadimgdata=[];
+        var analyse_list_data=[],nao_list_data=[],lines_list_data=[];
+        for(var i=0;i<4;i++){
+            analyse_list_data.push(imgHost+'image/slide020'+i+'.png');
+        }
+        for(var i=0;i<91;i++){
+            nao_list_data.push(imgHost+'image/nao/'+i+'.jpg');
+        }
+        for(var i=0;i<150;i++){
+            lines_list_data.push(imgHost+'image/lines/'+i+'.jpg');
+        }
+        loadimgdata.push(nao_list_data);
+        loadimgdata.push(analyse_list_data);
+        loadimgdata.push(lines_list_data);
+        LOAD["a"]=0;
+        LOAD["state"]=true;
+        function _s(){
+            if(!LOAD["state"] || LOAD["a"]>loadimgdata.length-1){
+                return
+            }
+            loadimgs(loadimgdata[LOAD["a"]],function(){
+                LOAD["a"]++;
+                if(LOAD["a"]<loadimgdata.length){
+                    _s();
+                }
+            })
+        }
+        _s();
+        LOAD['run']=function(){
+            LOAD["state"]=true;
+            _s();
+        };
+        return LOAD;
+    }
+    var LOAD = _loadimgdata();
+
     function anime_nao(obj,call){
+        LOAD["state"]=false;
         var self=this;
         var obj = obj;
         var maxlength = 90;
@@ -173,7 +212,7 @@
                     _createtips();
                 },1500)
                 call&&call();
-            },2000)
+            },1000)
         }
         function _animation(){
             image.src = imgdata[active]
@@ -189,6 +228,7 @@
             updateID = requestAnimationFrame(_start);
         }
         loadimgs(imgdata,function(){
+            LOAD['run']();
             obj.html('<div class="nao"></div>');
             obj.find('.nao')[0].appendChild( image );
             _start();
@@ -198,6 +238,7 @@
 
     var updateIDanime_lines;
     function anime_lines(obj,call){
+        LOAD["state"]=false;
         cancelAnimationFrame(updateIDanime_lines);
         var obj = obj;
         var maxlength = 149;
@@ -243,17 +284,21 @@
                 }else {
                     active = maxlength;
                 }
+                if(lunxun==0){
+                    active = maxlength;
+                }
             }
             if(timedelay==0){
                 _animation();
             }
             timedelay++;
-            if(timedelay>1){
+            if(timedelay>0){
                 timedelay = 0;
             }
             updateIDanime_lines = requestAnimationFrame(_start);
         }
         loadimgs(imgdata,function(){
+            LOAD['run']();
             obj.html('<div class="lines"></div>');
             obj.find('.lines')[0].appendChild( image );
             _start();
@@ -262,12 +307,13 @@
 
     var updateIDanime_analyse;
     function anime_analyse(obj,call,ANIMENAO){
+        LOAD["state"]=false;
         cancelAnimationFrame(updateIDanime_analyse);
         var obj = obj;
         var maxlength = 3;
         var active=0;
         var imgdata=[];
-        var lunxun = 8;
+        var lunxun = 4;
         for(var i=0;i<maxlength+1;i++){
             imgdata.push(imgHost+'image/slide020'+i+'.png');
         }
@@ -339,6 +385,7 @@
                     _start();
                 },1900)
             },300)*/
+            LOAD['run']();
             obj.append('<div class="analyse"></div>');
             _start();
         })
