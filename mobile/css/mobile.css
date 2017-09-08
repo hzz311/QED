@@ -158,7 +158,7 @@ a{text-decoration: none;color: inherit;}
 .in .teambody .mapwrap .point:nth-child(8){-webkit-transition-delay:2.9s;transition-delay:2.9s;}
 /**工作在雅森**/
 .workwrap{}
-.workbody{height: 100%;overflow: auto;}
+.workbody{height: 100%;overflow: scroll;}
 .workbody .videobg{width: 100%;margin-top: 0.5rem;-webkit-transition: all .4s ease-in-out;transition: all .4s ease-in-out;}
 .workbody .videobg.out{opacity:0;-webkit-transform: scale(0.8);transform: scale(0.6);}
 .workbody .videobg .bgbody{padding-top: 47.5%;position: relative;background: center no-repeat;background-size: cover;}
