@@ -17,17 +17,19 @@
                 verticalCentered:false,
                 afterLoad: function(anchorLink, index){
                     fullpageEl.children().eq(index-1).addClass('in');
-                    if(index>=6){
-
+                    if(index>=4){
+                        godownEl.hide();
+                    }else{
+                        godownEl.show();
                     }
                 },
                 onLeave: function(index, direction){
                     fullpageEl.children().eq(index-1).removeClass('in');
                 }
             });
-            godownEl.click(function(e){
+            /*godownEl.click(function(e){
                 $.fn.fullpage.moveSectionDown();
-            })
+            })*/
             //$.fn.fullpage.moveTo(2);
         });
     </script>
@@ -54,18 +56,6 @@
 </div>
 <a id="godown" class="godown"><span class="circle"><span class="down"></span></span></a>
 
-<!--
-<div class="section pagewrap solution">
-    <div class="cont_upper ani-scale">
-        <div class="name">癫痫<span>  (  Epilepsy，EP  )  </span></div>
-        <div class="desc">癫痫是大脑神经元突发性异常放电，导致短暂的大脑功能障碍的一种慢性疾病。在我国癫痫已经成为神经科仅次于头痛的第二大常见病。</div>
-        <div class="desc">癫痫致痫灶是神经生理学的概念，是指神经元异常放电的起源区，即直接引起痫性发作的部位。外科手术切除致痫灶成功的关键就在于术前准确定位致痫灶。</div>
-        <div class="desc">我们通过采集EEG、MRI、 PET或SPECT的影像数据进行处理分析，并与正常人群组做统计比对，从而计算得到代谢异常的致痫灶大小、位置等信息，通过认知技术，给出治疗方案的建议以及治疗效果的预测。</div>
-        <div class="button">浏览输出结果</div>
-    </div>
-    <div class="cont_lower ani-bottom-in"><img src="image/solution/dx.png"></div>
-</div>
--->
 
 
 <div id="fullpage">
