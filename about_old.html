@@ -91,33 +91,32 @@
             width: 110%;
             border-bottom: 1px dashed #cecece;
             content: ' ';
-            left: 75px;
+            left: 0;
             z-index: 0;
         }
         .eventsbox .item:first-child{
             margin-left:0;
         }
         .eventsbox .item{
-    width: 148px;
+    width: 165px;
     height: 200px;
     float: left;
     position: relative;
     margin-top: 22px;
     /*overflow: hidden;*/
-    margin-left: -32px;
+    margin-left: -51px;
         }
         .eventsbox .item.bottom{
             margin-top: 178px;
         }
         .eventsbox .item .num{
             position: absolute;
-            left: 50%;
+            left: 0;
             bottom: 0;border-radius: 45px;
             border: 1px dashed #58B3EF;
             width: 45px;
             height: 45px;
             line-height: 45px;
-            margin-left: -22px;
             text-align: center;
             background-color: #ffffff;
             color: #58B3EF;
@@ -171,8 +170,11 @@
         }
         .eventsbox .item .con{
             height: 178px;
+            margin-left: 22px;
+            border-left: 1px dashed #58B3EF;
             position: relative;
-            margin-bottom: 22px;
+            padding-left: 15px;
+            padding-bottom: 22px;
 
             -webkit-transform-origin: bottom;
             -moz-transform-origin: bottom;
@@ -197,28 +199,17 @@
             height: 12px;
             position: absolute;
             top:0;
-            left:50%;
-            margin-left: -6px;
+            left: -6px;
             content: ' ';
             border-radius: 50%;
             background-color: #58B3EF;
             border: 1px solid #daeaf4;
-            z-index: 2;
-        }
-        .eventsbox .item .con:after{
-            width: 1px;
-            height: 100%;
-            position: absolute;
-            top:0;
-            left:50%;
-            content: ' ';
-            border-left: 1px dashed #58B3EF;
         }
         .eventsbox .item.bottom .con{
-            margin-top: 22px;
-            padding-top: 22px;
+            border-left: 1px dashed #cecece;
+            padding-top: 44px;
             padding-bottom: 0;
-            height: 156px;
+            height: 200px;
             -webkit-transform-origin: top;
             -moz-transform-origin: top;
             -ms-transform-origin: top;
@@ -227,9 +218,8 @@
         .eventsbox .item.bottom .con:before{
             background-color: #666666;
             border: 1px solid #d1d1d1;
-        }
-        .eventsbox .item.bottom .con:after{
-            border-left: 1px dashed #cecece;
+            top: auto;
+            bottom: 0;
         }
         .eventsbox .item .con .title{
             font-size: 16px;
@@ -273,68 +263,6 @@
             transform: translateX(0%);*/
             opacity: 1;
         }
-
-
-
-        .eventsbox .item.ic_01 .con:before{
-            top: 62px;
-        }
-        .eventsbox .item.ic_01 .con:after{
-            top: 65px;
-            bottom: 0;
-            height: auto;
-        }
-
-        .eventsbox .item.ic_03 .con:before{
-            top: 107px;
-        }
-        .eventsbox .item.ic_03 .con:after{
-            top: 111px;
-            bottom: 0;
-            height: auto;
-        }
-
-        .eventsbox .item.ic_05 .con:before{
-            top: 105px;
-        }
-        .eventsbox .item.ic_05 .con:after{
-            top: 108px;
-            bottom: 0;
-            height: auto;
-        }
-
-        .eventsbox .item.ic_02 .con{
-            padding-top: 81px;
-        }
-        .eventsbox .item.ic_04 .con{
-            padding-top: 113px;
-        }
-        .eventsbox .item.ic_06 .con{
-            padding-top: 65px;
-        }
-
-
-        .eventsbox .item.ic_02 .con:before{
-            top: 59px;
-        }
-        .eventsbox .item.ic_02 .con:after{
-            height: 65px;
-        }
-        .eventsbox .item.ic_04 .con:before{
-            top: 92px;
-        }
-        .eventsbox .item.ic_04 .con:after{
-            height: 98px;
-        }
-        .eventsbox .item.ic_06 .con:before{
-            top: 46px;
-        }
-        .eventsbox .item.ic_06 .con:after{
-            height: 51px;
-        }
-
-
-
 
         /**↓↓↓雅森团队↓↓↓**/
         .team{height: 530px;padding: 0 30px; overflow: hidden;}
@@ -496,10 +424,10 @@
                 if(index<10){
                     index = '0'+index;
                 }
-                var html='<div class="item ic_'+index+' '+classname+'">' +
+                var html='<div class="item '+classname+'">' +
                         '<div class="num">'+index+'</div>' +
-                        //'<div class="date">'+year+'</div>' +
-                        '<div class="con"><div class="title">'+year+' '+title+'</div><div class="desc">'+desc+'</div>' +
+                        '<div class="date">'+year+'</div>' +
+                        '<div class="con"><div class="title">'+title+'</div><div class="desc">'+desc+'</div>' +
                         '</div>' +
                         '</div>';
                 return html;
