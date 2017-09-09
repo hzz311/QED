@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no,minimal-ui">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="mobile.css">
+    <link rel="stylesheet" href="css/mobile.css">
     <title>雅森团队</title>
     <style>
+        .pagewrap{min-height: 100%;}
         .teamwrap{background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#FFFFFF), to(#abd4f5));border: 1px solid #dedede;box-shadow: 0 2px 5px rgba(0,0,0,.3);border-radius: 15px;}
         .teamwrap .bootompoint{text-align: center;color: #FFFFFF;padding: 25px 0 12px;}
         .teamwrap .bootompoint .icon{width: 22px;}
@@ -24,7 +25,8 @@
             background-size: contain;
         }
     </style>
-    <script src="../script/jquery-1.11.2.min.js"></script>
+    <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="js/scrollspy.js"></script>
     <script>
         $(function(){
             var scaleRatio=$(window).width()/414;

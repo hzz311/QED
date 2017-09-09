@@ -5,36 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no,minimal-ui">
     <title>关于我们</title>
     <link rel="stylesheet" href="css/mobile.css">
-    <link rel="stylesheet" href="css/jquery.fullpage.min.css">
+    <style>
+        .pagetop{background-color: rgba(255,255,255,0.7);}
+    </style>
     <script src="js/jquery-1.11.2.min.js"></script>
-    <script src="js/jquery.fullpage.min.js"></script>
-    <!--<script src="js/scrolloverflow.min.js"></script>-->
+    <script src="js/scrollspy.js"></script>
     <script src="js/mobile.js"></script>
     <script>
         $(document).ready(function() {
-            var fullpageEl=$('#fullpage'),godownEl=$('#godown');
-            fullpageEl.fullpage({
-                css3: true,
-                verticalCentered:false,
-//                scrollOverflow:true,
-                afterLoad: function(anchorLink, index){
-                    fullpageEl.children().eq(index-1).addClass('in');
-                    if(index==4){
-                        workObj.init(true);
-                    }
-                },
-                onLeave: function(index, direction){
-                    fullpageEl.children().eq(index-1).removeClass('in');
-                    if(index==4){
-                        workObj.init(false);
-                    }
-                }
-            });
-            $.fn.fullpage.moveTo(4);
-
+            setScrollSpy($('.section'));
             initMapSize();
-
+            workObj.init();
         });
+
+        function setScrollSpy(els){
+            els.on('scrollSpy:enter', function() {
+                $(this).addClass('in');
+            });
+            els.on('scrollSpy:exit', function() {
+                $(this).removeClass('in');
+            });
+            els.scrollSpy();
+        }
 
         function initMapSize(){
             var mapwrapEl=$("#mapwrap");
@@ -56,69 +48,44 @@
             var isloading=false;
             var workBodyEl=null,imgListEl=null;
 
-            function getImgData(call){
+            function getImgData(params,call){
                 if(isloading){return}
                 isloading=true;
-
                 //todo获取数据
-
-                isloading=false;
-                var videobg='image/about_work.jpg';
-                var imgArr=[
-                    'image/about_work.jpg'
-                    ,'image/about_work.jpg'
-                    ,'image/about_work.jpg'
-                    ,'image/about_work.jpg'
-                    ,'image/about_work.jpg'
-                    ,'image/about_work.jpg'
-                    ,'image/about_work.jpg'
-                    ,'image/about_work.jpg'
-                    ,'image/about_work.jpg'
-                    ,'image/about_work.jpg'
-                    ,'image/about_work.jpg'
-                    ,'image/about_work.jpg'
-                ];
-                workBodyEl.find('.bgbody').css('background-image','url("'+videobg+'")');
-                imgArr.forEach(function(url){
-                    imgListEl.append('<div class="item out"><div class="itembody" style="background-image: url('+url+')"></div></div>');
-                });
-                call&&call();
+                setTimeout(function(){
+                    isloading=false;
+                    var videobg='image/about_work.jpg';
+                    var imgArr=[
+                        'image/about_work.jpg'
+                        ,'image/about_work.jpg'
+                        ,'image/about_work.jpg'
+                        ,'image/about_work.jpg'
+                        ,'image/about_work.jpg'
+                        ,'image/about_work.jpg'
+                        ,'image/about_work.jpg'
+                        ,'image/about_work.jpg'
+                        ,'image/about_work.jpg'
+                        ,'image/about_work.jpg'
+                        ,'image/about_work.jpg'
+                        ,'image/about_work.jpg'
+                    ];
+                    workBodyEl.find('.bgbody').css('background-image','url("'+videobg+'")');
+                    imgArr.forEach(function(url){
+                        var itemEl=$('<div class="section item"><div class="itembody" style="background-image: url('+url+')"></div></div>');
+                        imgListEl.append(itemEl);
+                        setScrollSpy(itemEl);
+                    });
+                    call&&call();
+                },2000);
             }
 
-            function setAnimation(state){
-                if(state){
-                    setTimeout(function(){
-                        workBodyEl.find('.videobg').removeClass('out');
-                        imgListEl.children('.item').each(function(index,item){
-                            (function(i,el){
-                                setTimeout(function(){
-                                    el.removeClass('out');
-                                },i*300);
-                            })(index,$(item));
-                        })
-                    },100);
-                }else{
-                    workBodyEl.find('.videobg').addClass('out');
-                    imgListEl.children('.item').addClass('out');
-                }
-            }
             function bindEvent(){
 
             }
-            function init(state){
+            function init(){
                 workBodyEl=$('#workbody');
                 imgListEl=workBodyEl.children('.imglist');
-                workBodyEl.find('.bgbody').css('background-image','');
-                imgListEl.empty();
-                if(state){
-                    //入场
-                    getImgData(function(){
-                        setAnimation(state);
-                    });
-                }else{
-                    //离场
-                    setAnimation(state);
-                }
+                getImgData();
                 bindEvent();
             }
 
@@ -146,30 +113,28 @@
         <div class="logo"><img class="icon" src="image/logo_01.png"></div>
     </div>
 </div>
-<a id="godown" class="godown"><span class="circle"><span class="down"></span></span></a>
-
 <div id="fullpage">
-    <div class="section pagewrap aboutwrap">
-        <div class="pagetitle ani-scale">关于雅森</div>
-        <div class="ani-scale">
+    <div class="pagewrap aboutwrap">
+        <div class="section ani-scale pagetitle">关于雅森</div>
+        <div class="section ani-scale">
             <div class="name">— Vision for life </div>
             <div class="desc">长期以来，由于医疗资源、各地区研究水平的差异，加之政策等因素带来的信息不对称，使得相同的疾病在不同的国家、地区获得的诊断和治疗效果大不相同。</div>
             <div class="desc">雅森科技基于大数据分析技术、图形图像识别技术，加之计算机的深度学习能力，将海量数据转化为精准高效的诊断能力，这些能力可以通过人工智能的方式交付给社会。这些数据工具将帮助各地的人们获得平等的诊断机会，无论你是在旧金山还是在赞比亚。</div>
         </div>
-        <div class="img ani-scale" style="background-image: url(image/about_desc.jpg)"></div>
-        <div class="ani-scale">
+        <div class="section ani-scale img"><div class="imgbody" style="background-image: url(image/about_desc.jpg)"></div></div>
+        <div class="section ani-scale">
             <div class="name">— AI 赋能</div>
             <div class="desc">雅森科技成立于2006年，是国内最早专注于医学影像人工智能分析、核医学定量及CAD分析的高科技企业；长期致力于影像预处理、分析建模、大数据分析、深度学习辅助诊断等领域。产品覆盖脑、神经、甲状腺、血液、呼吸、病理等多模态分析技术。</div>
             <div class="desc">同时也面向医疗机构提供业界领先的统一AI集成平台，为医疗机构实现“AI赋能”。</div>
         </div>
     </div>
-    <div class="section pagewrap">
-        <div class="pagetitle ani-scale">大事记</div>
+    <div class="pagewrap">
+        <div class="section ani-scale pagetitle">大事记</div>
 
     </div>
-    <div class="section pagewrap teamwrap">
-        <div class="pagetitle ani-scale">雅森团队</div>
-        <div class="teambody ani-scale">
+    <div class="pagewrap teamwrap">
+        <div class="section ani-scale pagetitle">雅森团队</div>
+        <div class="section ani-scale teambody ">
             <div id="mapwrap" class="mapwrap">
                 <img class="mapimg" src="image/teammap.png">
                 <div class="point" style="left: 90px;top: 50px;"></div>
@@ -185,10 +150,42 @@
             <p class="dot"><span></span></p>
         </div>
     </div>
-    <div class="section pagewrap workwrap">
+    <div class="pagewrap joinwrap" id="joinwrap" name="joinwrap">
+        <div class="joinbody">
+            <div class="section ani-scale pagetitle">加入雅森</div>
+            <div class="section ani-scale">
+                <div class="typewrap">
+                    <div class="item active">研发</div>
+                    <div class="item">研发</div>
+                    <div class="item">研发</div>
+                </div>
+                <div class="namewrap">
+                <div class="item active">
+                    <div class="name">高级算法工程师</div>
+                    <div class="requirewrap">
+                        <p class="title">岗位职责：</p>
+                        <pre class="desc">医学影像的算法分析研究：包括基于结构和功能影像的变形、影像分割、伪影去除等；&#10;基于机器学习的医学影像开发；&#10;配合程序进行相应接口的调整。</pre>
+                        <p class="title">任职要求：</p>
+                        <pre class="desc">国内重点大学毕业，硕士或博士学位，专业为生物工程、医学影像、数学、物理等相关专业，可接收应届生；&#10;熟练使用Matlab， 熟悉M语言、Python语言、C语言；&#10;熟练使用Tensorflow或类似平台的机器学习系统（例如Matlab NNET toolbox）；&#10;有多篇国际主流杂志（Nature、SCI等）论文发表者优先。</pre>
+                        <div class="mail">有意向者请投递邮箱：contact@qed-tec.com</div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="name">自然语言语义识别算法工程师</div>
+                    <div class="requirewrap"></div>
+                </div>
+                <div class="item">
+                    <div class="name">助理算法工程师</div>
+                    <div class="requirewrap"></div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="pagewrap workwrap">
         <div id="workbody" class="workbody">
-            <div class="pagetitle ani-scale">工作在雅森</div>
-            <div class="videobg out"><div class="bgbody">
+            <div class="section ani-scale pagetitle">工作在雅森</div>
+            <div class="section ani-scale videobg"><div class="bgbody">
                 <div class="playicon"><svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M512 0C230.4 0 0 230.4 0 512 0 793.6 230.4 1024 512 1024 793.6 1024 1024 793.6 1024 512 1024 230.4 793.6 0 512 0L512 0ZM409.6 742.4 409.6 281.6 716.8 512 409.6 742.4 409.6 742.4Z"></path></svg></div>
             </div></div>
             <div class="imglist clearfix"></div>
