@@ -177,7 +177,7 @@ a{text-decoration: none;color: inherit;}
 
 /**工作在雅森**/
 .workwrap{}
-.workbody{height: 100%;overflow: auto;}
+.workbody{height: 100%;overflow: auto;padding-bottom: 1.71rem;}
 .workbody .videobg{width: 100%;margin-top: 0.5rem;}
 .workbody .videobg .bgbody{padding-top: 47.5%;position: relative;background: center no-repeat;background-size: cover;}
 .workbody .videobg .playicon{color: rgba(255,255,255,.7);position: absolute;left: 50%;top: 50%;margin-left:-2rem;margin-top: -2rem;}
