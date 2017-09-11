@@ -27,10 +27,12 @@
                     fullpageEl.children().eq(index-1).removeClass('in');
                 }
             });
-            /*godownEl.click(function(e){
-                $.fn.fullpage.moveSectionDown();
-            })*/
-            //$.fn.fullpage.moveTo(2);
+
+            $('#indexvideo').on('click',function(e){
+                e.preventDefault();
+                showVideo('http://qed.kuaipaoxiaoji.com/statics/Home/video/qed.mp4');
+            });
+
         });
     </script>
 </head>
@@ -57,6 +59,11 @@
 <a id="godown" class="godown"><span class="circle"><span class="down"></span></span></a>
 
 
+<div id="videowrap" style="height: 0px">
+    <div class="modal-overlay" style="display: none;"></div>
+    <div class="modal" style="display: none;"><video autoplay="autoplay" controls="controls" loop="loop" width="100%" style="border-radius: 5px;"></video></div>
+    <video autoplay="autoplay" controls="controls" loop="loop" width="0"></video>
+</div>
 
 <div id="fullpage">
     <div class="section">
@@ -64,7 +71,7 @@
         <div class="index_tet1 ani-scale"><img src="image/index/index_text.png"></div>
         <ul class="index_ctr ani-bottom-in">
             <li><a href="solution.html"><img src="image/index/icon_arrow_r.png">解决方案</a></li>
-            <li><img src="image/index/icon_play.png">观看视频</li>
+            <li><a id="indexvideo" href="javascript:;"><img src="image/index/icon_play.png">观看视频</a></li>
         </ul>
     </div>
     <div class="section">
