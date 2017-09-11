@@ -5,7 +5,7 @@ html{ width:100%; height:100%;}
 body{
     font-family:SimHei,"Microsoft YaHei",Arial, sans-serif;text-rendering: optimizeLegibility;
     -webkit-text-size-adjust:none; -webkit-overflow-scrolling:touch;
-    line-height: 1; color:#666666;position:relative;height:100%;
+    line-height: 1; color:#666666;height:100%;
     font-size: 1rem;
 }
 article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}
@@ -101,7 +101,7 @@ a{text-decoration: none;color: inherit;}
 
 /*页面入场动画*/
 .ani-scale{opacity:0;-webkit-transform: scale(0.6);transform: scale(0.6);-webkit-transition: all 1s;transition: all 1s;}
-.in .ani-scale{opacity:1;-webkit-transform: scale(1);transform: scale(1);}
+.in .ani-scale,.in.ani-scale{opacity:1;-webkit-transform: scale(1);transform: scale(1);}
 .ani-bottom-in{opacity:0;-webkit-transition: all 1s;transition: all 1s;-webkit-transform: translateY(50%);transform: translateY(50%);}
 .in .ani-bottom-in{opacity:1;-webkit-transform: translateY(0);transform: translateY(0);}
 .ani-top-in{opacity:0;-webkit-transition: all 1s;transition: all 1s;}
@@ -124,20 +124,14 @@ a{text-decoration: none;color: inherit;}
 .logowrap .item .name{margin-top: 0.683rem;font-size: 1.1rem;}
 
 /**关于雅森**/
-.aboutwrap{padding-bottom:0.5rem;
-    display: -webkit-flex;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    -webkit-align-items: center;
-    align-items:center;
-    justify-content: space-between;
-}
+.aboutwrap{padding-bottom:0.5rem;}
 .aboutwrap .name{font-size: 1.365rem;color: #54B5F6;padding-top: 0.7rem;padding-bottom: 0.7rem;}
-.aboutwrap .img{-webkit-flex:1;flex: 1;width:80%;margin: 0.5rem 0; background: center no-repeat;background-size: cover;}
-.aboutwrap .desc{padding-bottom: 0.35rem;line-height: 1.7rem;text-align: justify;}
+.aboutwrap .img{width:80%;margin: 0.8rem auto;}
+.aboutwrap .img .imgbody{padding-top: 56.35%; background: center no-repeat;background-size: cover;}
+.aboutwrap .desc{padding-top: 0.35rem;padding-bottom: 0.35rem;line-height: 1.7rem;text-align: justify;}
+
 /**雅森团队**/
-.teamwrap{}
+.teamwrap{overflow: hidden;}
 .teambody{margin-top: 0.85rem;padding-top: 3.4rem; border: 1px solid #ddd;box-shadow: 0 2px 5px rgba(0,0,0,.3);border-radius: 15px; background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#FFFFFF), to(#abd4f5));  }
 .teambody .bootompoint{text-align: center;color: #FFFFFF;padding: 2.5rem 0 0.9rem;}
 .teambody .bootompoint .icon{width: 18px;}
@@ -148,27 +142,52 @@ a{text-decoration: none;color: inherit;}
 .teambody .mapwrap{position: relative;width: 368px;height: 201px;}
 .teambody .mapwrap .mapimg{display: block;}
 .teambody .mapwrap .point{position: absolute;width: 30px;height: 18px;background: url(../image/mappoint.png) center no-repeat;background-size: contain;opacity: 0; -webkit-transform: scale(0);transform: scale(0);-webkit-transition: all .5s ease-in-out;transition: all .5s ease-in-out;}
-.in .teambody .mapwrap .point{opacity: 1;-webkit-transform: scale(1);transform: scale(1);}
-.in .teambody .mapwrap .point:nth-child(2){-webkit-transition-delay:0.5s;transition-delay:0.5s;}
-.in .teambody .mapwrap .point:nth-child(3){-webkit-transition-delay:0.9s;transition-delay:0.9s;}
-.in .teambody .mapwrap .point:nth-child(4){-webkit-transition-delay:1.3s;transition-delay:1.3s;}
-.in .teambody .mapwrap .point:nth-child(5){-webkit-transition-delay:1.7s;transition-delay:1.7s;}
-.in .teambody .mapwrap .point:nth-child(6){-webkit-transition-delay:2.1s;transition-delay:2.1s;}
-.in .teambody .mapwrap .point:nth-child(7){-webkit-transition-delay:2.5s;transition-delay:2.5s;}
-.in .teambody .mapwrap .point:nth-child(8){-webkit-transition-delay:2.9s;transition-delay:2.9s;}
+.in.teambody .mapwrap .point{opacity: 1;-webkit-transform: scale(1);transform: scale(1);}
+.in.teambody .mapwrap .point:nth-child(2){-webkit-transition-delay:0.5s;transition-delay:0.5s;}
+.in.teambody .mapwrap .point:nth-child(3){-webkit-transition-delay:0.9s;transition-delay:0.9s;}
+.in.teambody .mapwrap .point:nth-child(4){-webkit-transition-delay:1.3s;transition-delay:1.3s;}
+.in.teambody .mapwrap .point:nth-child(5){-webkit-transition-delay:1.7s;transition-delay:1.7s;}
+.in.teambody .mapwrap .point:nth-child(6){-webkit-transition-delay:2.1s;transition-delay:2.1s;}
+.in.teambody .mapwrap .point:nth-child(7){-webkit-transition-delay:2.5s;transition-delay:2.5s;}
+.in.teambody .mapwrap .point:nth-child(8){-webkit-transition-delay:2.9s;transition-delay:2.9s;}
+
+/**加入雅森**/
+.joinwrap{}
+.joinwrap .joinbody{}
+.joinbody .typewrap{
+    padding-bottom: 0.5rem;color: #999999;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    -webkit-align-items: flex-start;
+    align-items:flex-start;
+    justify-content: flex-start;
+    overflow-x: auto;
+}
+.joinbody .typewrap .item{flex: 1; padding: 1.3rem 0;min-width: 20%;text-align: center;color: #999;}
+.joinbody .typewrap .item.active{color:#54b5f6;text-decoration: underline;}
+.joinbody .namewrap{}
+.joinbody .namewrap .item .name{padding: 1.5rem;text-align: center; background-color:#e5e5e5;border-bottom: 1px solid #FFFFFF;}
+.joinbody .namewrap .item .requirewrap{background-color: #FFFFFF;height: 0;-webkit-transition: all 1s;transition: all 1s;overflow: hidden;}
+.joinbody .namewrap .item.active .requirewrap{height: auto;}
+.joinbody .namewrap .item .requirewrap .title{color: #54b5f6;padding-top:1.7rem; padding-bottom: 1.2rem;}
+.joinbody .namewrap .item .requirewrap .desc{padding-bottom: 1rem;line-height: 1.7rem;white-space: pre-wrap;}
+.joinbody .namewrap .item .requirewrap .mail{padding-top:1rem;padding-bottom:  2rem;color:#54b5f6;text-align: center;}
+
 /**工作在雅森**/
 .workwrap{}
-.workbody{height: 100%;overflow: scroll;}
-.workbody .videobg{width: 100%;margin-top: 0.5rem;-webkit-transition: all .4s ease-in-out;transition: all .4s ease-in-out;}
-.workbody .videobg.out{opacity:0;-webkit-transform: scale(0.8);transform: scale(0.6);}
+.workbody{height: 100%;overflow: auto;}
+.workbody .videobg{width: 100%;margin-top: 0.5rem;}
 .workbody .videobg .bgbody{padding-top: 47.5%;position: relative;background: center no-repeat;background-size: cover;}
 .workbody .videobg .playicon{color: rgba(255,255,255,.7);position: absolute;left: 50%;top: 50%;margin-left:-2rem;margin-top: -2rem;}
 .workbody .videobg .playicon .icon{width: 4rem;}
 .workbody .imglist{}
-.workbody .imglist .item{width: 49%;margin-right: 2%;margin-top: 2%;float: left;-webkit-transition: all .7s ease-in-out;transition: all .7s ease-in-out;}
+.workbody .imglist .item{width: 49%;margin-right: 2%;margin-top: 2%;float: left;opacity:0;-webkit-transform: scale(0);transform: scale(0); -webkit-transition: all .7s ease-in-out;transition: all .7s ease-in-out;}
+.workbody .imglist .item.in{opacity:1;-webkit-transform: scale(01);transform: scale(1);}
 .workbody .imglist .item:nth-of-type(even){margin-right:0;}
-.workbody .imglist .item.out{opacity:0;-webkit-transform: scale(0);transform: scale(0);}
 .workbody .imglist .item .itembody{padding-top:56.25%;position: relative;background: center no-repeat;background-size: cover;}
+
 
 
 
