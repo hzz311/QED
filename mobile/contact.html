@@ -50,56 +50,9 @@
                 formEl[0].reset();
             });
 
-
-
-            function showTip(opts){
-                var wrapper=$('body'),msg='',times=3000;
-                if(typeof opts === 'string'){
-                    msg=opts;
-                }else{
-                    msg=opts.msg;
-                    times=opts.times||times;
-                    wrapper=opts.warp||wrapper;
-                }
-                wrapper.append('<div class="m-tipwinmask"><span class="m-tipwin">'+msg+'</span></div>');
-                var tipwin =wrapper.children('.m-tipwinmask:last');
-                tipwin.show();
-                tipwin.addClass('m-tipwinmask_in');
-
-                var hideTipAlert=function(){
-                    tipwin.removeClass('m-tipwinmask_in');
-                    transitionEnd(tipwin,function (e) {
-                        tipwin.remove();
-                    });
-                };
-                var tipshowTimeoutId=setTimeout(function(){
-                    hideTipAlert();
-                },times);
-                tipwin.click(function(e){
-                    e.preventDefault();
-                    clearTimeout(tipshowTimeoutId);
-                    hideTipAlert();
-                });
+            function showTip(msg){
+                Modal.showTip(msg);
             }
-            function transitionEnd(dom,callback) {
-                var events = ['webkitTransitionEnd', 'transitionend', 'oTransitionEnd', 'MSTransitionEnd', 'msTransitionEnd'],
-                        i, j, dom = dom;
-                function fireCallBack(e) {
-                    /*jshint validthis:true */
-                    if (e.target !== this) return;
-                    callback.call(this, e);
-                    for (i = 0; i < events.length; i++) {
-                        dom.off(events[i], fireCallBack);
-                    }
-                }
-                if (callback) {
-                    for (i = 0; i < events.length; i++) {
-                        dom.on(events[i], fireCallBack);
-                    }
-                }
-                return this;
-            }
-
         })
     </script>
 </head>

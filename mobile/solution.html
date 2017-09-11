@@ -10,6 +10,39 @@
     <script src="js/jquery.fullpage.min.js"></script>
     <script src="js/mobile.js"></script>
     <script>
+        var imgHost='image/solution/';//'__PUBLIC__Home/';
+        var tabResultObj={
+            //癫痫
+            "content_01":{
+                'img':imgHost+'dx_big.jpg',
+                'desc':['1、致痫灶大小、位置、代谢异常程度等', '2、致痫灶确诊', '3、手术规划、药物治疗方案及术后神经心理受损情况预测']
+            },
+            //阿尔茨海默症
+            "content_02":{
+                'img':imgHost+'aezhm_big.jpg',
+                'desc':['1、代谢异常区域大小、位置、程度等', '2、疾病分型、分期或者预测结果', '3、药物治疗方案及病情发展预测']
+            },
+            //帕金森病
+            "content_03":{
+                'img':imgHost+'pjs_big.jpg',
+                'desc':['1、代谢异常区域大小、位置、程度等','2、疾病分型、分期或者预测结果','3、药物治疗方案及病情发展预测']
+            },
+            //慢性放射性职业病
+            "content_04":{
+                'img':imgHost+'mxfszyb_big.png',
+                'desc':['1、外周血淋巴细胞微核率', '2、带标记的微核细胞图片']
+            },
+            //分化型甲状腺癌
+            "content_05":{
+                'img':imgHost+'fhxjzx_big.jpg',
+                'desc':['1、清甲治疗给药剂量及预后判断','2、甲状腺残留组织体积']
+            },
+            //肺结节
+            "content_06":{
+                'img':imgHost+'fjj_big.jpg',
+                'desc':['1、结节位置、体积','2、良恶性判断、分型']
+            }
+        };
         $(document).ready(function() {
             var fullpageEl=$('#fullpage'),godownEl=$('#godown');
             fullpageEl.fullpage({
@@ -31,6 +64,17 @@
            /* godownEl.click(function(e){
                 $.fn.fullpage.moveSectionDown();
             })*/
+            $(".button").on('click',function(e){
+                e.preventDefault();
+                var info=tabResultObj[$(this).attr('data-page')];
+                var img=info.img||'';
+                var deschtml='';
+                (info.desc||[]).forEach(function(text){
+                    deschtml+='<p>'+text+'</p>'
+                });
+                var html='<div class="resultwinmodal"><img src="'+img+'"><div class="desc">'+deschtml+'</div></div>';
+                Modal.show(html);
+            });
         });
     </script>
 </head>
@@ -64,7 +108,7 @@
             <div class="desc">癫痫是大脑神经元突发性异常放电，导致短暂的大脑功能障碍的一种慢性疾病。在我国癫痫已经成为神经科仅次于头痛的第二大常见病。</div>
             <div class="desc">癫痫致痫灶是神经生理学的概念，是指神经元异常放电的起源区，即直接引起痫性发作的部位。外科手术切除致痫灶成功的关键就在于术前准确定位致痫灶。</div>
             <div class="desc">我们通过采集EEG、MRI、 PET或SPECT的影像数据进行处理分析，并与正常人群组做统计比对，从而计算得到代谢异常的致痫灶大小、位置等信息，通过认知技术，给出治疗方案的建议以及治疗效果的预测。</div>
-            <div class="button">浏览输出结果</div>
+            <div class="button" data-page="content_01">浏览输出结果</div>
         </div>
         <div class="cont_lower ani-bottom-in"><img class="lower-body" src="image/solution/dx.png"></div>
     </div>
@@ -75,7 +119,7 @@
             <div class="desc">阿尔茨海默病是一种起病隐匿的进行性发展的神经系统退行性疾病。其患者最早表现为记忆、思维、行为障碍，最终会影响基本日常生活能力，增加了照护量，也让家庭和社会承受了沉重的经济负担。</div>
             <div class="desc">目前诊断阿尔兹海默病，在临床上还没有非常有用的方法。尤其在早期阶段，阿尔兹海默病很难鉴别，是由于正常老化认知能力下降，还是轻度认识功能障碍，后者往往预示着阿尔兹海默病的可能。</div>
             <div class="desc">雅森通过影像组学及神经学量表的量化分析，使用机器学习的方法，得到组织及代谢异常区域的位置、大小、程度等数据，疾病分型的诊断结论，并给出药物治疗方案以及病情发展的预测。</div>
-            <div class="button">浏览输出结果</div>
+            <div class="button" data-page="content_02">浏览输出结果</div>
         </div>
         <div class="cont_lower ani-bottom-in"><img class="lower-body" src="image/solution/aezhm.png"></div>
     </div>
@@ -86,7 +130,7 @@
             <div class="desc">帕金森病是临床常见的进行性神经变性病，主要由黑质致密部多巴胺能神经元变性缺失所致，目前已成为继肿瘤、心脑血管病后中老年人群的“第三杀手”。</div>
             <div class="desc">目前，帕金森病的诊断主要依靠病史、临床表现和体格检查。早期诊断与治疗可以延缓病情进展、改善预后。但是，对于早期患者常规血、脑脊液检查多无异常，头CT、MRI也无特征性，而多模态影像检查在疾病早期甚至亚临床期即可显示异常，可支持诊断 。</div>
             <div class="desc">雅森通过影像组学、生物标记物及神经学量表的量化分析，使用机器学习的方法，得到组织及代谢异常区域的位置、大小、程度等数据，疾病分型的诊断结论，并给出药物治疗方案以及病情发展的预测。</div>
-            <div class="button">浏览输出结果</div>
+            <div class="button" data-page="content_03">浏览输出结果</div>
         </div>
         <div class="cont_lower ani-bottom-in"><img class="lower-body" src="image/solution/pjs.png"></div>
     </div>
@@ -97,9 +141,9 @@
             <div class="desc">慢性放射性职业病－淋巴微核细胞率是指在微核试验中1000个双核细胞中含有微核的细胞数，正常值范围应<3‰。对于经常接触放射源（如核电站、医院放射科、X射线安检设备等）的职业人群，淋巴微核细胞率的测定是所受辐射损伤评价的重要检测指标之一，亦列为我国慢性放射病诊断的重要检测指标之一。</div>
             <div class="desc">人工镜检的主观性强，易造成分析人员间的检测差异，难以标准化；在显微镜的一个视野下，通常只有十几个或数十个细胞，因此计数1000个细胞，至少要看几十个视野的涂片，导致人工镜检的工作量巨大。</div>
             <div class="desc">雅森通过对细胞涂片的影像进行细胞分割得到多种细胞结构特征，使用机器学习的方法来识别微核淋巴细胞，并计算得到外周血淋巴细胞微核率。</div>
-            <div class="button">浏览输出结果</div>
+            <div class="button" data-page="content_04">浏览输出结果</div>
         </div>
-        <div class="cont_lower ani-bottom-in"><img class="lower-body" src="image/solution/mxfszy.png"></div>
+        <div class="cont_lower ani-bottom-in"><img class="lower-body" src="image/solution/mxfszyb.png"></div>
     </div>
     <div class="section pagewrap solution">
         <div class="bg"></div>
@@ -108,7 +152,7 @@
             <div class="desc">分化型甲状腺癌是最常见的内分泌系统恶性肿瘤，其治疗模式为手术切除病灶、术后131碘治疗及促甲状腺激素抑制治疗。</div>
             <div class="desc">由于甲状腺解剖结构特殊，手术全切仍会残留甲状腺组织，必须要通过术后131碘治疗（简称清甲治疗）来降低患者的复发风险。清甲治疗的方案选择需要根据残留甲状腺情况明确给药剂量，以到达最佳的治疗效果。</div>
             <div class="desc">雅森通过对SPECT影像中的甲状腺残留组织进行轮廓提取，并结合影像灰度直方图分析，精确计算残留甲状腺的数量、体积等量化信息，再结合病人的甲状腺131碘吸收率，给出明确的给药剂量及预后判断。</div>
-            <div class="button">浏览输出结果</div>
+            <div class="button" data-page="content_05">浏览输出结果</div>
         </div>
         <div class="cont_lower ani-bottom-in"><img class="lower-body" src="image/solution/fhxjzx.png"></div>
     </div>
@@ -120,9 +164,9 @@
             <div class="desc">肺癌死亡率高居不下的主要原因是早期患者通常没有明显的临床症状，因此早期漏诊率很高。</div>
             <div class="desc">单纯依靠X线或者CT影像进行肺结节的检测，可帮助诊断肺癌，降低肺癌漏诊率，但是存在过度诊断、假阳性的问题，而且有很大一部分结节性质不明确。而PET/CT技术可以将病灶的功能信息同步分析，是目前肺功能评估、肺结节检测和诊断最有效的手段之一。</div>
             <div class="desc">采集肺影像（CT和PET），通过基于统计学的影像分割方法对肺结节进行目标区域的检测及提取，可以得到肺结节的位置、体积、密度等量化信息，再基于病灶的PET征象和CT征象（如SUVmax值、毛刺、分叶等）和患者的病史、吸烟史等临床信息进行量化分析，通过神经网络处理得到肺结节的良恶性诊断结论。</div>
-            <div class="button">浏览输出结果</div>
+            <div class="button" data-page="content_06">浏览输出结果</div>
         </div>
-        <div class="cont_lower ani-bottom-in"><img class="lower-body" src="image/solution/glxfjj.png"></div>
+        <div class="cont_lower ani-bottom-in"><img class="lower-body" src="image/solution/fjj.png"></div>
     </div>
 </div>
 </body>

@@ -16,6 +16,21 @@ svg:not(:root){ overflow: hidden;  display: inline-block;  vertical-align: middl
 a{text-decoration: none;color: inherit;}
 .clearfix:after {content: "";visibility: hidden;display: block;height: 0;clear: both;}
 
+/**弹窗**/
+.modal-overlay{position: fixed;z-index: 10600;width: 100%;height: 100%;left: 0;top: 0;opacity: 0;visibility: hidden;background: rgba(0, 0, 0, 0.4);-webkit-transition-duration: 400ms;transition-duration: 400ms;}
+.modal-overlay.modal-overlay-visible{visibility: visible;opacity: 1;overflow: hidden;}
+.modal{position: fixed;z-index: 10601;width:90%;left:5%;top: 50%;opacity: 0;
+    -webkit-transform: translateY(-50%) scale(1.25);transform: translateY(-50%) scale(1.11);
+    -webkit-transition-property: -webkit-transform, opacity;transition-property: transform, opacity;
+    -webkit-transition-duration: 400ms;transition-duration: 400ms;
+}
+.modal.modal-in{opacity: 1;translateY(-50%) scale(1);transform: translateY(-50%) scale(1);}
+.modal.modal-out{opacity: 0;-webkit-transform:translateY(-50%) scale(0.815);transform:translateY(-50%) scale(0.815);}
+
+.m-tipwinmask{position:fixed;z-index: 19999; opacity: 0; width: 100%;height: 100%;left: 0;top:0;text-align: center;-webkit-transform:scale3d(.5,.5,.5);transform:scale3d(.5,.5,.5);-webkit-transition: all .2s;transition: all .2s;}
+.m-tipwinmask_in{opacity: 1;-webkit-transform:scale3d(1,1,1);transform:scale3d(1,1,1);}
+.m-tipwin{position:relative;display:inline-block;min-width: 100px;width: auto;max-width: 80%; padding: 8px 15px;-webkit-transform:translateY(-50%);transform:translateY(-50%);line-height: 22px;top:50%;border-radius:20px; background-color:rgba(0,0,0,0.65); color:#FFF;}
+
 /**导航部分**/
 .pagetop{position: fixed;padding:1.28rem 1.71rem;width: 100%;height: 4.27rem;left: 0;top: 0;z-index: 99;/*background-color:rgba(255,255,255,0.7);*/}
 .pagetop .icon{height: 1.71rem;}
@@ -94,8 +109,8 @@ a{text-decoration: none;color: inherit;}
 /**内容部分**/
 .pagewrap{position: relative;padding-top: 4.27rem;padding-left: 1.71rem;padding-right: 1.71rem;}
 .pagetitle{font-size: 1.54rem;padding:0.5rem 1.71rem 0.8rem;text-align: center;}
-.pagewrap .cont_upper{position: relative;z-index: 1;top: 0;}
-.pagewrap .cont_lower{position: absolute;display: block;left: 0;bottom: 0;width: 100%;z-index: 5;height: 50%;text-align: center;}
+.pagewrap .cont_upper{position: relative;z-index: 5;top: 0;}
+.pagewrap .cont_lower{position: absolute;display: block;left: 0;bottom: 0;width: 100%;z-index: 1;height: 50%;text-align: center;}
 .pagewrap .cont_lower .lower-body{position: relative;display: block;top: 45%;-webkit-transform: translateY(-50%);transform: translateY(-50%);}
 
 
@@ -115,7 +130,9 @@ a{text-decoration: none;color: inherit;}
 .solution .desc{padding-top: 0.35rem;padding-bottom: 0.35rem;line-height: 1.7rem;text-align: justify;}
 .solution .button{display: inline-block;margin-top: 1rem;background-color:#54B5F6;color: #FFFFFF;padding:1rem 1.71rem;font-size: 1.1rem;border-radius: 5px;}
 .solution .cont_lower{padding-left: 3rem;padding-right: 3rem;height: 40%;/*background-color: #F7F7F7*/}
-
+.resultwinmodal{position:relative;width:100%;padding: 1.5rem 1rem 1rem;border-radius: 1rem;background-color: rgba(255,255,255,.85);}
+.resultwinmodal img{border: 0.4rem solid #FFFFFF;width: 100%;display: block;}
+.resultwinmodal .desc{line-height: 1.5rem;color: #666;margin-top: 0.8rem;font-size: 0.9rem}
 /***合作机构*/
 .logowrap{color: #516068;}
 .logowrap .item{float: left;width: 33.3333%;padding:1.2rem 0; text-align: center;opacity:0;-webkit-transform: scale(0);transform: scale(0); -webkit-transition: all .5s ease-out;transition: all .5s ease-out;}
@@ -455,7 +472,7 @@ content: "";visibility: hidden;display: block;height: 0;clear: both;
     top: -1px;
     height: 36px;
     width: 50%;
-    border-radius: 5px;
+    border-radius: 3px;
     border: 1px solid #dedede;
     background-color: #F8F8F8;
     transition: left .4s ease-in-out;
@@ -478,11 +495,6 @@ content: "";visibility: hidden;display: block;height: 0;clear: both;
     font-size: 15px;
     cursor: pointer;
 }
-
-.m-tipwinmask{position:fixed;z-index: 19999; opacity: 0; width: 100%;height: 100%;left: 0;top:0;text-align: center;-webkit-transform:scale3d(.5,.5,.5);transform:scale3d(.5,.5,.5);-webkit-transition: all .2s;transition: all .2s;}
-.m-tipwinmask_in{opacity: 1;-webkit-transform:scale3d(1,1,1);transform:scale3d(1,1,1);}
-.m-tipwin{position:relative;display:inline-block;min-width: 100px;width: auto;max-width: 80%; padding: 8px 15px;-webkit-transform:translateY(-50%);transform:translateY(-50%);line-height: 22px;top:50%;border-radius:8px;font-size: 16px;background-color:rgba(0,0,0,0.65); color:#FFF;}
-
 
 
 .detail {
