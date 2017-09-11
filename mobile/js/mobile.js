@@ -38,12 +38,17 @@ function showVideo(url){
 	var videowrapEl=$("#videowrap"),videoEl;
 	if(isiOS){
 		videoEl=videowrapEl.children('video');
-		videoEl.attr('src',url);
+		if(!videoEl.attr('src')){
+			videoEl.attr('src',url);
+		}
 		videoEl[0].play();
 		return;
 	}
 	var overlay =videowrapEl.children('.modal-overlay'),modal=videowrapEl.children('.modal');
-	videoEl=modal.children('video');videoEl.attr('src',url);
+	videoEl=modal.children('video');
+	if(!videoEl.attr('src')){
+		videoEl.attr('src',url);
+	}
 	overlay.show();modal.show();
 	overlay.addClass('modal-overlay-visible');modal.removeClass('modal-out').addClass('modal-in');
 	overlay.on('click', function (e) {
