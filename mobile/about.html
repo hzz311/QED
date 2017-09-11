@@ -17,6 +17,7 @@
         $(document).ready(function() {
             setScrollSpy($('.section'));
             initMapSize();
+            joinObj.init();
             workObj.init();
         });
 
@@ -46,6 +47,42 @@
                 ,'margin-bottom':scaleOffsetY+'px'
             });
         }
+
+        var joinObj=(function(){
+            var joinbodyEl=null;
+
+            //重置职位列表
+            function resetNameWrap(){
+                //todo
+            }
+
+            function bindEvent(){
+                var typewrap=joinbodyEl.find('.typewrap');
+                typewrap.on('click','.item',function(e){
+                    var self=$(this);
+                    if(!self.hasClass('active')){
+                        typewrap.children('.active').removeClass('active');
+                        self.addClass('active');
+                        resetNameWrap();
+                    }
+                });
+                var namewrap=joinbodyEl.find('.namewrap');
+                namewrap.on('click','.item',function(e){
+                    var self=$(this);
+                    if(self.hasClass('active')){
+                        self.removeClass('active');
+                    }else{
+                        self.addClass('active');
+                    }
+                });
+            }
+            function init(){
+                joinbodyEl=$('#joinbody');
+                bindEvent();
+            }
+
+            return {init:init}
+        })();
         var workObj=(function(){
             var isloading=false;
             var workBodyEl=null,imgListEl=null;
@@ -224,7 +261,7 @@
         </div>
     </div>
     <div class="pagewrap joinwrap" id="joinwrap" name="joinwrap">
-        <div class="joinbody">
+        <div id="joinbody" class="joinbody">
             <div class="section ani-scale pagetitle">加入雅森</div>
             <div class="section ani-scale">
                 <div class="typewrap">
@@ -245,11 +282,23 @@
                     </div>
                     <div class="item">
                         <div class="name">自然语言语义识别算法工程师</div>
-                        <div class="requirewrap"></div>
+                        <div class="requirewrap">
+                            <p class="title">岗位职责：</p>
+                            <pre class="desc">医学影像的算法分析研究：包括基于结构和功能影像的变形、影像分割、伪影去除等；&#10;基于机器学习的医学影像开发；&#10;配合程序进行相应接口的调整。</pre>
+                            <p class="title">任职要求：</p>
+                            <pre class="desc">国内重点大学毕业，硕士或博士学位，专业为生物工程、医学影像、数学、物理等相关专业，可接收应届生；&#10;熟练使用Matlab， 熟悉M语言、Python语言、C语言；&#10;熟练使用Tensorflow或类似平台的机器学习系统（例如Matlab NNET toolbox）；&#10;有多篇国际主流杂志（Nature、SCI等）论文发表者优先。</pre>
+                            <div class="mail">有意向者请投递邮箱：contact@qed-tec.com</div>
+                        </div>
                     </div>
                     <div class="item">
                         <div class="name">助理算法工程师</div>
-                        <div class="requirewrap"></div>
+                        <div class="requirewrap">
+                            <p class="title">岗位职责：</p>
+                            <pre class="desc">医学影像的算法分析研究：包括基于结构和功能影像的变形、影像分割、伪影去除等；&#10;基于机器学习的医学影像开发；&#10;配合程序进行相应接口的调整。</pre>
+                            <p class="title">任职要求：</p>
+                            <pre class="desc">国内重点大学毕业，硕士或博士学位，专业为生物工程、医学影像、数学、物理等相关专业，可接收应届生；&#10;熟练使用Matlab， 熟悉M语言、Python语言、C语言；&#10;熟练使用Tensorflow或类似平台的机器学习系统（例如Matlab NNET toolbox）；&#10;有多篇国际主流杂志（Nature、SCI等）论文发表者优先。</pre>
+                            <div class="mail">有意向者请投递邮箱：contact@qed-tec.com</div>
+                        </div>
                     </div>
                 </div>
             </div>
