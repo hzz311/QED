@@ -42,7 +42,7 @@
 
 			var isIntersect = !(elLeft > right ||
 				elRight < left ||
-				elTop >= bottom ||
+				elTop > bottom ||
 				elBottom < top);
 
 			if (isIntersect) {

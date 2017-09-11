@@ -23,9 +23,11 @@
 
         function setScrollSpy(els){
             els.on('scrollSpy:enter', function() {
+                console.log('enter');
                 $(this).addClass('in');
             });
             els.on('scrollSpy:exit', function() {
+                console.log('exit');
                 $(this).removeClass('in');
             });
             els.scrollSpy();
