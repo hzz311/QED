@@ -33,6 +33,34 @@ var isiOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
 	setup();
 })();
 
+
+function showVideo(url){
+	var videowrapEl=$("#videowrap"),videoEl;
+	if(isiOS){
+		videoEl=videowrapEl.children('video');
+		videoEl.attr('src',url);
+		videoEl[0].play();
+		return;
+	}
+	var overlay =videowrapEl.children('.modal-overlay'),modal=videowrapEl.children('.modal');
+	videoEl=modal.children('video');videoEl.attr('src',url);
+	overlay.show();modal.show();
+	overlay.addClass('modal-overlay-visible');modal.removeClass('modal-out').addClass('modal-in');
+	overlay.on('click', function (e) {
+		e.preventDefault();
+		videoEl[0].pause();
+		overlay.removeClass('modal-overlay-visible');
+		transitionEnd(overlay,function (e) {
+			overlay.hide();
+		});
+		modal.removeClass('modal-in').addClass('modal-out');
+		transitionEnd(modal,function (e) {
+			modal.hide();
+		});
+	});
+	videoEl[0].play();
+}
+
 function transitionEnd(dom,callback) {
 	var events = ['webkitTransitionEnd', 'transitionend', 'oTransitionEnd', 'MSTransitionEnd', 'msTransitionEnd'], i, j, dom = dom;
 	function fireCallBack(e) {
