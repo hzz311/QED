@@ -56,6 +56,7 @@
                 setTimeout(function(){
                     isloading=false;
                     var videobg='image/about_work.jpg';
+                    var videourl='../test.mp4';
                     var imgArr=[
                         'image/about_work.jpg'
                         ,'image/about_work.jpg'
@@ -70,7 +71,10 @@
                         ,'image/about_work.jpg'
                         ,'image/about_work.jpg'
                     ];
-                    workBodyEl.find('.bgbody').css('background-image','url("'+videobg+'")');
+                    var bgbodyEl=workBodyEl.find('.bgbody');
+                    bgbodyEl.css('background-image','url("'+videobg+'")');
+                    bgbodyEl.find('.playicon').attr('data-url',videourl);
+
                     imgArr.forEach(function(url){
                         var itemEl=$('<div class="section item" data-url="'+url+'"><div class="itembody" style="background-image: url('+url+')"></div></div>');
                         imgListEl.append(itemEl);
@@ -80,38 +84,11 @@
                 },2000);
             }
 
-            function showVideo(){
-                if(isiOS){
-                    var videoEl=$("#videowrap").children('video');
-                    videoEl.attr('src','../test.mp4');
-                    videoEl[0].play();
-                    return;
-                 }
-                var videowrap=$("#videowrap");
-                var overlay =videowrap.children('.modal-overlay'),modal=videowrap.children('.modal');
-                var videoEl=modal.children('video');videoEl.attr('src','../test.mp4');
-                overlay.show();modal.show();
-                overlay.addClass('modal-overlay-visible');modal.removeClass('modal-out').addClass('modal-in');
-                overlay.on('click', function (e) {
-                    e.preventDefault();
-                    videoEl[0].pause();
-                    overlay.removeClass('modal-overlay-visible');
-                    transitionEnd(overlay,function (e) {
-                        overlay.hide();
-                    });
-                    modal.removeClass('modal-in').addClass('modal-out');
-                    transitionEnd(modal,function (e) {
-                        modal.hide();
-                    });
-                });
-                videoEl[0].play();
-            }
-
             function bindEvent(){
                 //视频显示
                 workBodyEl.find('.playicon').on('click',function(e){
                     e.preventDefault();
-                    showVideo();
+                    showVideo($(this).attr('data-url'));
                 });
                 //图片预览
                 imgListEl.on('click','.item',function(e){
@@ -282,7 +259,7 @@
         <div id="workbody" class="workbody">
             <div class="section ani-scale pagetitle">工作在雅森</div>
             <div class="section ani-scale videobg"><div class="bgbody">
-                <div class="playicon"><svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M512 0C230.4 0 0 230.4 0 512 0 793.6 230.4 1024 512 1024 793.6 1024 1024 793.6 1024 512 1024 230.4 793.6 0 512 0L512 0ZM409.6 742.4 409.6 281.6 716.8 512 409.6 742.4 409.6 742.4Z"></path></svg></div>
+                <div class="playicon" data-url=""><svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M512 0C230.4 0 0 230.4 0 512 0 793.6 230.4 1024 512 1024 793.6 1024 1024 793.6 1024 512 1024 230.4 793.6 0 512 0L512 0ZM409.6 742.4 409.6 281.6 716.8 512 409.6 742.4 409.6 742.4Z"></path></svg></div>
             </div></div>
             <div class="imglist clearfix"></div>
         </div>
