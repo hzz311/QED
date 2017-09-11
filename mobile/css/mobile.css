@@ -46,9 +46,22 @@ a{text-decoration: none;color: inherit;}
     background-color:rgba(0,0,0,0.5);color: #FFFFFF;
     position: absolute;z-index: 1;left: 0;height: 100%;
     -webkit-transition: transform 0.3s ease-in-out;transition: transform 0.3s ease-in-out;
+
+    display: box; /* OLD - Android 4.4- */
+    display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;
+    display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
+
+    -webkit-flex-direction: column;
+    -moz-flex-direction: column;
+    -ms-flex-direction: column;
+    -o-flex-direction: column;
     flex-direction: column;
+
+
+
     flex-wrap: nowrap;
     -webkit-align-items: center;
     align-items:center;
@@ -173,16 +186,33 @@ a{text-decoration: none;color: inherit;}
 .joinwrap .joinbody{}
 .joinbody .typewrap{
     padding-bottom: 0.5rem;color: #999999;
+
+    display: box; /* OLD - Android 4.4- */
+    display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;
+    display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
+
+    -webkit-flex-direction: row;
+    -moz-flex-direction: row;
+    -ms-flex-direction: row;
+    -o-flex-direction: row;
     flex-direction: row;
+
     flex-wrap: wrap;
     -webkit-align-items: flex-start;
     align-items:flex-start;
     justify-content: flex-start;
     overflow-x: auto;
 }
-.joinbody .typewrap .item{flex: 1; padding: 1.3rem 0;min-width: 20%;text-align: center;color: #999;}
+.joinbody .typewrap .item{
+    -webkit-box-flex: 1;/* OLD - iOS 6-, Safari 3.1-6 */
+    -moz-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex:1;
+    padding: 1.3rem 0;min-width: 20%;text-align: center;color: #999;}
 .joinbody .typewrap .item.active{color:#54b5f6;text-decoration: underline;}
 .joinbody .namewrap{}
 .joinbody .namewrap .item .name{padding: 1.5rem;text-align: center; background-color:#e5e5e5;border-bottom: 1px solid #FFFFFF;}
@@ -367,9 +397,21 @@ a{text-decoration: none;color: inherit;}
     padding: 0 .3em;
     margin: 1em 0;
     text-align: center;
+
+    display: box; /* OLD - Android 4.4- */
+    display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;
+    display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
+
+    -webkit-flex-direction: row;
+    -moz-flex-direction: row;
+    -ms-flex-direction: row;
+    -o-flex-direction: row;
     flex-direction: row;
+
+
     flex-wrap: wrap;
     -webkit-align-items: center;
     align-items:center;
