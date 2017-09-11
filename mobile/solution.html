@@ -51,13 +51,13 @@
                 afterLoad: function(anchorLink, index){
                     fullpageEl.children().eq(index-1).addClass('in');
                     if(index>=6){
-//                        godownEl.addClass('out');
+                        godownEl.addClass('out');
                     }
                 },
                 onLeave: function(index, direction){
                     fullpageEl.children().eq(index-1).removeClass('in');
                     if(index>=6){
-//                        godownEl.removeClass('out');
+                        godownEl.removeClass('out');
                     }
                 }
             });

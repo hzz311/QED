@@ -46,13 +46,14 @@ function showVideo(url){
 	}
 	var overlay =videowrapEl.children('.modal-overlay'),modal=videowrapEl.children('.modal');
 	videoEl=modal.children('video');
-	if(!videoEl.attr('src')){
+	//if(!videoEl.attr('src')){
 		videoEl.attr('src',url);
-	}
+	//}
 	overlay.show();modal.show();
 	overlay.addClass('modal-overlay-visible');modal.removeClass('modal-out').addClass('modal-in');
 	overlay.on('click', function (e) {
 		e.preventDefault();
+		overlay.unbind('click');
 		videoEl[0].pause();
 		overlay.removeClass('modal-overlay-visible');
 		transitionEnd(overlay,function (e) {
