@@ -52,30 +52,41 @@ function transitionEnd(dom,callback) {
 
 var Modal=(function(){
 
-	function createModal(htmlstr) {
+	function createModal(opts){
+		var htmlstr='',onOpen=null;
+		if(typeof opts === 'string'){
+			htmlstr=opts;
+		}else{
+			htmlstr=opts.html||'';
+			onOpen=opts.onOpen;
+		}
 		var wrap=$('body');
 		var html='<div class="modal-overlay"></div><div class="modal">'+htmlstr+'</div>';
 		wrap.append(html);
 		var overlay =wrap.children('.modal-overlay');
 		var modal=wrap.children('.modal');
+		onOpen&&onOpen(modal);
 		overlay.show();
 		modal.show();
 		overlay.addClass('modal-overlay-visible');
-		modal.addClass('modal-in');
+		modal.removeClass('modal-out').addClass('modal-in');
 		overlay.on('click', function (e) {
 			e.preventDefault();
-			overlay.removeClass('modal-overlay-visible');
-			transitionEnd(overlay,function (e) {
-				overlay.remove();
-			});
-			modal.removeClass('modal-in').addClass('modal-out');
-			transitionEnd(modal,function (e) {
-				modal.remove();
-			});
+			closeModal(modal);
 		});
 		return modal;
 	}
-
+	function closeModal(modal){
+		var overlay=modal.parent().children('.modal-overlay:last');
+		overlay.removeClass('modal-overlay-visible');
+		transitionEnd(overlay,function (e) {
+			overlay.remove();
+		});
+		modal.removeClass('modal-in').addClass('modal-out');
+		transitionEnd(modal,function (e) {
+			modal.remove();
+		});
+	}
 	/**
 	 * msg
 	 */
@@ -110,6 +121,7 @@ var Modal=(function(){
 	}
 	return {
 		show:createModal,
+		close:closeModal,
 		showTip:showTip
 	}
 })();
