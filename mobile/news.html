@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no,minimal-ui">
     <title>雅森科技</title>
     <link rel="stylesheet" href="css/mobile.css">
-    <link rel="stylesheet" href="css/jquery.fullpage.min.css">
     <script src="js/jquery-1.11.2.min.js"></script>
-    <script src="js/jquery.fullpage.min.js"></script>
     <script src="js/mobile.js"></script>
     <script>
         $(document).ready(function() {
@@ -19,9 +17,13 @@
                 _this.addClass('active');
                 $('.tabsdiv').hide();
                 $('#'+type).show();
-            })
+            });
 
-
+            $(window).scroll(function(e){
+                if(document.body.scrollTop+document.body.clientHeight>=document.body.scrollHeight){
+                    console.log('loading......');
+                }
+            });
         });
     </script>
 </head>
@@ -78,6 +80,72 @@
                     </div>
                     <div class="title">
                         <p>这道医学影像的“应用题”，雅森用数据分析给出了答案雷锋网</p>
+                    </div>
+                </a>
+            </div>
+            <div class="item">
+                <a href="show.html">
+                    <div class="img">
+                        <img src="image/csnews.jpg">
+                        <div class="date">2017-08-12</div>
+                    </div>
+                    <div class="title">
+                        <p>医学影像创新赶超“AlphaGo”</p>
+                    </div>
+                </a>
+            </div>
+            <div class="item">
+                <a href="show.html">
+                    <div class="img">
+                        <img src="image/csnews.jpg">
+                        <div class="date">2017-08-12</div>
+                    </div>
+                    <div class="title">
+                        <p>医学影像创新赶超“AlphaGo”</p>
+                    </div>
+                </a>
+            </div>
+            <div class="item">
+                <a href="show.html">
+                    <div class="img">
+                        <img src="image/csnews.jpg">
+                        <div class="date">2017-08-12</div>
+                    </div>
+                    <div class="title">
+                        <p>医学影像创新赶超“AlphaGo”</p>
+                    </div>
+                </a>
+            </div>
+            <div class="item">
+                <a href="show.html">
+                    <div class="img">
+                        <img src="image/csnews.jpg">
+                        <div class="date">2017-08-12</div>
+                    </div>
+                    <div class="title">
+                        <p>医学影像创新赶超“AlphaGo”</p>
+                    </div>
+                </a>
+            </div>
+            <div class="item">
+                <a href="show.html">
+                    <div class="img">
+                        <img src="image/csnews.jpg">
+                        <div class="date">2017-08-12</div>
+                    </div>
+                    <div class="title">
+                        <p>医学影像创新赶超“AlphaGo”</p>
+                    </div>
+                </a>
+            </div>
+            <div class="item">
+                <a href="show.html">
+                    <div class="img">
+                        <img src="image/csnews.jpg">
+                        <div class="date">2017-08-12</div>
+                    </div>
+                    <div class="title">
+                        <p>医学影像创新赶超“AlphaGo”</p>
                     </div>
                 </a>
             </div>
