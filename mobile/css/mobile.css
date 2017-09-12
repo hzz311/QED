@@ -75,7 +75,7 @@ a{text-decoration: none;color: inherit;}
 }
 .pagenav.in .navbg{-webkit-transform: translateX(-100%);transform: translateX(-100%);}
 .pagenav.in .list{-webkit-transform: translateX(-17rem);transform: translateX(-17rem);}
-.pagenav .list .item{display: block;padding:0.85rem 1.71rem;border: 1px solid #FFFFFF;border-radius: 10px;font-size: 1.2rem;}
+.pagenav .list .item{display: block;padding:0.85rem 0;width:8.4rem; border: 1px solid #FFFFFF;border-radius: 10px;font-size: 1.2rem;text-align: center;}
 .pagenav .list .close{position: absolute;right:2px;top:0;width: 44px;height: 44px;}
 .pagenav .list .close:before,.pagenav .close:after{content: '';position: absolute; background-color: #FFFFFF;height: 1px;width: 16px;top: 21px;left: 14px;}
 .pagenav .list .close:before{-webkit-transform: rotate(-45deg);transform: rotate(-45deg);}
