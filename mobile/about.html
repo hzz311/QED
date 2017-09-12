@@ -68,6 +68,7 @@
                 namewrap.on('click','.item',function(e){
                     var self=$(this);
                     if(self.hasClass('active')){
+                        document.body.scrollTop+=1;
                         self.removeClass('active');
                     }else{
                         self.addClass('active');
