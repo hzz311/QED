@@ -5,13 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no,minimal-ui">
     <title>关于我们</title>
     <link rel="stylesheet" href="css/mobile.css">
-    <link rel="stylesheet" href="css/jquery.fullpage.min.css">
     <style>
         .pagetop{background-color: rgba(255,255,255,0.7);}
     </style>
     <script src="js/jquery-1.11.2.min.js"></script>
     <script src="js/scrollspy.js"></script>
-    <script src="js/jquery.fullpage.min.js"></script>
     <script src="js/mobile.js"></script>
     <script>
         $(document).ready(function() {
@@ -23,11 +21,9 @@
 
         function setScrollSpy(els){
             els.on('scrollSpy:enter', function() {
-                console.log('enter');
                 $(this).addClass('in');
             });
             els.on('scrollSpy:exit', function() {
-                console.log('exit');
                 $(this).removeClass('in');
             });
             els.scrollSpy();
