@@ -130,7 +130,7 @@ a{text-decoration: none;color: inherit;}
 .pagetitle{font-size: 1.54rem;padding:0.5rem 1.71rem 0.8rem;text-align: center;}
 .pagewrap .cont_upper{position: relative;z-index: 5;top: 0;}
 .pagewrap .cont_lower{position: absolute;display: block;left: 0;bottom: 0;width: 100%;z-index: 1;height: 50%;text-align: center;}
-.pagewrap .cont_lower .lower-body{position: relative;display: block;top: 45%;-webkit-transform: translateY(-50%);transform: translateY(-50%);}
+.pagewrap .cont_lower .lower-body{position: relative;display: block;margin:0 auto;top: 45%;-webkit-transform: translateY(-50%);transform: translateY(-50%);}
 
 
 /*页面入场动画*/
@@ -291,6 +291,7 @@ a{text-decoration: none;color: inherit;}
     position: absolute;
     left: 0;width: 100%;
     top:15%;
+    text-align: center;
 }
 .index_c_text{
     position: absolute;
