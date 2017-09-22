@@ -41,7 +41,7 @@ a{text-decoration: none;color: inherit;}
     top: 0;
     right: 0;
     padding: 1.28rem 1.71rem;
-    -webkit-transition: all 0.4s;transition: all 0.4s;color: #000;}
+    -webkit-transition: all 0.4s;transition: all 0.4s;color: #54B5F6;}
 .pagetop .menu.out{opacity: 0;transform: scale(0.5);}
 
 .pagenav{position: fixed;width: 100%;height: 100%;left: 100%;top: 0;z-index: 100;}
@@ -143,7 +143,7 @@ a{text-decoration: none;color: inherit;}
 
 
 /**解决方案**/
-.solution .bg{position: absolute; left:0;top: 0;width: 100%;height: 65%; background: url("../image/solution/bg.png") no-repeat bottom center;background-size: 100%;}
+.solution .bg{position: absolute; left:0;top: 0;width: 100%;height: 65%; background: url("../image/solution/bg.png") no-repeat bottom center;background-size: cover;}
 .solution .name{font-size: 1.632rem;color: #54B5F6;padding-top: 0.7rem;padding-bottom: 0.7rem;}
 .solution .name span{font-size: 0.9rem;}
 .solution .desc{padding-top: 0.35rem;padding-bottom: 0.35rem;line-height: 1.7rem;text-align: justify;}
@@ -759,4 +759,20 @@ content: "";visibility: hidden;display: block;height: 0;clear: both;
     transform: translateX(0%);*/
     opacity: 1;
 }
+.footter{background-color: #999999;color: #FFFFFF;}
+.footter .title{float: left;width: 33.333%;font-size: 1.2rem;display:block; line-height: 4rem;}
+.footter .title.col2{width: 25%;}
+.footter .title.col6{width: 50%;padding-left: 15%;}
+.footter .crumbwrap{float: left;width: 75%;font-size: 1rem;padding-top: 0.6rem;}
+.footter .crumb{display: inline-block;line-height: 3rem;}
+.footter .contactway{font-size: 0.8rem;text-align: center;padding: 2.5rem 0; border-top: 1px solid #FFFFFF;}
+.footter .contactway img{width:4.7rem;display: inline-block;margin-bottom: 0.5rem;}
+.footter .contactway .address{margin-top: 2.5rem;display: inline-block;}
+.footter .contactway .address .col{float: left;margin-right: 1rem;text-align: left;line-height: 1.5rem;}
+.footter .contactway .address .col:last-child{margin-right:0}
 
+
+@media screen and (max-device-height: 600px) {
+    .solution .bg{height: 70%;}
+    .solution .cont_lower{height: 35%;}
+}
